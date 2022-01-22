@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
+import { basicURL } from "../../basicURL/basicURL";
 import TableCompontent from "../../Components/TableCompontent";
 import { toastMessage } from "../../Components/toastMessage";
 
@@ -84,7 +85,7 @@ export default function Table(prop) {
     // records.map((item) => ids.push(details.data[item._id - 1]._id));
     await axios
       .post(
-        "https://asmita-mern.herokuapp.com/personal/delete",
+        `${basicURL}/personal/delete`,
         // ids
         { id: details.data[records - 1]._id }
       )

@@ -5,6 +5,8 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { Tooltip } from "@mui/material";
 import InputComponent from "../../Components/InputComponent";
+import { basicURL } from "../../basicURL/basicURL";
+import { toastMessage } from "../../Components/toastMessage";
 
 export default function ToDoList() {
   const [todolist, settodolist] = useState({ data: [] });
@@ -21,7 +23,7 @@ export default function ToDoList() {
 
   const getToDoList = async () => {
     await axios
-      .get("https://asmita-mern.herokuapp.com/todo/get")
+      .get(`${basicURL}/todo/get`)
       .then((response) => {
         settodolist(response);
       })
@@ -48,22 +50,18 @@ export default function ToDoList() {
           // setname([input.trim(), ...name]);
           let post = { name: input.trim() };
           await axios
-            .post("https://asmita-mern.herokuapp.com/todo/post", post)
+            .post(`${basicURL}/todo/post`, post)
             .then((response) => {
-              toast.success("Record has been saved succefully", {
-                position: toast.POSITION.BOTTOM_CENTER,
-                autoClose: 5000,
-                className: "Toastify__toast-body",
+              toastMessage({
+                appearance: "success",
+                message: "Record has been saved succefully",
               });
+
               setinput("");
               getToDoList();
             })
             .catch((err) =>
-              toast.error(`Error: ${err}`, {
-                position: toast.POSITION.BOTTOM_CENTER,
-                autoClose: 5000,
-                className: "Toastify__toast-body",
-              })
+              toastMessage({ appearance: "error", message: `Error: ${err}` })
             );
         } else {
           setmessage("This ToDo is already exist.");
@@ -78,21 +76,17 @@ export default function ToDoList() {
   const deleteName = async (index) => {
     toast.dismiss();
     await axios
-      .post("https://asmita-mern.herokuapp.com/todo/delete", { id: index })
+      .post(`${basicURL}/todo/delete`, { id: index })
       .then(() => {
-        toast.success("Record has been deleted succefully", {
-          position: toast.POSITION.BOTTOM_CENTER,
-          autoClose: 5000,
-          className: "Toastify__toast-body",
+        toastMessage({
+          appearance: "success",
+          message: "Record has been deleted succefully",
         });
+
         getToDoList();
       })
       .catch((err) =>
-        toast.error(`Error: ${err}`, {
-          position: toast.POSITION.BOTTOM_CENTER,
-          autoClose: 5000,
-          className: "Toastify__toast-body",
-        })
+        toastMessage({ appearance: "error", message: `Error: ${err}` })
       );
   };
 
@@ -119,26 +113,22 @@ export default function ToDoList() {
         });
         if (count === null || count === modificationid) {
           await axios
-            .post("https://asmita-mern.herokuapp.com/todo/byid", {
+            .post(`${basicURL}/todo/byid`, {
               _id: modificationid,
               name: modifytodo,
             })
             .then(() => {
               setmessage2("");
               setshowModifyPopup(false);
-              toast.success("Record has been updated succefully", {
-                position: toast.POSITION.BOTTOM_CENTER,
-                autoClose: 5000,
-                className: "Toastify__toast-body",
+              toastMessage({
+                appearance: "success",
+                message: "Record has been updated succefully",
               });
+
               getToDoList();
             })
             .catch((err) => {
-              toast.error(`Error: ${err}`, {
-                position: toast.POSITION.BOTTOM_CENTER,
-                autoClose: 5000,
-                className: "Toastify__toast-body",
-              });
+              toastMessage({ appearance: "error", message: `Error: ${err}` });
             });
         } else {
           setmessage2("This ToDo is already exist.");
@@ -166,7 +156,7 @@ export default function ToDoList() {
               fontSize: "1.6vw",
             }}
           >
-            ToDo List
+            Todo List
           </div>
           <div
             style={{
@@ -182,7 +172,7 @@ export default function ToDoList() {
             >
               Home
             </Link>{" "}
-            / ToDo List
+            / Todo List
           </div>
         </div>
       </div>
@@ -193,11 +183,11 @@ export default function ToDoList() {
               <InputComponent
                 State={input}
                 setState={setinput}
-                placeHolder={"Enter Your ToDo"}
+                placeHolder={"Enter Your Task"}
               />
               <div className="errorDiv">{message}</div>
             </div>
-            <div className="col-6" style={{textAlign: 'center'}}>
+            <div className="col-6" style={{ textAlign: "center" }}>
               <button
                 type="submit"
                 name=""
@@ -215,7 +205,7 @@ export default function ToDoList() {
       <div className="row">
         {todolist.data.length > 0 && (
           <form className="formcontainer">
-            <span className="listHead">Your ToDo List</span>
+            <span className="listHead">Your Todo List</span>
             <ul className="listArea">
               {todolist.data.map((val, index) => (
                 <div className="row">

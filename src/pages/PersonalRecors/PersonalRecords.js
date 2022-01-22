@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import AddModifyComponent from "./AddModifyComponent";
 import { getPersonalRecords } from "../../Redux/Actions/getPersonalRecords";
 import { toastMessage } from "../../Components/toastMessage";
+import { basicURL } from "../../basicURL/basicURL";
 
 const PersonalDetails = createContext();
 
@@ -56,7 +57,7 @@ export default function PersonalRecords() {
 
   const getDetails = async () => {
     await axios
-      .get("https://asmita-mern.herokuapp.com/personal/get")
+      .get(`${basicURL}/personal/get`)
       .then((response) => {
         setdetails(response);
         dispatch(getPersonalRecords());
@@ -137,7 +138,7 @@ export default function PersonalRecords() {
       fileerror === null
     ) {
       await axios
-        .post("https://asmita-mern.herokuapp.com/personal/post", dtl)
+        .post(`${basicURL}/personal/post`, dtl)
         .then(async (response) => {
           setid(response.data.id);
           setfirstName("");
@@ -171,7 +172,7 @@ export default function PersonalRecords() {
       formData.append("file", employeePhoto[0]);
       await axios
         .post(
-          `https://asmita-mern.herokuapp.com/personal/upload/${imgid}`,
+          `${basicURL}/personal/upload/${imgid}`,
           formData
         )
         .then(() => {
@@ -305,7 +306,7 @@ export default function PersonalRecords() {
       mdtl.gender !== null
     ) {
       axios
-        .post("https://asmita-mern.herokuapp.com/personal/byid", mdtl)
+        .post(`${basicURL}/personal/byid`, mdtl)
         .then(() => {
           setshowModifyPopup(false);
           getDetails();

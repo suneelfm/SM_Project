@@ -7,6 +7,7 @@ export const toastMessage = ({
   hideProgress = true,
   position,
 }) => {
+  toast.configure();
   switch (appearance) {
     case "error":
       toast.error(message, {

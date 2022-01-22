@@ -7,6 +7,7 @@ import TableCompontent from "../../Components/TableCompontent";
 import axios from "axios";
 import ViewModel from "./ViewModel";
 import { toastMessage } from "../../Components/toastMessage";
+import { basicURL } from "../../basicURL/basicURL";
 
 export default function OfficialRecords() {
   const [employeeName, setemployeeName] = useState({
@@ -62,7 +63,7 @@ export default function OfficialRecords() {
 
   const getDetails = async () => {
     await axios
-      .get("https://asmita-mern.herokuapp.com/official/get")
+      .get(`${basicURL}/official/get`)
       .then((response) => {
         setofficeRecords(response);
         console.log(response);
@@ -177,7 +178,7 @@ export default function OfficialRecords() {
         dtl.department = department;
         const mdtl = { ...dtl, _id: modificationid };
         await axios
-          .post("https://asmita-mern.herokuapp.com/official/update", mdtl)
+          .post(`${basicURL}/official/update`, mdtl)
           .then(() => {
             getDetails();
             setemployeeName({
@@ -222,7 +223,7 @@ export default function OfficialRecords() {
           dtl.dol = dateofLeaving;
           dtl.department = department;
           await axios
-            .post("https://asmita-mern.herokuapp.com/official/save", dtl)
+            .post(`${basicURL}/official/save`, dtl)
             .then(() => {
               getDetails();
               setemployeeName({
@@ -248,7 +249,7 @@ export default function OfficialRecords() {
 
   const deleteName = async (index) => {
     await axios
-      .post("https://asmita-mern.herokuapp.com/official/delete", {
+      .post(`${basicURL}/official/delete`, {
         id: officeRecords.data[index - 1]._id,
       })
       .then(() => {
@@ -306,7 +307,7 @@ export default function OfficialRecords() {
   const getimage = async (d_id, isview) => {
     isview ? setViewimage(null) : setimage(null);
     await axios
-      .get(`https://asmita-mern.herokuapp.com/personal/imageget/${d_id}`)
+      .get(`${basicURL}/personal/imageget/${d_id}`)
       .then((resp) => {
         isview
           ? setViewimage(resp.data.convertedImg.image)

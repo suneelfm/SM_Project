@@ -246,7 +246,7 @@ export default function ForgotPassword(close) {
                     Confirm Password*:
                   </label>
                   <div
-                    className="input-group mb-3"
+                    className="input-group m-2"
                     style={{
                       width: "98%",
                       borderRadius: "4px",

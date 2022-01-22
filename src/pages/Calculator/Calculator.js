@@ -149,14 +149,14 @@ export default function Calculator() {
               <td className="operatorbutton">
                 <button
                   type="button"
-                  className="clearButton buttonProp"
+                  className="clearButton calcycalcybuttonProp"
                   onClick={clearDisplay}
                 >
                   <i>Clear</i>
                 </button>
                 <button
                   type="button"
-                  className="clearButton buttonProp"
+                  className="clearButton calcycalcybuttonProp"
                   onClick={backSpace}
                 >
                   <i className="fas fa-arrow-left"></i>
@@ -168,7 +168,7 @@ export default function Calculator() {
             <tr>
               <td>
                 <button
-                  className="fitToCell buttonProp"
+                  className="fitToCell calcybuttonProp"
                   onClick={() => calcyScreen(7)}
                 >
                   7
@@ -176,7 +176,7 @@ export default function Calculator() {
               </td>
               <td>
                 <button
-                  className="fitToCell buttonProp"
+                  className="fitToCell calcybuttonProp"
                   onClick={() => calcyScreen(8)}
                 >
                   8
@@ -184,7 +184,7 @@ export default function Calculator() {
               </td>
               <td>
                 <button
-                  className="fitToCell buttonProp"
+                  className="fitToCell calcybuttonProp"
                   onClick={() => calcyScreen(9)}
                 >
                   9
@@ -192,7 +192,7 @@ export default function Calculator() {
               </td>
               <td className="operatorbutton">
                 <button
-                  className="fitToCell buttonProp"
+                  className="fitToCell calcybuttonProp"
                   onClick={() => calcyScreen("+")}
                 >
                   +
@@ -202,7 +202,7 @@ export default function Calculator() {
             <tr>
               <td>
                 <button
-                  className="fitToCell buttonProp"
+                  className="fitToCell calcybuttonProp"
                   onClick={() => calcyScreen(4)}
                 >
                   4
@@ -210,7 +210,7 @@ export default function Calculator() {
               </td>
               <td>
                 <button
-                  className="fitToCell buttonProp"
+                  className="fitToCell calcybuttonProp"
                   onClick={() => calcyScreen(5)}
                 >
                   5
@@ -218,7 +218,7 @@ export default function Calculator() {
               </td>
               <td>
                 <button
-                  className="fitToCell buttonProp"
+                  className="fitToCell calcybuttonProp"
                   onClick={() => calcyScreen(6)}
                 >
                   6
@@ -226,7 +226,7 @@ export default function Calculator() {
               </td>
               <td className="operatorbutton">
                 <button
-                  className="fitToCell buttonProp"
+                  className="fitToCell calcybuttonProp"
                   onClick={() => calcyScreen("-")}
                 >
                   -
@@ -236,7 +236,7 @@ export default function Calculator() {
             <tr>
               <td>
                 <button
-                  className="fitToCell buttonProp"
+                  className="fitToCell calcybuttonProp"
                   onClick={() => calcyScreen(1)}
                 >
                   1
@@ -244,7 +244,7 @@ export default function Calculator() {
               </td>
               <td>
                 <button
-                  className="fitToCell buttonProp"
+                  className="fitToCell calcybuttonProp"
                   onClick={() => calcyScreen(2)}
                 >
                   2
@@ -252,7 +252,7 @@ export default function Calculator() {
               </td>
               <td>
                 <button
-                  className="fitToCell buttonProp"
+                  className="fitToCell calcybuttonProp"
                   onClick={() => calcyScreen(3)}
                 >
                   3
@@ -260,7 +260,7 @@ export default function Calculator() {
               </td>
               <td className="operatorbutton">
                 <button
-                  className="fitToCell buttonProp"
+                  className="fitToCell calcybuttonProp"
                   onClick={() => calcyScreen("*")}
                 >
                   x
@@ -270,7 +270,7 @@ export default function Calculator() {
             <tr>
               <td>
                 <button
-                  className="fitToCell buttonProp"
+                  className="fitToCell calcybuttonProp"
                   onClick={() => calcyScreen(".")}
                 >
                   .
@@ -278,7 +278,7 @@ export default function Calculator() {
               </td>
               <td>
                 <button
-                  className="fitToCell buttonProp"
+                  className="fitToCell calcybuttonProp"
                   onClick={() => calcyScreen(0)}
                 >
                   0
@@ -291,7 +291,7 @@ export default function Calculator() {
               </td>
               <td className="operatorbutton">
                 <button
-                  className="fitToCell buttonProp"
+                  className="fitToCell calcybuttonProp"
                   onClick={() => calcyScreen("/")}
                 >
                   /

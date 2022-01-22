@@ -10,6 +10,7 @@ export default function Layout() {
   const [userImage, setuserImage] = useState("/Images/profile.png");
   const [showMenu, setshowMenu] = useState(false);
   const [expandmenu, setexpandmenu] = useState(true);
+  const [focuskey, setfocuskey] = useState({ key: "" });
 
   useEffect(() => {
     setuser(
@@ -118,199 +119,210 @@ export default function Layout() {
           >
             <div
               className="sideBarContainer"
-              style={
-                expandmenu
-                  ? { width: "4%" }
-                  : { width: "15%", overflow: "hidden" }
-              }
+              style={expandmenu ? { width: "4%" } : { width: "15%" }}
             >
               <div className="container">
                 <Link to="/" style={{ textDecoration: "none" }}>
                   <div
-                    className="row sideBar"
+                    className="sideBar"
                     data-tip
                     data-for="homeTip"
-                    style={
-                      expandmenu
-                        ? { fontSize: "1.5vw", justifyContent: "center" }
-                        : { fontSize: "1.1vw" }
-                    }
+                    onClick={() => setfocuskey({ key: "home" })}
+                    style={{
+                      color:
+                        (focuskey.key === "home" ||
+                          document.documentURI.split("/").pop() === "") &&
+                        "blue",
+                    }}
                   >
                     {expandmenu && (
-                      <ReactTooltip id="homeTip" place="top" effect="solid">
+                      <ReactTooltip id="homeTip" place="right" effect="solid">
                         Home
                       </ReactTooltip>
                     )}
                     <i
-                      className={
-                        !expandmenu
-                          ? "fas fa-home sideBarIcons col-1"
-                          : "fas fa-home sideBarIcons"
-                      }
+                      style={{
+                        fontSize: expandmenu ? "1.5vw" : "1.1vw",
+                        display: "inline",
+                        padding: expandmenu && "0 5vw 0 0.8vw",
+                        transition: "all 0.5s linear",
+                      }}
+                      className={"fas fa-home sideBarIcons"}
                     ></i>
-                    {!expandmenu && (
-                      <span
-                        className="col-9"
-                        style={{ padding: "0", whiteSpace: "nowrap" }}
-                      >
-                        Home
-                      </span>
-                    )}
+                    <span
+                      className="col-9"
+                      style={{ padding: "0", whiteSpace: "nowrap" }}
+                    >
+                      Home
+                    </span>
                   </div>
                 </Link>
                 <Link to="/todolist" style={{ textDecoration: "none" }}>
                   <div
-                    className="row sideBar"
+                    className="sideBar"
+                    onClick={() => setfocuskey({ key: "todo" })}
                     data-tip
                     data-for="todoListTip"
-                    style={
-                      expandmenu
-                        ? { fontSize: "1.5vw", justifyContent: "center" }
-                        : { fontSize: "1.1vw" }
-                    }
+                    style={{
+                      color:
+                        (focuskey.key === "todo" ||
+                          document.documentURI.split("/").pop() ===
+                            "todolist") &&
+                        "blue",
+                    }}
                   >
                     {expandmenu && (
-                      <ReactTooltip id="todoListTip" place="top" effect="solid">
+                      <ReactTooltip id="todoListTip" place="right" effect="solid">
                         ToDo List
                       </ReactTooltip>
                     )}
                     <i
-                      className={
-                        !expandmenu
-                          ? "fas fa-list-ul sideBarIcons col-1"
-                          : "fas fa-list-ul sideBarIcons"
-                      }
+                      style={{
+                        fontSize: expandmenu ? "1.5vw" : "1.1vw",
+                        display: "inline",
+                        padding: expandmenu && "0 5vw 0 0.8vw",
+                        transition: "all 0.5s linear",
+                      }}
+                      className={"fas fa-list-ul sideBarIcons"}
                     ></i>
-                    {!expandmenu && (
-                      <span
-                        className="col-9"
-                        style={{ padding: "0", whiteSpace: "nowrap" }}
-                      >
-                        ToDo List
-                      </span>
-                    )}
+                    <span
+                      className="col-9"
+                      style={{ padding: "0", whiteSpace: "nowrap" }}
+                    >
+                      ToDo List
+                    </span>
                   </div>
                 </Link>
                 <Link to="/calculator" style={{ textDecoration: "none" }}>
                   <div
-                    className="row sideBar"
+                    className="sideBar"
+                    onClick={() => setfocuskey({ key: "cals" })}
                     data-tip
                     data-for="CalculatorTip"
-                    style={
-                      expandmenu
-                        ? { fontSize: "1.5vw", justifyContent: "center" }
-                        : { fontSize: "1.1vw" }
-                    }
+                    style={{
+                      color:
+                        (focuskey.key === "cals" ||
+                          document.documentURI.split("/").pop() ===
+                            "calculator") &&
+                        "blue",
+                    }}
                   >
                     {expandmenu && (
                       <ReactTooltip
                         id="CalculatorTip"
-                        place="top"
+                        place="right"
                         effect="solid"
                       >
                         Calculator
                       </ReactTooltip>
                     )}
                     <i
-                      className={
-                        !expandmenu
-                          ? "fas fa-calculator sideBarIcons col-1"
-                          : "fas fa-calculator sideBarIcons"
-                      }
-                    ></i>
-                    {!expandmenu && (
-                      <span
-                        className="col-9"
-                        style={{ padding: "0", whiteSpace: "nowrap" }}
-                      >
-                        Calculator
-                      </span>
-                    )}
+                      style={{
+                        fontSize: expandmenu ? "1.5vw" : "1.1vw",
+                        display: "inline",
+                        padding: expandmenu && "0 5vw 0 0.8vw",
+                        transition: "all 0.5s linear",
+                      }}
+                      className={"fas fa-calculator sideBarIcons"}
+                    />
+                    <span
+                      className="col-9"
+                      style={{ padding: "0", whiteSpace: "nowrap" }}
+                    >
+                      Calculator
+                    </span>
                   </div>
                 </Link>
                 <div
-                  className="row sideBar"
+                  className="sideBar"
                   data-tip
                   data-for="DetailsTip"
-                  style={
-                    expandmenu
-                      ? { fontSize: "1.5vw", justifyContent: "center" }
-                      : { fontSize: "1.1vw" }
-                  }
+                  style={{
+                    color:
+                      (focuskey.key === "details" ||
+                        document.documentURI.split("/").includes("details")) &&
+                      "blue",
+                  }}
                   onClick={() => {
                     detailsubmenu
                       ? setdetailsubmenu(false)
                       : setdetailsubmenu(true);
                   }}
-                  // onBlur={setdetailsubmenu(false)}
                 >
                   {expandmenu && (
-                    <ReactTooltip id="DetailsTip" place="top" effect="solid">
+                    <ReactTooltip id="DetailsTip" place="right" effect="solid">
                       Details
                     </ReactTooltip>
                   )}
                   <i
-                    className={
-                      !expandmenu
-                        ? "fas fa-info sideBarIcons col-1"
-                        : "fas fa-info sideBarIcons"
-                    }
+                    style={{
+                      fontSize: expandmenu ? "1.5vw" : "1.1vw",
+                      display: "inline",
+                      padding: expandmenu ? "0 5vw 0 1.1vw" : "0.3vw",
+                      transition: "all 0.5s linear",
+                    }}
+                    className={"fas fa-info sideBarIcons"}
                   ></i>
-                  {!expandmenu && (
-                    <span
-                      className="col-9"
-                      style={{ padding: "0", whiteSpace: "nowrap" }}
-                    >
-                      Details
-                    </span>
-                  )}
+                  <span
+                    className="col-9"
+                    style={{ padding: "0", whiteSpace: "nowrap" }}
+                  >
+                    Details
+                  </span>
                 </div>
-                {detailsubmenu && (
+                {(detailsubmenu ||
+                  document.documentURI.split("/").includes("details")) && (
                   <div
                     className="container"
-                    style={
-                      expandmenu
-                        ? {
-                            padding: "0 0.5vw",
-                            display: "inline-grid",
-                            justifyContent: "center",
-                          }
-                        : { padding: "0 0.5vw" }
-                    }
+                    style={{
+                      overflow: "hidden",
+                      padding: "0 0.5vw",
+                      display: expandmenu && "inline-grid",
+                    }}
                   >
                     <Link
                       to="/details/personalrecords"
                       style={{ textDecoration: "none" }}
                     >
                       <div
-                        className="row subMenu"
+                        className="subMenu"
+                        onClick={() =>
+                          setfocuskey({ key: "details", subkey: "personal" })
+                        }
                         data-tip
                         data-for="PersonalRecordsTip"
+                        style={{
+                          color:
+                            (focuskey.subkey === "personal" ||
+                              document.documentURI
+                                .split("/")
+                                .includes("personalrecords")) &&
+                            "blue",
+                        }}
                       >
                         {expandmenu && (
                           <ReactTooltip
                             id="PersonalRecordsTip"
-                            place="top"
+                            place="right"
                             effect="solid"
                           >
                             Personal Records
                           </ReactTooltip>
                         )}
                         <i
-                          className={
-                            !expandmenu
-                              ? "fas fa-user-secret sideBarIcons col-1"
-                              : "fas fa-user-secret sideBarIcons"
-                          }
+                          style={{
+                            display: "inline",
+                            padding: expandmenu && "0 5vw 0 0.8vw",
+                            transition: "all 0.5s linear",
+                          }}
+                          className={"fas fa-user-secret sideBarIcons"}
                         ></i>
-                        {!expandmenu && (
-                          <span
-                            className="col-10"
-                            style={{ padding: "0", whiteSpace: "nowrap" }}
-                          >
-                            Personal Records
-                          </span>
-                        )}
+                        <span
+                          className="col-10"
+                          style={{ padding: "0", whiteSpace: "nowrap" }}
+                        >
+                          Personal Records
+                        </span>
                       </div>
                     </Link>
                     <Link
@@ -318,9 +330,20 @@ export default function Layout() {
                       style={{ textDecoration: "none" }}
                     >
                       <div
-                        className="row subMenu"
+                        className="subMenu"
+                        onClick={() =>
+                          setfocuskey({ key: "details", subkey: "official" })
+                        }
                         data-tip
                         data-for="OfficialRecordsTip"
+                        style={{
+                          color:
+                            (focuskey.subkey === "official" ||
+                              document.documentURI
+                                .split("/")
+                                .includes("officialrecords")) &&
+                            "blue",
+                        }}
                       >
                         {expandmenu && (
                           <ReactTooltip
@@ -332,20 +355,19 @@ export default function Layout() {
                           </ReactTooltip>
                         )}
                         <i
-                          className={
-                            !expandmenu
-                              ? "fas fa-clipboard sideBarIcons col-1"
-                              : "fas fa-clipboard sideBarIcons"
-                          }
+                          style={{
+                            display: "inline",
+                            padding: expandmenu && "0 5vw 0 0.8vw",
+                            transition: "all 0.5s linear",
+                          }}
+                          className={"fas fa-clipboard sideBarIcons"}
                         ></i>
-                        {!expandmenu && (
-                          <span
-                            className="col-10"
-                            style={{ padding: "0", whiteSpace: "nowrap" }}
-                          >
-                            Official Records
-                          </span>
-                        )}
+                        <span
+                          className="col-10"
+                          style={{ padding: "0", whiteSpace: "nowrap" }}
+                        >
+                          Official Records
+                        </span>
                       </div>
                     </Link>
                     <Link
@@ -353,73 +375,136 @@ export default function Layout() {
                       style={{ textDecoration: "none" }}
                     >
                       <div
-                        className="row subMenu"
+                        className="subMenu"
                         data-tip
                         data-for="HealthRecordsTip"
+                        onClick={() =>
+                          setfocuskey({ key: "details", subkey: "health" })
+                        }
+                        style={{
+                          color:
+                            (focuskey.subkey === "health" ||
+                              document.documentURI
+                                .split("/")
+                                .includes("healthrecords")) &&
+                            "blue",
+                        }}
                       >
                         {expandmenu && (
                           <ReactTooltip
                             id="HealthRecordsTip"
-                            place="top"
+                            place="right"
                             effect="solid"
                           >
                             Health Records
                           </ReactTooltip>
                         )}
                         <i
-                          className={
-                            !expandmenu
-                              ? "fas fa-notes-medical sideBarIcons col-1"
-                              : "fas fa-notes-medical sideBarIcons"
-                          }
+                          style={{
+                            display: "inline",
+                            padding: expandmenu && "0 5vw 0 0.8vw",
+                            transition: "all 0.5s linear",
+                          }}
+                          className={"fas fa-notes-medical sideBarIcons"}
                         ></i>
-                        {!expandmenu && (
-                          <span
-                            className="col-10"
-                            style={{ padding: "0", whiteSpace: "nowrap" }}
-                          >
-                            Health Records
-                          </span>
-                        )}
+                        <span
+                          // className="col-10"
+                          style={{ padding: "0", whiteSpace: "nowrap" }}
+                        >
+                          Health Records
+                        </span>
                       </div>
                     </Link>
                   </div>
                 )}
                 <Link to="/otherrecords" style={{ textDecoration: "none" }}>
                   <div
-                    className="row sideBar"
+                    className="sideBar"
                     data-tip
                     data-for="OtherRecordsTip"
-                    style={
-                      expandmenu
-                        ? { fontSize: "1.5vw", justifyContent: "center" }
-                        : { fontSize: "1.1vw" }
-                    }
+                    onClick={() => setfocuskey({ key: "other" })}
+                    style={{
+                      color:
+                        (focuskey.key === "other" ||
+                          document.documentURI
+                            .split("/")
+                            .includes("otherrecords")) &&
+                        "blue",
+                    }}
                   >
                     {expandmenu && (
                       <ReactTooltip
                         id="OtherRecordsTip"
-                        place="top"
+                        place="right"
                         effect="solid"
                       >
                         Other Records
                       </ReactTooltip>
                     )}
                     <i
-                      className={
-                        !expandmenu
-                          ? "fas fa-receipt sideBarIcons col-1"
-                          : "fas fa-receipt sideBarIcons"
-                      }
+                      style={{
+                        fontSize: expandmenu ? "1.5vw" : "1.1vw",
+                        display: "inline",
+                        padding: expandmenu && "0 5vw 0 0.8vw",
+                        transition: "all 0.5s linear",
+                      }}
+                      className={"fas fa-receipt sideBarIcons"}
                     ></i>
-                    {!expandmenu && (
-                      <span
-                        className="col-9"
-                        style={{ padding: "0", whiteSpace: "nowrap" }}
-                      >
-                        Other Records
-                      </span>
+                    <span
+                      style={{
+                        overflow: "hidden",
+                        padding: "0",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      Other Records
+                    </span>
+                  </div>
+                </Link>
+                <Link to="/settings" style={{ textDecoration: "none" }}>
+                  <div
+                    className="sideBar"
+                    data-tip
+                    data-for="Settings"
+                    onClick={() => setfocuskey({ key: "settings" })}
+                    style={{
+                      overflow: "hidden",
+                      position: "absolute",
+                      bottom: "0",
+                      width: expandmenu ? "4%" : "15%",
+                      whiteSpace: "nowrap",
+                      transition: "all 0.5s linear",
+                      color:
+                        (focuskey.key === "settings" ||
+                          document.documentURI
+                            .split("/")
+                            .includes("settings")) &&
+                        "blue",
+                    }}
+                  >
+                    {expandmenu && (
+                      <ReactTooltip id="Settings" place="right" effect="solid">
+                        Settings
+                      </ReactTooltip>
                     )}
+                    <i
+                      style={{
+                        fontSize: expandmenu ? "1.5vw" : "1.1vw",
+                        display: "inline",
+                        padding: expandmenu && "0 5vw 0 0.8vw",
+                        transition: "all 0.5s linear",
+                      }}
+                      className={"fas fa-cog sideBarIcons"}
+                    ></i>
+                    <span
+                      style={{
+                        overflow: "hidden",
+                        padding: "0",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      Settings
+                    </span>
                   </div>
                 </Link>
               </div>
