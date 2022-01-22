@@ -332,7 +332,9 @@
   color: red;
   margin-left: 0.5vw;
   font-size: 1vw;
-  margin-top: -0.5vw;
+  margin-top: -0.6vw;
+  height: 0.5vw;
+  margin-bottom: 0.3vw;
 }
 .list {
   font-size: 1.2vw;
