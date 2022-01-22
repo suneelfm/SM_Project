@@ -1,0 +1,52 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.cardProp {
+  height: auto;
+  display: flex;
+  padding: 2vw !important;
+}
+
+.rowProp {
+  display: flex;
+  justify-content: space-around;
+  margin: 2vw 0px !important;
+}
+
+.cardiconProp {
+  height: 4vw;
+  width: 4vw;
+  border-radius: 50%;
+  padding: 0.5vw;
+}
+
+.dot {
+  border-radius: 50%;
+  height: 0.7vw;
+  width: 0.7vw;
+}
+
+.dotMenuIcon {
+  float: right;
+  font-weight: 700;
+  color: rgb(152, 152, 202);
+  cursor: pointer;
+}
+
+.textProp {
+  margin-top: -0.4vw;
+  font-size: 1vw;
+  font-weight: 500;
+  padding: 0;
+}
