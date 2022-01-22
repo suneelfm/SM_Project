@@ -151,7 +151,11 @@ export default function Layout() {
                     ></i>
                     <span
                       className="col-9"
-                      style={{ padding: "0", whiteSpace: "nowrap" }}
+                      style={{
+                        fontSize: "1.1vw",
+                        padding: "0",
+                        whiteSpace: "nowrap",
+                      }}
                     >
                       Home
                     </span>
@@ -172,7 +176,11 @@ export default function Layout() {
                     }}
                   >
                     {expandmenu && (
-                      <ReactTooltip id="todoListTip" place="right" effect="solid">
+                      <ReactTooltip
+                        id="todoListTip"
+                        place="right"
+                        effect="solid"
+                      >
                         ToDo List
                       </ReactTooltip>
                     )}
@@ -187,7 +195,11 @@ export default function Layout() {
                     ></i>
                     <span
                       className="col-9"
-                      style={{ padding: "0", whiteSpace: "nowrap" }}
+                      style={{
+                        fontSize: "1.1vw",
+                        padding: "0",
+                        whiteSpace: "nowrap",
+                      }}
                     >
                       ToDo List
                     </span>
@@ -227,7 +239,11 @@ export default function Layout() {
                     />
                     <span
                       className="col-9"
-                      style={{ padding: "0", whiteSpace: "nowrap" }}
+                      style={{
+                        fontSize: "1.1vw",
+                        padding: "0",
+                        whiteSpace: "nowrap",
+                      }}
                     >
                       Calculator
                     </span>
@@ -265,7 +281,11 @@ export default function Layout() {
                   ></i>
                   <span
                     className="col-9"
-                    style={{ padding: "0", whiteSpace: "nowrap" }}
+                    style={{
+                      fontSize: "1.1vw",
+                      padding: "0",
+                      whiteSpace: "nowrap",
+                    }}
                   >
                     Details
                   </span>
@@ -319,7 +339,11 @@ export default function Layout() {
                         ></i>
                         <span
                           className="col-10"
-                          style={{ padding: "0", whiteSpace: "nowrap" }}
+                          style={{
+                            fontSize: "1.1vw",
+                            padding: "0",
+                            whiteSpace: "nowrap",
+                          }}
                         >
                           Personal Records
                         </span>
@@ -364,7 +388,11 @@ export default function Layout() {
                         ></i>
                         <span
                           className="col-10"
-                          style={{ padding: "0", whiteSpace: "nowrap" }}
+                          style={{
+                            fontSize: "1.1vw",
+                            padding: "0",
+                            whiteSpace: "nowrap",
+                          }}
                         >
                           Official Records
                         </span>
@@ -409,7 +437,11 @@ export default function Layout() {
                         ></i>
                         <span
                           // className="col-10"
-                          style={{ padding: "0", whiteSpace: "nowrap" }}
+                          style={{
+                            padding: "0",
+                            whiteSpace: "nowrap",
+                            fontSize: "1.1vw",
+                          }}
                         >
                           Health Records
                         </span>
@@ -452,6 +484,7 @@ export default function Layout() {
                     ></i>
                     <span
                       style={{
+                        fontSize: "1.1vw",
                         overflow: "hidden",
                         padding: "0",
                         whiteSpace: "nowrap",
@@ -498,6 +531,7 @@ export default function Layout() {
                     ></i>
                     <span
                       style={{
+                        fontSize: "1.1vw",
                         overflow: "hidden",
                         padding: "0",
                         whiteSpace: "nowrap",
