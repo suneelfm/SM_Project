@@ -181,11 +181,7 @@ export default function ForgotPassword(close) {
               {!okOTP && !okPsw && (
                 <div>
                   <label
-                    style={{
-                      marginTop: "1vw",
-                      marginBottom: "0.5vw !important",
-                      fontSize: "1vw",
-                    }}
+                    className="loginFieldLabel"
                   >
                     Mail Id*:
                   </label>
@@ -202,11 +198,7 @@ export default function ForgotPassword(close) {
               {okOTP && !okPsw && (
                 <div>
                   <label
-                    style={{
-                      marginTop: "1vw",
-                      marginBottom: "0.5vw !important",
-                      fontSize: "1vw",
-                    }}
+                    className="loginFieldLabel"
                   >
                     Enter OTP*:
                   </label>
@@ -223,13 +215,14 @@ export default function ForgotPassword(close) {
                 <div>
                   <label
                     for="pass"
-                    style={{ marginTop: "1vw", fontSize: "1vw" }}
+                    className="loginFieldLabel"
                   >
                     New Password*:
                   </label>
                   <input
                     type="password"
                     ref={pswinput}
+                    style={{ minHeight: "15px", fontSize: "1.2vw" }}
                     className="loginfield"
                     name="password"
                     id="psw"
@@ -241,7 +234,7 @@ export default function ForgotPassword(close) {
                   <div className="errorDiv">{pswerror}</div>
                   <label
                     for="pass"
-                    style={{ marginTop: "1vw", fontSize: "1vw" }}
+                    className="loginFieldLabel"
                   >
                     Confirm Password*:
                   </label>
@@ -256,7 +249,12 @@ export default function ForgotPassword(close) {
                     <input
                       type={viewPsw ? "text" : "password"}
                       value={confirmpsw}
-                      style={{ height: "3vw", border: "1px solid black" }}
+                      style={{
+                        height: "3vw",
+                        minHeight: "15px",
+                        border: "1px solid black",
+                        fontSize: "1.2vw",
+                      }}
                       onChange={(event) =>
                         setconfirmpsw(event.target.value.trim())
                       }
@@ -267,6 +265,7 @@ export default function ForgotPassword(close) {
                       className="input-group-append"
                       style={{
                         height: "3vw",
+                        minHeight: "15px",
                         border: "1px solid black",
                         borderRadius: "0 4px 4px 0",
                       }}
@@ -274,11 +273,13 @@ export default function ForgotPassword(close) {
                       <span className="input-group-text">
                         {viewPsw ? (
                           <i
+                            style={{ fontSize: "1.5vw" }}
                             className="fas fa-eye-slash"
                             onClick={() => setviewPsw(false)}
                           ></i>
                         ) : (
                           <i
+                            style={{ fontSize: "1.5vw" }}
                             className="fas fa-eye"
                             onClick={() => setviewPsw(true)}
                           ></i>

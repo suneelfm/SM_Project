@@ -97,15 +97,7 @@ export default function LoginPage(close) {
               >
                 Sign In
               </span>
-              <label
-                style={{
-                  marginTop: "1vw",
-                  marginBottom: "0.5vw !important",
-                  fontSize: "1vw",
-                }}
-              >
-                User Name:
-              </label>
+              <label className="loginFieldLabel">User Name:</label>
               <input
                 type="text"
                 className="loginfield"
@@ -113,34 +105,49 @@ export default function LoginPage(close) {
                 ref={username}
                 onChange={(event) => setuserName(event.target.value)}
               />
-              <label style={{ marginTop: "1vw", fontSize: "1vw" }}>
-                Password:
-              </label>
+              <label className="loginFieldLabel">Password:</label>
               <div
                 className="input-group mb-3"
                 style={{
                   width: "98%",
-                  border: "1px solid",
                   borderRadius: "4px",
                   height: "3vw",
+                  margin: "0.5vw",
                 }}
               >
                 <input
                   type={viewPsw ? "text" : "password"}
                   value={password}
+                  style={{
+                    height: "3vw",
+                    border: "1px solid black",
+                    minHeight: "15px",
+                    fontSize: "1.2vw",
+                  }}
                   onChange={(event) => setpassword(event.target.value)}
                   className="form-control"
                   aria-label="Amount (to the nearest dollar)"
                 />
-                <div className="input-group-append">
+                <div
+                  className="input-group-append"
+                  style={{
+                    height: "3vw",
+                    minHeight: "15px",
+                    border: "1px solid black",
+                    borderRadius: "0 4px 4px 0",
+                    fontSize: "1vw",
+                  }}
+                >
                   <span className="input-group-text">
                     {viewPsw ? (
                       <i
+                        style={{ fontSize: "1.5vw" }}
                         className="fas fa-eye-slash"
                         onClick={() => setviewPsw(false)}
                       ></i>
                     ) : (
                       <i
+                        style={{ fontSize: "1.5vw" }}
                         className="fas fa-eye"
                         onClick={() => setviewPsw(true)}
                       ></i>

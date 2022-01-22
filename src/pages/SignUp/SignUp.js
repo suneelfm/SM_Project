@@ -154,15 +154,7 @@ export default function SignUp(close) {
               >
                 Sign Up
               </span>
-              <label
-                style={{
-                  marginTop: "1vw",
-                  marginBottom: "0.5vw !important",
-                  fontSize: "1vw",
-                }}
-              >
-                Name*:
-              </label>
+              <label className="loginFieldLabel">Name*:</label>
               <input
                 type="text"
                 className="loginfield"
@@ -171,15 +163,7 @@ export default function SignUp(close) {
                 onChange={getName}
               />
               <div className="errorDiv">{nameerror}</div>
-              <label
-                style={{
-                  marginTop: "1vw",
-                  marginBottom: "0.5vw !important",
-                  fontSize: "1vw",
-                }}
-              >
-                Mail Id*:
-              </label>
+              <label className="loginFieldLabel">Mail Id*:</label>
               <input
                 type="text"
                 className="loginfield"
@@ -187,15 +171,7 @@ export default function SignUp(close) {
                 onChange={getMailId}
               />
               <div className="errorDiv">{EmailError}</div>
-              <label
-                style={{
-                  marginTop: "1vw",
-                  marginBottom: "0.5vw !important",
-                  fontSize: "1vw",
-                }}
-              >
-                User Name*:
-              </label>
+              <label className="loginFieldLabel">User Name*:</label>
               <input
                 type="text"
                 className="loginfield"
@@ -203,7 +179,7 @@ export default function SignUp(close) {
                 onChange={getUserName}
               />
               <div className="errorDiv">{usernameerror}</div>
-              <label for="pass" style={{ marginTop: "1vw", fontSize: "1vw" }}>
+              <label for="pass" className="loginFieldLabel">
                 Password*:
               </label>
               <input
@@ -217,34 +193,51 @@ export default function SignUp(close) {
                 onChange={getPassword}
               />
               <div className="errorDiv">{pswerror}</div>
-              <label for="pass" style={{ marginTop: "1vw", fontSize: "1vw" }}>
+              <label for="pass" className="loginFieldLabel">
                 Confirm Password*:
               </label>
               <div
                 className="input-group mb-3"
                 style={{
                   width: "98%",
-                  border: "1px solid",
                   borderRadius: "4px",
                   height: "3vw",
+                  margin: "0.5vw",
                 }}
               >
                 <input
                   type={viewPsw ? "text" : "password"}
                   value={confirmpsw}
+                  style={{
+                    height: "3vw",
+                    border: "1px solid black",
+                    minHeight: "15px",
+                    fontSize: "1.2vw",
+                  }}
                   onChange={(event) => setconfirmpsw(event.target.value.trim())}
                   className="form-control"
                   aria-label="Amount (to the nearest dollar)"
                 />
-                <div className="input-group-append">
+                <div
+                  className="input-group-append"
+                  style={{
+                    height: "3vw",
+                    minHeight: "15px",
+                    border: "1px solid black",
+                    borderRadius: "0 4px 4px 0",
+                    fontSize: "1vw",
+                  }}
+                >
                   <span className="input-group-text">
                     {viewPsw ? (
                       <i
+                        style={{ fontSize: "1.5vw" }}
                         className="fas fa-eye-slash"
                         onClick={() => setviewPsw(false)}
                       ></i>
                     ) : (
                       <i
+                        style={{ fontSize: "1.5vw" }}
                         className="fas fa-eye"
                         onClick={() => setviewPsw(true)}
                       ></i>
