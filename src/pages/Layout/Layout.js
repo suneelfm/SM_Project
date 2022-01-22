@@ -121,7 +121,7 @@ export default function Layout() {
               className="sideBarContainer"
               style={expandmenu ? { width: "4%" } : { width: "15%" }}
             >
-              <div className="container">
+              <div style={{ overflow: "hidden" }}>
                 <Link to="/" style={{ textDecoration: "none" }}>
                   <div
                     className="sideBar"
@@ -293,11 +293,10 @@ export default function Layout() {
                 {(detailsubmenu ||
                   document.documentURI.split("/").includes("details")) && (
                   <div
-                    className="container"
                     style={{
-                      overflow: "hidden",
-                      padding: "0 0.5vw",
+                      width: expandmenu ? "4vw" : "15vw",
                       display: expandmenu && "inline-grid",
+                      transition: "all 0.5s linear",
                     }}
                   >
                     <Link
@@ -312,6 +311,7 @@ export default function Layout() {
                         data-tip
                         data-for="PersonalRecordsTip"
                         style={{
+                          width: expandmenu ? "4vw" : "15vw",
                           color:
                             (focuskey.subkey === "personal" ||
                               document.documentURI
@@ -361,6 +361,7 @@ export default function Layout() {
                         data-tip
                         data-for="OfficialRecordsTip"
                         style={{
+                          width: expandmenu ? "4vw" : "15vw",
                           color:
                             (focuskey.subkey === "official" ||
                               document.documentURI
@@ -410,6 +411,7 @@ export default function Layout() {
                           setfocuskey({ key: "details", subkey: "health" })
                         }
                         style={{
+                          width: expandmenu ? "4vw" : "15vw",
                           color:
                             (focuskey.subkey === "health" ||
                               document.documentURI
