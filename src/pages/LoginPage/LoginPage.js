@@ -73,15 +73,27 @@ export default function LoginPage(close) {
   };
   return (
     <div className="loginpage">
-      <div className="row" style={{ overflow: "auto" }}>
-        <div className="col-mg-6 loginImageSection">
+      <div
+        className="row"
+        style={{ overflow: "auto", display: "flex", alignItems: "center" }}
+      >
+        <div className="col-md-6 loginImageSection">
           <img
             src="Images/logo.png"
             alt=""
             style={{ height: "45vw", width: "35vw", marginLeft: "6vw" }}
           />
         </div>
-        <div className="col-mg-6" style={{ fontSize: "1vw" }}>
+        <div
+          className="col-md-6"
+          style={{
+            fontSize: "1vw",
+            overflow: "auto",
+            height: "100%",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
           <div>
             <form
               style={{ boxShadow: "0vw 0vw 5vw black" }}
@@ -189,7 +201,6 @@ export default function LoginPage(close) {
                 />
               </span>
               <span
-                href=""
                 onClick={() => setshowForgotPasswordPage(true)}
                 style={{
                   marginTop: "1vw",

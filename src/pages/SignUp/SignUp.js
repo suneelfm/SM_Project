@@ -24,30 +24,25 @@ export default function SignUp(close) {
     nameinput.current.focus();
   }, []);
 
-  const getName = (event) => {
-    if (
-      /^([a-zA-Z ]){1,15}$/.test(event.target.value.trim()) ||
-      event.target.value === ""
-    ) {
-      setfullName(event.target.value);
+  const handleSubmit = () => {
+    if (!fullName) {
+      setnameerror("Please enter your full name.");
+    } else if (/^([a-zA-Z ]){1,15}$/.test(fullName)) {
       setnameerror("");
     } else {
       setnameerror("Only alphabets up to 15 characters are allowed");
     }
-  };
 
-  const getMailId = (event) => {
-    if (validator.isEmail(event.target.value)) {
+    if (validator.isEmail(mailId)) {
       setEmailError("");
     } else {
       setEmailError("Please enter valid Email");
     }
-    setmailId(event.target.value);
-  };
 
-  const getPassword = (event) => {
-    if (
-      validator.isStrongPassword(event.target.value.trim(), {
+    if (!password) {
+      setpswerror("Please enter password.");
+    } else if (
+      validator.isStrongPassword(password, {
         minLength: 8,
         minLowercase: 1,
         minUppercase: 1,
@@ -62,28 +57,23 @@ export default function SignUp(close) {
       );
     }
 
-    setpassword(event.target.value.trim());
-  };
-
-  const getUserName = (event) => {
-    if (
-      /^([a-z0-9-_]){1,10}$/.test(event.target.value) ||
-      event.target.value === ""
-    ) {
-      setuserName(event.target.value);
+    if (!userName) {
+      setusernameerror("Please enter your user name.");
+    } else if (/^([a-z0-9-_]){4,10}$/.test(userName)) {
       setusernameerror("");
     } else {
       setusernameerror(
-        `Only lower case alphnumarics with "-" and "_" up to 10 characters are allowed without space`
+        `Only lower case alphnumarics with "-" and "_" at least 4 up to 10 characters are allowed without space`
       );
     }
+    getSognUp();
   };
 
   const getSognUp = () => {
     if (
-      userName !== "" &&
-      password !== "" &&
-      fullName !== "" &&
+      usernameerror === "" &&
+      pswerror === "" &&
+      nameerror === "" &&
       confirmpsw !== "" &&
       pswerror === "" &&
       EmailError === ""
@@ -120,47 +110,57 @@ export default function SignUp(close) {
           });
         }
       }
-    } else {
-      toastMessage({
-        appearance: "warn",
-        message: "Please fill all mandatory(*) fields....",
-        position: "top_right",
-      });
     }
   };
   return (
     <div className="loginpage">
-      <div className="row" style={{ overflow: "auto" }}>
-        <div className="col-6 loginImageSection">
+      <div
+        className="row"
+        style={{ overflow: "auto", display: "flex", alignItems: "center" }}
+      >
+        <div className="col-md-6 loginImageSection">
           <img
             src="Images/logo.png"
             alt=""
             style={{ height: "45vw", width: "35vw", marginLeft: "6vw" }}
           />
         </div>
-        <div className="col-6" style={{ overflow: "auto" }}>
-          <div style={{ height: "100%", fontSize: "1vw" }}>
-            <form
-              style={{ boxShadow: "0vw 0vw 5vw black" }}
-              className="loginformcontainer"
-              onSubmit={(event) => event.preventDefault()}
+        <div
+          className="col-md-6"
+          style={{
+            fontSize: "1vw",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <form
+            style={{ boxShadow: "0vw 0vw 5vw black" }}
+            className="loginformcontainer"
+            onSubmit={(event) => event.preventDefault()}
+          >
+            <span
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                fontSize: "2vw",
+              }}
             >
-              <span
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  fontSize: "2vw",
-                }}
-              >
-                Sign Up
-              </span>
+              Sign Up
+            </span>
+            <div
+              style={{
+                overflowY: "auto",
+                overflowX: "hidden",
+                maxHeight: "30vw",
+              }}
+            >
               <label className="loginFieldLabel">Name*:</label>
               <input
                 type="text"
                 className="loginfield"
                 value={fullName}
                 ref={nameinput}
-                onChange={getName}
+                onChange={(event) => setfullName(event.target.value)}
               />
               <div className="errorDiv">{nameerror}</div>
               <label className="loginFieldLabel">Mail Id*:</label>
@@ -168,7 +168,7 @@ export default function SignUp(close) {
                 type="text"
                 className="loginfield"
                 value={mailId}
-                onChange={getMailId}
+                onChange={(event) => setmailId(event.target.value)}
               />
               <div className="errorDiv">{EmailError}</div>
               <label className="loginFieldLabel">User Name*:</label>
@@ -176,7 +176,7 @@ export default function SignUp(close) {
                 type="text"
                 className="loginfield"
                 value={userName}
-                onChange={getUserName}
+                onChange={(event) => setuserName(event.target.value)}
               />
               <div className="errorDiv">{usernameerror}</div>
               <label for="pass" className="loginFieldLabel">
@@ -190,7 +190,7 @@ export default function SignUp(close) {
                 min="4"
                 max="8"
                 value={password}
-                onChange={getPassword}
+                onChange={(event) => setpassword(event.target.value.trim())}
               />
               <div className="errorDiv">{pswerror}</div>
               <label for="pass" className="loginFieldLabel">
@@ -250,7 +250,7 @@ export default function SignUp(close) {
                   style={{ marginTop: "1vw", fontSize: "1vw" }}
                   type="button"
                   className="buttonProp"
-                  onClick={getSognUp}
+                  onClick={handleSubmit}
                 >
                   Sign Up
                 </button>
@@ -271,8 +271,8 @@ export default function SignUp(close) {
                   Sign In
                 </span>
               </div>
-            </form>
-          </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>

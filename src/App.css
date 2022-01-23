@@ -204,11 +204,17 @@
   border: 0.15vw solid gray;
   border-radius: 10px;
   padding: 0.5vw 1vw 1.5vw 1vw;
-  margin: 5vw 15vw;
+  margin: 5vw 0vw;
   min-width: 200px;
   background-color: white;
-  overflow: auto;
+  /* overflow: auto; */
+  max-height: 35vw;
   /* background-image: ; */
+}
+.loginImageSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .sideBar {
@@ -338,6 +344,7 @@
 }
 
 .errorDiv {
+  min-height: 0.5vw;
   color: red;
   margin-left: 0.5vw;
   font-size: 1vw;

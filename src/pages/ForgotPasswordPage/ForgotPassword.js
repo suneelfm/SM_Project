@@ -30,18 +30,20 @@ export default function ForgotPassword(close) {
     okPsw ? pswinput.current.focus() : mailinput.current.focus();
   }, [okPsw]);
 
-  const getMailId = (event) => {
-    if (validator.isEmail(event.target.value)) {
+  const getMailId = () => {
+    if (validator.isEmail(mailId)) {
       setEmailError("");
+      sendOTP();
     } else {
       setEmailError("Please enter valid Email");
     }
-    setmailId(event.target.value);
   };
 
-  const getPassword = (event) => {
-    if (
-      validator.isStrongPassword(event.target.value.trim(), {
+  const getPassword = () => {
+    if (!password) {
+      setpswerror("Please enter new password.");
+    } else if (
+      validator.isStrongPassword(password, {
         minLength: 8,
         minLowercase: 1,
         minUppercase: 1,
@@ -50,61 +52,58 @@ export default function ForgotPassword(close) {
       })
     ) {
       setpswerror("");
+      getChange();
     } else {
       setpswerror(
         "At least 1 upper case, 1 lower case, 1 number, 1 special character and min. 8 characters required"
       );
     }
-
-    setpassword(event.target.value.trim());
   };
 
   const sendOTP = async () => {
     if (mailId !== "") {
-      if (EmailError === "") {
-        let mailArr = state.signInReducer.loginUserArray.filter(
-          (item) => item.mailid === mailId
-        );
-        if (mailArr.length > 0) {
-          const date = new Date();
-          const hh = date.getHours();
-          const ss = date.getSeconds();
-          const mm = date.getMinutes();
-          const oTP =
-            (hh < 10 ? "0" + hh : hh) +
-            "" +
-            (ss < 10 ? "0" + ss : ss) +
-            (mm < 10 ? "0" + mm : mm);
-          debugger;
-          setotp(oTP);
-          const from = "SM Project";
-          try {
-            await emailjs.send(
-              "service_k1oxn2k",
-              "template_7zax92w",
-              { from, mailId, oTP },
-              "user_1q1BTdJ8p43prsypF7dRH"
-            );
-          } catch (error) {
-            toastMessage({
-              appearance: "error",
-              message:
-                "Failed to send verification code. Error: " +
-                { error } +
-                ". Please try again later.",
-            });
-          }
-          setEmailError("");
-          setokOTP(true);
-          setTimeout(() => {
-            setotp("");
-          }, 300000);
-        } else {
+      let mailArr = state.signInReducer.loginUserArray.filter(
+        (item) => item.mailid === mailId
+      );
+      if (mailArr.length > 0) {
+        const date = new Date();
+        const hh = date.getHours();
+        const ss = date.getSeconds();
+        const mm = date.getMinutes();
+        const oTP =
+          (hh < 10 ? "0" + hh : hh) +
+          "" +
+          (ss < 10 ? "0" + ss : ss) +
+          (mm < 10 ? "0" + mm : mm);
+        debugger;
+        setotp(oTP);
+        const from = "SM Project";
+        try {
+          await emailjs.send(
+            "service_k1oxn2k",
+            "template_7zax92w",
+            { from, mailId, oTP },
+            "user_1q1BTdJ8p43prsypF7dRH"
+          );
+        } catch (error) {
           toastMessage({
-            appearance: "warn",
-            message: "Account does not exists for this Mail Id.",
+            appearance: "error",
+            message:
+              "Failed to send verification code. Error: " +
+              { error } +
+              ". Please try again later.",
           });
         }
+        setEmailError("");
+        setokOTP(true);
+        setTimeout(() => {
+          setotp("");
+        }, 300000);
+      } else {
+        toastMessage({
+          appearance: "warn",
+          message: "Account does not exists for this Mail Id.",
+        });
       }
     } else {
       setEmailError("Please enter mail id.");
@@ -123,7 +122,7 @@ export default function ForgotPassword(close) {
   };
 
   const getChange = () => {
-    if (password !== "" && confirmpsw !== "" && pswerror === "") {
+    if (confirmpsw !== "") {
       if (password === confirmpsw) {
         dispatch({
           type: "forgotPsw",
@@ -154,15 +153,27 @@ export default function ForgotPassword(close) {
 
   return (
     <div className="loginpage">
-      <div className="row" style={{ overflow: "auto" }}>
-        <div className="col-6 loginImageSection">
+      <div
+        className="row"
+        style={{ overflow: "auto", display: "flex", alignItems: "center" }}
+      >
+        <div className="col-md-6 loginImageSection">
           <img
             src="Images/logo.png"
             alt=""
             style={{ height: "45vw", width: "35vw", marginLeft: "6vw" }}
           />
         </div>
-        <div className="col-6" style={{ fontSize: "1vw" }}>
+        <div
+          className="col-md-6"
+          style={{
+            fontSize: "1vw",
+            overflow: "auto",
+            height: "100%",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
           <div>
             <form
               style={{ boxShadow: "0vw 0vw 5vw black" }}
@@ -180,43 +191,45 @@ export default function ForgotPassword(close) {
               </span>
               {!okOTP && !okPsw && (
                 <div>
-                  <label
-                    className="loginFieldLabel"
-                  >
-                    Mail Id*:
-                  </label>
+                  <label className="loginFieldLabel">Mail Id*:</label>
                   <input
                     type="text"
                     ref={mailinput}
                     className="loginfield"
                     value={mailId}
-                    onChange={getMailId}
+                    onChange={(event) => setmailId(event.target.value)}
                   />
                   <div className="errorDiv">{EmailError}</div>
                 </div>
               )}
               {okOTP && !okPsw && (
                 <div>
-                  <label
-                    className="loginFieldLabel"
-                  >
-                    Enter OTP*:
-                  </label>
+                  <label className="loginFieldLabel">Enter OTP*:</label>
                   <OTPInput
                     numofinputs={6}
                     onChangeofInut={setenteredotp}
                     inputValue={enteredotp}
                   ></OTPInput>
                   <div className="errorDiv">{otpError}</div>
+                  <div
+                    onClick={() => sendOTP()}
+                    className="loginFieldLabel"
+                    style={{
+                      marginTop: "1vw",
+                      fontSize: "1vw",
+                      color: "blue",
+                      cursor: "pointer",
+                      marginRight: "0.5vw",
+                    }}
+                  >
+                    Resend OTP
+                  </div>
                 </div>
               )}
 
               {okPsw && (
                 <div>
-                  <label
-                    for="pass"
-                    className="loginFieldLabel"
-                  >
+                  <label for="pass" className="loginFieldLabel">
                     New Password*:
                   </label>
                   <input
@@ -229,13 +242,10 @@ export default function ForgotPassword(close) {
                     min="4"
                     max="8"
                     value={password}
-                    onChange={getPassword}
+                    onChange={(event) => setpassword(event.target.value.trim())}
                   />
                   <div className="errorDiv">{pswerror}</div>
-                  <label
-                    for="pass"
-                    className="loginFieldLabel"
-                  >
+                  <label for="pass" className="loginFieldLabel">
                     Confirm Password*:
                   </label>
                   <div
@@ -294,7 +304,10 @@ export default function ForgotPassword(close) {
                   style={{ marginTop: "1vw", fontSize: "1vw" }}
                   type="button"
                   className="buttonProp"
-                  onClick={() => close.prop(false)}
+                  onClick={() => {
+                    close.prop(false);
+                    setotp("");
+                  }}
                 >
                   Cancel
                 </button>
@@ -312,7 +325,7 @@ export default function ForgotPassword(close) {
                     style={{ marginTop: "1vw", fontSize: "1vw" }}
                     type="submit"
                     className="buttonProp"
-                    onClick={getChange}
+                    onClick={getPassword}
                   >
                     Set
                   </button>
@@ -321,7 +334,7 @@ export default function ForgotPassword(close) {
                     style={{ marginTop: "1vw", fontSize: "1vw" }}
                     type="submit"
                     className="buttonProp"
-                    onClick={sendOTP}
+                    onClick={getMailId}
                   >
                     Send OTP
                   </button>

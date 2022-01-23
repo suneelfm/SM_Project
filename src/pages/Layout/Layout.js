@@ -144,7 +144,7 @@ export default function Layout() {
                       style={{
                         fontSize: expandmenu
                           ? "calc(5px + 1.5vw)"
-                          : "calc(2px + 1.1vw)",
+                          : "calc(2.5px + 1.1vw)",
                         display: "inline",
                         padding: expandmenu && "0 5vw 0 0.8vw",
                         transition: "all 0.5s linear",
@@ -154,7 +154,7 @@ export default function Layout() {
                     <span
                       className="col-9"
                       style={{
-                        fontSize: "calc(2px + 1.1vw)",
+                        fontSize: "calc(2.5px + 1.1vw)",
                         padding: "0",
                         whiteSpace: "nowrap",
                       }}
@@ -190,7 +190,7 @@ export default function Layout() {
                       style={{
                         fontSize: expandmenu
                           ? "calc(5px + 1.5vw)"
-                          : "calc(2px + 1.1vw)",
+                          : "calc(2.5px + 1.1vw)",
                         display: "inline",
                         padding: expandmenu && "0 5vw 0 0.8vw",
                         transition: "all 0.5s linear",
@@ -200,7 +200,7 @@ export default function Layout() {
                     <span
                       className="col-9"
                       style={{
-                        fontSize: "calc(2px + 1.1vw)",
+                        fontSize: "calc(2.5px + 1.1vw)",
                         padding: "0",
                         whiteSpace: "nowrap",
                       }}
@@ -236,7 +236,7 @@ export default function Layout() {
                       style={{
                         fontSize: expandmenu
                           ? "calc(5px + 1.5vw)"
-                          : "calc(2px + 1.1vw)",
+                          : "calc(2.5px + 1.1vw)",
                         display: "inline",
                         padding: expandmenu && "0 5vw 0 0.8vw",
                         transition: "all 0.5s linear",
@@ -246,7 +246,7 @@ export default function Layout() {
                     <span
                       className="col-9"
                       style={{
-                        fontSize: "calc(2px + 1.1vw)",
+                        fontSize: "calc(2.5px + 1.1vw)",
                         padding: "0",
                         whiteSpace: "nowrap",
                       }}
@@ -280,7 +280,7 @@ export default function Layout() {
                     style={{
                       fontSize: expandmenu
                         ? "calc(5px + 1.5vw)"
-                        : "calc(2px + 1.1vw)",
+                        : "calc(2.5px + 1.1vw)",
                       display: "inline",
                       padding: expandmenu ? "0 5vw 0 1.1vw" : "0.3vw",
                       transition: "all 0.5s linear",
@@ -290,7 +290,7 @@ export default function Layout() {
                   <span
                     className="col-9"
                     style={{
-                      fontSize: "calc(2px + 1.1vw)",
+                      fontSize: "calc(2.5px + 1.1vw)",
                       padding: "0",
                       whiteSpace: "nowrap",
                     }}
@@ -319,7 +319,7 @@ export default function Layout() {
                         data-tip
                         data-for="PersonalRecordsTip"
                         style={{
-                          width: expandmenu ? "4vw" : "15vw",
+                          width: expandmenu ? "5vw" : "15vw",
                           color:
                             (focuskey.subkey === "personal" ||
                               document.documentURI
@@ -349,7 +349,7 @@ export default function Layout() {
                         <span
                           className="col-10"
                           style={{
-                            fontSize: "calc(1px + 1.1vw)",
+                            fontSize: "calc(1.5px + 1.1vw)",
                             padding: "0",
                             whiteSpace: "nowrap",
                           }}
@@ -370,7 +370,7 @@ export default function Layout() {
                         data-tip
                         data-for="OfficialRecordsTip"
                         style={{
-                          width: expandmenu ? "4vw" : "15vw",
+                          width: expandmenu ? "5vw" : "15vw",
                           color:
                             (focuskey.subkey === "official" ||
                               document.documentURI
@@ -400,7 +400,7 @@ export default function Layout() {
                         <span
                           className="col-10"
                           style={{
-                            fontSize: "calc(1px + 1.1vw)",
+                            fontSize: "calc(1.5px + 1.1vw)",
                             padding: "0",
                             whiteSpace: "nowrap",
                           }}
@@ -421,7 +421,7 @@ export default function Layout() {
                           setfocuskey({ key: "details", subkey: "health" })
                         }
                         style={{
-                          width: expandmenu ? "4vw" : "15vw",
+                          width: expandmenu ? "5vw" : "15vw",
                           color:
                             (focuskey.subkey === "health" ||
                               document.documentURI
@@ -453,7 +453,7 @@ export default function Layout() {
                           style={{
                             padding: "0",
                             whiteSpace: "nowrap",
-                            fontSize: "calc(1px + 1.1vw)",
+                            fontSize: "calc(1.5px + 1.1vw)",
                           }}
                         >
                           Health Records
@@ -490,7 +490,7 @@ export default function Layout() {
                       style={{
                         fontSize: expandmenu
                           ? "calc(5px + 1.5vw)"
-                          : "calc(2px + 1.1vw)",
+                          : "calc(2.5px + 1.1vw)",
                         display: "inline",
                         padding: expandmenu && "0 5vw 0 0.8vw",
                         transition: "all 0.5s linear",
@@ -499,7 +499,7 @@ export default function Layout() {
                     ></i>
                     <span
                       style={{
-                        fontSize: "calc(2px + 1.1vw)",
+                        fontSize: "calc(2.5px + 1.1vw)",
                         overflow: "hidden",
                         padding: "0",
                         whiteSpace: "nowrap",
@@ -519,7 +519,7 @@ export default function Layout() {
                       overflow: "hidden",
                       position: "absolute",
                       bottom: "0",
-                      width: expandmenu ? "4%" : "15%",
+                      width: expandmenu ? "5%" : "15%",
                       whiteSpace: "nowrap",
                       transition: "all 0.5s linear",
                       color:
@@ -539,7 +539,7 @@ export default function Layout() {
                       style={{
                         fontSize: expandmenu
                           ? "calc(5px + 1.5vw)"
-                          : "calc(2px + 1.1vw)",
+                          : "calc(2.5px + 1.1vw)",
                         display: "inline",
                         padding: expandmenu && "0 5vw 0 0.8vw",
                         transition: "all 0.5s linear",
@@ -548,7 +548,7 @@ export default function Layout() {
                     ></i>
                     <span
                       style={{
-                        fontSize: "calc(2px + 1.1vw)",
+                        fontSize: "calc(2.5px + 1.1vw)",
                         overflow: "hidden",
                         padding: "0",
                         whiteSpace: "nowrap",
