@@ -517,7 +517,7 @@ export default function Layout() {
                     onClick={() => setfocuskey({ key: "settings" })}
                     style={{
                       overflow: "hidden",
-                      position: "absolute",
+                      position: "fixed",
                       bottom: "0",
                       width: expandmenu ? "5%" : "15%",
                       whiteSpace: "nowrap",

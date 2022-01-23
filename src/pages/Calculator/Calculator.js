@@ -16,27 +16,34 @@ export default function Calculator() {
   };
 
   const calculation = () => {
-    // debugger;
-    // console.log(display);
-    let part = display.toString().split("");
+    let expression = display.replaceAll("\u00D7", "*");
+    expression = expression.replaceAll("\u00F7", "/");
+    expression = expression.replaceAll("\u0025", "/100");
+    expression = expression.replaceAll("(", "*(");
     if (display === "") {
       setresult("");
     }
-    if (!isNaN(part[part.length - 1])) {
-      let res = eval(display);
-      setresult(res);
-    }
+    try {
+      let res = eval(expression);
+      setresult("=" + res);
+      setdisplay("");
+      setdisppadding(true);
+      setlastresult(result);
+      setcount(0);
+    } catch (error) {}
   };
 
-  useEffect(() => {
-    calculation();
-  }, [display]);
-
   const calcyScreen = (value) => {
+    setresult("");
     setdisppadding(false);
-    if (isNaN(value) && value !== ".") {
+    if (isNaN(value) && value !== "." && value !== "(" && value !== ")") {
       setdotcount(0);
-      if (!(display === "" && (value === "*" || value === "/"))) {
+      if (
+        !(
+          display === "" &&
+          (value === "\u00D7" || value === "\u00F7" || value === "\u0025")
+        )
+      ) {
         if (count === 0) {
           displayLogic(lastresult + value);
           setcount(count + 1);
@@ -59,13 +66,6 @@ export default function Calculator() {
     }
   };
 
-  const calculate = () => {
-    setdisppadding(true);
-    setlastresult(result);
-    setdisplay("");
-    setcount(0);
-  };
-
   function backSpace() {
     if (!disppadding) {
       let part = display.toString().split("");
@@ -74,13 +74,13 @@ export default function Calculator() {
       }
       let disp = display.slice(0, display.length - 1);
       setdisplay(disp);
-      calculation();
       setcount(0);
     }
   }
 
   function clearDisplay() {
     setdisplay("");
+    setresult("");
     setcount(0);
     setdotcount(0);
     setdisppadding(false);
@@ -116,17 +116,17 @@ export default function Calculator() {
           </div>
         </div>
       </div>
-      <div className="row" style={{ height: "75%", marginTop: "10px" }}>
-        <table className="tableframe table fitToCell">
+      <div className="row" style={{ marginTop: "1vw" }}>
+        <table className="tableframe">
           <thead>
             <tr>
-              <td colSpan={3}>
+              <td colSpan={4}>
                 <div className="calcyDisplay">
                   <div
                     className="typeText"
                     style={{
                       display: disppadding ? "none" : "flex",
-                      padding: disppadding ? "0px" : "10px 20px",
+                      padding: disppadding ? "0px" : "1vw 2vw",
                     }}
                   >
                     {display}
@@ -135,36 +135,58 @@ export default function Calculator() {
                     className="result"
                     style={{
                       color: disppadding ? "black" : "rgb(173, 173, 173)",
-                      fontSize: disppadding ? "70px" : "xx-large",
+                      fontSize: disppadding ? "5vw" : "2vw",
                     }}
                   >
-                    {disppadding
-                      ? "=" + lastresult
-                      : display === ""
-                      ? ""
-                      : "=" + result}
+                    {result}
                   </div>
                 </div>
               </td>
-              <td className="operatorbutton">
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style={{ width: "25%" }}>
                 <button
-                  type="button"
-                  className="clearButton calcycalcybuttonProp"
+                  className="fitToCell calcybuttonProp"
                   onClick={clearDisplay}
                 >
-                  <i>Clear</i>
+                  C
+                </button>
+              </td>
+              <td style={{ width: "25%" }}>
+                <button
+                  className="fitToCell calcybuttonProp"
+                  onClick={() => calcyScreen("(")}
+                  style={{ width: "35%" }}
+                >
+                  (
                 </button>
                 <button
-                  type="button"
-                  className="clearButton calcycalcybuttonProp"
+                  className="fitToCell calcybuttonProp"
+                  onClick={() => calcyScreen(")")}
+                  style={{ width: "35%", float: "right", marginRight:"4.5vw" }}
+                >
+                  )
+                </button>
+              </td>
+              <td style={{ width: "25%" }}>
+                <button
+                  className="fitToCell calcybuttonProp"
+                  onClick={() => calcyScreen("\u0025")}
+                >
+                  <i className="fas fa-percentage"></i>
+                </button>
+              </td>
+              <td className="operatorbutton">
+                <button
+                  className="fitToCell calcybuttonProp"
                   onClick={backSpace}
                 >
-                  <i className="fas fa-arrow-left"></i>
+                  <i className="fas fa-backspace" />
                 </button>
               </td>
             </tr>
-          </thead>
-          <tbody style={{ height: "80%" }}>
             <tr>
               <td>
                 <button
@@ -195,7 +217,7 @@ export default function Calculator() {
                   className="fitToCell calcybuttonProp"
                   onClick={() => calcyScreen("+")}
                 >
-                  +
+                  <i className="fas fa-plus"></i>
                 </button>
               </td>
             </tr>
@@ -229,7 +251,7 @@ export default function Calculator() {
                   className="fitToCell calcybuttonProp"
                   onClick={() => calcyScreen("-")}
                 >
-                  -
+                  <i className="fas fa-minus"></i>
                 </button>
               </td>
             </tr>
@@ -261,9 +283,9 @@ export default function Calculator() {
               <td className="operatorbutton">
                 <button
                   className="fitToCell calcybuttonProp"
-                  onClick={() => calcyScreen("*")}
+                  onClick={() => calcyScreen("\u00D7")}
                 >
-                  x
+                  <i className="fas fa-times"></i>
                 </button>
               </td>
             </tr>
@@ -285,16 +307,16 @@ export default function Calculator() {
                 </button>
               </td>
               <td>
-                <button className="fitToCell equalbutton" onClick={calculate}>
+                <button className="fitToCell equalbutton" onClick={calculation}>
                   =
                 </button>
               </td>
               <td className="operatorbutton">
                 <button
                   className="fitToCell calcybuttonProp"
-                  onClick={() => calcyScreen("/")}
+                  onClick={() => calcyScreen("\u00F7")}
                 >
-                  /
+                  <i className="fas fa-divide"></i>
                 </button>
               </td>
             </tr>
