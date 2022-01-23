@@ -152,7 +152,7 @@ export default function Layout() {
                     <span
                       className="col-9"
                       style={{
-                        fontSize: "1.1vw",
+                        fontSize: "calc(5px + 1.1vw)",
                         padding: "0",
                         whiteSpace: "nowrap",
                       }}
