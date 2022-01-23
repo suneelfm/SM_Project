@@ -16,10 +16,14 @@ export default function Calculator() {
   };
 
   const calculation = () => {
+    debugger;
     let expression = display.replaceAll("\u00D7", "*");
     expression = expression.replaceAll("\u00F7", "/");
     expression = expression.replaceAll("\u0025", "/100");
     expression = expression.replaceAll("(", "*(");
+    if (display.split("").shift() === "(") {
+      expression = expression.replace("*(", "(");
+    }
     if (display === "") {
       setresult("");
     }
@@ -28,7 +32,7 @@ export default function Calculator() {
       setresult("=" + res);
       setdisplay("");
       setdisppadding(true);
-      setlastresult(result);
+      setlastresult(res);
       setcount(0);
     } catch (error) {}
   };
@@ -38,6 +42,8 @@ export default function Calculator() {
     setdisppadding(false);
     if (isNaN(value) && value !== "." && value !== "(" && value !== ")") {
       setdotcount(0);
+      debugger;
+      lastresult !== "" && displayLogic(lastresult + value);
       if (
         !(
           display === "" &&
@@ -45,7 +51,7 @@ export default function Calculator() {
         )
       ) {
         if (count === 0) {
-          displayLogic(lastresult + value);
+          lastresult === "" && displayLogic(value);
           setcount(count + 1);
         } else {
           alert("Consegative operators are not allowed.");
@@ -165,7 +171,7 @@ export default function Calculator() {
                 <button
                   className="fitToCell calcybuttonProp"
                   onClick={() => calcyScreen(")")}
-                  style={{ width: "35%", float: "right", marginRight:"4.5vw" }}
+                  style={{ width: "35%", float: "right", marginRight: "4.5vw" }}
                 >
                   )
                 </button>
