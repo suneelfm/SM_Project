@@ -146,7 +146,7 @@ export default function ForgotPassword(close) {
     } else {
       toastMessage({
         appearance: "info",
-        message: "Please enter strong password",
+        message: "Please confirm the password",
       });
     }
   };
@@ -161,7 +161,7 @@ export default function ForgotPassword(close) {
           <img
             src="Images/logo.png"
             alt=""
-            style={{ height: "45vw", width: "35vw", marginLeft: "6vw" }}
+            style={{ height: "45vw", width: "35vw" }}
           />
         </div>
         <div

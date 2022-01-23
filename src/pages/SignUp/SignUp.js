@@ -122,7 +122,7 @@ export default function SignUp(close) {
           <img
             src="Images/logo.png"
             alt=""
-            style={{ height: "45vw", width: "35vw", marginLeft: "6vw" }}
+            style={{ height: "45vw", width: "35vw" }}
           />
         </div>
         <div
