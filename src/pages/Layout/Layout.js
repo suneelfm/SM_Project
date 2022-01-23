@@ -119,7 +119,7 @@ export default function Layout() {
           >
             <div
               className="sideBarContainer"
-              style={expandmenu ? { width: "4%" } : { width: "15%" }}
+              style={{ width: expandmenu ? "5%" : "15%" }}
             >
               <div style={{ overflow: "hidden" }}>
                 <Link to="/" style={{ textDecoration: "none" }}>
@@ -142,7 +142,9 @@ export default function Layout() {
                     )}
                     <i
                       style={{
-                        fontSize: expandmenu ? "1.5vw" : "1.1vw",
+                        fontSize: expandmenu
+                          ? "calc(5px + 1.5vw)"
+                          : "calc(2px + 1.1vw)",
                         display: "inline",
                         padding: expandmenu && "0 5vw 0 0.8vw",
                         transition: "all 0.5s linear",
@@ -152,7 +154,7 @@ export default function Layout() {
                     <span
                       className="col-9"
                       style={{
-                        fontSize: "calc(5px + 1.1vw)",
+                        fontSize: "calc(2px + 1.1vw)",
                         padding: "0",
                         whiteSpace: "nowrap",
                       }}
@@ -186,7 +188,9 @@ export default function Layout() {
                     )}
                     <i
                       style={{
-                        fontSize: expandmenu ? "1.5vw" : "1.1vw",
+                        fontSize: expandmenu
+                          ? "calc(5px + 1.5vw)"
+                          : "calc(2px + 1.1vw)",
                         display: "inline",
                         padding: expandmenu && "0 5vw 0 0.8vw",
                         transition: "all 0.5s linear",
@@ -196,7 +200,7 @@ export default function Layout() {
                     <span
                       className="col-9"
                       style={{
-                        fontSize: "1.1vw",
+                        fontSize: "calc(2px + 1.1vw)",
                         padding: "0",
                         whiteSpace: "nowrap",
                       }}
@@ -230,7 +234,9 @@ export default function Layout() {
                     )}
                     <i
                       style={{
-                        fontSize: expandmenu ? "1.5vw" : "1.1vw",
+                        fontSize: expandmenu
+                          ? "calc(5px + 1.5vw)"
+                          : "calc(2px + 1.1vw)",
                         display: "inline",
                         padding: expandmenu && "0 5vw 0 0.8vw",
                         transition: "all 0.5s linear",
@@ -240,7 +246,7 @@ export default function Layout() {
                     <span
                       className="col-9"
                       style={{
-                        fontSize: "1.1vw",
+                        fontSize: "calc(2px + 1.1vw)",
                         padding: "0",
                         whiteSpace: "nowrap",
                       }}
@@ -272,7 +278,9 @@ export default function Layout() {
                   )}
                   <i
                     style={{
-                      fontSize: expandmenu ? "1.5vw" : "1.1vw",
+                      fontSize: expandmenu
+                        ? "calc(5px + 1.5vw)"
+                        : "calc(2px + 1.1vw)",
                       display: "inline",
                       padding: expandmenu ? "0 5vw 0 1.1vw" : "0.3vw",
                       transition: "all 0.5s linear",
@@ -282,7 +290,7 @@ export default function Layout() {
                   <span
                     className="col-9"
                     style={{
-                      fontSize: "1.1vw",
+                      fontSize: "calc(2px + 1.1vw)",
                       padding: "0",
                       whiteSpace: "nowrap",
                     }}
@@ -331,16 +339,17 @@ export default function Layout() {
                         )}
                         <i
                           style={{
+                            fontSize: "calc(1px + 1vw)",
                             display: "inline",
                             padding: expandmenu && "0 5vw 0 0.8vw",
                             transition: "all 0.5s linear",
                           }}
                           className={"fas fa-user-secret sideBarIcons"}
-                        ></i>
+                        />
                         <span
                           className="col-10"
                           style={{
-                            fontSize: "1.1vw",
+                            fontSize: "calc(1px + 1.1vw)",
                             padding: "0",
                             whiteSpace: "nowrap",
                           }}
@@ -381,6 +390,7 @@ export default function Layout() {
                         )}
                         <i
                           style={{
+                            fontSize: "calc(1px + 1vw)",
                             display: "inline",
                             padding: expandmenu && "0 5vw 0 0.8vw",
                             transition: "all 0.5s linear",
@@ -390,7 +400,7 @@ export default function Layout() {
                         <span
                           className="col-10"
                           style={{
-                            fontSize: "1.1vw",
+                            fontSize: "calc(1px + 1.1vw)",
                             padding: "0",
                             whiteSpace: "nowrap",
                           }}
@@ -431,6 +441,7 @@ export default function Layout() {
                         )}
                         <i
                           style={{
+                            fontSize: "calc(1px + 1vw)",
                             display: "inline",
                             padding: expandmenu && "0 5vw 0 0.8vw",
                             transition: "all 0.5s linear",
@@ -442,7 +453,7 @@ export default function Layout() {
                           style={{
                             padding: "0",
                             whiteSpace: "nowrap",
-                            fontSize: "1.1vw",
+                            fontSize: "calc(1px + 1.1vw)",
                           }}
                         >
                           Health Records
@@ -477,7 +488,9 @@ export default function Layout() {
                     )}
                     <i
                       style={{
-                        fontSize: expandmenu ? "1.5vw" : "1.1vw",
+                        fontSize: expandmenu
+                          ? "calc(5px + 1.5vw)"
+                          : "calc(2px + 1.1vw)",
                         display: "inline",
                         padding: expandmenu && "0 5vw 0 0.8vw",
                         transition: "all 0.5s linear",
@@ -486,7 +499,7 @@ export default function Layout() {
                     ></i>
                     <span
                       style={{
-                        fontSize: "1.1vw",
+                        fontSize: "calc(2px + 1.1vw)",
                         overflow: "hidden",
                         padding: "0",
                         whiteSpace: "nowrap",
@@ -524,7 +537,9 @@ export default function Layout() {
                     )}
                     <i
                       style={{
-                        fontSize: expandmenu ? "1.5vw" : "1.1vw",
+                        fontSize: expandmenu
+                          ? "calc(5px + 1.5vw)"
+                          : "calc(2px + 1.1vw)",
                         display: "inline",
                         padding: expandmenu && "0 5vw 0 0.8vw",
                         transition: "all 0.5s linear",
@@ -533,7 +548,7 @@ export default function Layout() {
                     ></i>
                     <span
                       style={{
-                        fontSize: "1.1vw",
+                        fontSize: "calc(2px + 1.1vw)",
                         overflow: "hidden",
                         padding: "0",
                         whiteSpace: "nowrap",
@@ -547,7 +562,7 @@ export default function Layout() {
             </div>
             <div
               className="outlet"
-              style={expandmenu ? { width: "96%" } : { width: "85%" }}
+              style={{ width: expandmenu ? "95%" : "85%" }}
             >
               <div
                 style={{
