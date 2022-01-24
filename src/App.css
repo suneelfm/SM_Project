@@ -291,7 +291,7 @@
   height: 2.6vw;
   min-height: 15px;
   width: 10vw;
-  min-width: 45px;
+  min-width: 16px;
   border-radius: 0.4vw;
   background-color: rgb(152, 152, 202);
   font-weight: 700;
@@ -428,6 +428,7 @@
 .calcyDisplay {
   height: 10vw;
   border: 0.1vw solid;
+  border-radius: 0.5vw;
   margin: 1vw;
   background-color: rgb(165, 241, 194);
 }
@@ -451,10 +452,10 @@
 }
 
 .tableframe {
-  width: 100%;
+  width: 50%;
   font-size: 1.5vw;
   border-radius: 1vw;
-  padding: 0.5vw;
+  border: 0.1vw solid;
   height: 100%;
   margin: 1vw;
   background-color: lightskyblue;
@@ -475,7 +476,6 @@
   font-size: 1.5vw;
   border-radius: 1vw;
   padding: 0.5vw;
-  margin: 1vw;
   /* border: 2px solid; */
 }
 
