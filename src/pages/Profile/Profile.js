@@ -1,16 +1,25 @@
 import { Button, Link, Tooltip } from "@mui/material";
-import { width } from "@mui/system";
 import React, { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import validator from "validator";
+import { toastMessage } from "../../Components/toastMessage";
 
 export default function Profile() {
   const [userdetails, setuserdetails] = useState({});
   const [editEnabledKey, seteditEnabledKey] = useState("");
   const [isedited, setisedited] = useState(false);
+  const [error, seterror] = useState({
+    name: "",
+    username: "",
+    mailid: "",
+    image: "",
+  });
 
-  const name = useRef();
+  const namefield = useRef();
   const userName = useRef();
   const mailid = useRef();
+
+  const dispatch = useDispatch();
 
   const details = useSelector((state) => state.signInReducer.loggedInUser);
   useEffect(() => {
@@ -22,7 +31,7 @@ export default function Profile() {
       details.userName !== userdetails.userName ||
       details.mailid !== userdetails.mailid ||
       details.name !== userdetails.name ||
-      details.img !== userdetails.img
+      details.img?.name !== userdetails.img?.name
     ) {
       setisedited(true);
     } else {
@@ -32,14 +41,14 @@ export default function Profile() {
     userdetails.userName,
     userdetails.name,
     userdetails.mailid,
-    userdetails.img,
+    userdetails.img?.name,
   ]);
 
   useEffect(() => {
     if (editEnabledKey !== "") {
       switch (editEnabledKey) {
         case "name":
-          name.current.focus();
+          namefield.current.focus();
 
           break;
         case "userName":
@@ -56,6 +65,86 @@ export default function Profile() {
       }
     }
   }, [editEnabledKey]);
+
+  const handleSubmit = () => {
+    const err = { ...error };
+    if (!userdetails.name) {
+      err.name = "Please enter your full name.";
+    } else if (/^([a-zA-Z ]){1,15}$/.test(userdetails.name)) {
+      err.name = "";
+    } else {
+      err.name = "Only alphabets up to 15 characters are allowed";
+    }
+
+    if (validator.isEmail(userdetails.mailid)) {
+      err.mailid = "";
+    } else {
+      err.mailid = "Please enter valid Email";
+    }
+
+    // if (!password) {
+    //   setpswerror("Please enter password.");
+    // } else if (
+    //   validator.isStrongPassword(password, {
+    //     minLength: 8,
+    //     minLowercase: 1,
+    //     minUppercase: 1,
+    //     minNumbers: 1,
+    //     minSymbols: 1,
+    //   })
+    // ) {
+    //   setpswerror("");
+    // } else {
+    //   setpswerror(
+    //     "At least 1 upper case, 1 lower case, 1 number, 1 special character and min. 8 characters required"
+    //   );
+    // }
+
+    if (!userdetails.userName) {
+      err.username = "Please enter your user name.";
+    } else if (/^([a-z0-9-_]){4,10}$/.test(userName)) {
+      err.username = "";
+    } else {
+      err.username = `Only lower case alphnumarics with "-" and "_" at least 4 up to 10 characters are allowed without space`;
+    }
+    debugger;
+
+    const validImageExtensions = ["jpeg", "png", "jpg"];
+    const ext =
+      userdetails.img.name !== "" && userdetails.img.name.split(".").pop();
+
+    if (
+      ext !== false &&
+      !(validImageExtensions.indexOf(ext.toLocaleLowerCase()) !== -1) &&
+      userdetails.img.name !== ""
+    ) {
+      err.image = "Please select file only of type jpeg, jpg or png";
+    } else {
+      err.image = "";
+    }
+
+    seterror(err);
+    getProfileChanges();
+  };
+
+  const getProfileChanges = () => {
+    if (
+      error.username === "" &&
+      error.name === "" &&
+      error.mailid === "" &&
+      error.image === ""
+    ) {
+      dispatch({
+        type: "UpdateProfile",
+        userdetails,
+      });
+      setisedited(false);
+      toastMessage({
+        appearance: "success",
+        message: "User has been registered successfully.",
+      });
+    }
+  };
 
   return (
     <>
@@ -110,7 +199,7 @@ export default function Profile() {
               style={{ display: "grid", justifyContent: "center" }}
             >
               <img
-                src={userdetails.img}
+                src={userdetails.img?.name}
                 alt=""
                 loading="lazy"
                 style={{
@@ -135,7 +224,17 @@ export default function Profile() {
                     style={{ backgroundColor: "rgb(152, 152, 202)" }}
                   >
                     <i className="fas fa-cloud-upload-alt" />
-                    <input type="file" hidden />
+                    <input
+                      type="file"
+                      onChange={(event) => {
+                        debugger;
+                        setuserdetails({
+                          ...userdetails,
+                          img: event.target.files[0],
+                        });
+                      }}
+                      hidden
+                    />
                   </Button>
                 </Tooltip>
               </div>
@@ -152,7 +251,7 @@ export default function Profile() {
             >
               {editEnabledKey === "name" ? (
                 <input
-                  ref={name}
+                  ref={namefield}
                   value={userdetails.name}
                   onBlur={() => seteditEnabledKey("")}
                   onChange={(event) =>
@@ -278,7 +377,11 @@ export default function Profile() {
               padding: "1vw",
             }}
           >
-            {isedited && <button className="buttonProp">Save Changes</button>}
+            {isedited && (
+              <button onClick={handleSubmit} className="buttonProp">
+                Save Changes
+              </button>
+            )}
           </div>
         </div>
       </div>

@@ -5,7 +5,7 @@ const credentialList = {
       mailid: "sfm.20031998@gmail.com",
       password: "123",
       name: "Suneel F M",
-      img: "/Images/user.png",
+      img: { name: "/Images/user.jpg" },
     },
   ],
   loggedInUser: {},
@@ -23,6 +23,19 @@ export const signInReducer = (state = credentialList, action) => {
         ...state,
         loggedInUser: action.userDetails,
       };
+
+    case "UpdateProfile":
+      debugger;
+      const users = [...state.loginUserArray];
+      users.splice(state.loginUserArray.indexOf(state.loggedInUser), 1);
+      users.push(action.userdetails);
+      
+      return {
+        ...state,
+        loginUserArray: users,
+        loggedInUser: action.userdetails,
+      };
+
     case "signUp":
       return {
         ...state,

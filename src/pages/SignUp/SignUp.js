@@ -98,7 +98,6 @@ export default function SignUp(close) {
             },
           });
           close.prop(false);
-          console.log(state.signInReducer.loginUserArray);
           toastMessage({
             appearance: "success",
             message: "User has been registered successfully.",

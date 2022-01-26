@@ -51,8 +51,8 @@ export default function LoginPage(close) {
         ? localStorage.setItem("SMPuser", filArr[0].name)
         : sessionStorage.setItem("SMPuser", filArr[0].name);
       isRemeberUser
-        ? localStorage.setItem("SMPuserimage", filArr[0].img)
-        : sessionStorage.setItem("SMPuserimage", filArr[0].img);
+        ? localStorage.setItem("SMPuserimage", filArr[0].img.name)
+        : sessionStorage.setItem("SMPuserimage", filArr[0].img.name);
       close.prop.setuser(
         sessionStorage.getItem("SMPuser") === null
           ? localStorage.getItem("SMPuser") === null
