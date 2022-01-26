@@ -31,7 +31,7 @@ export default function Layout() {
 
   return (
     <div className="maincontainer">
-      <div className="row headerBar">
+      <div className="row headerBar light">
         <div className="col-2 logo">
           <img
             src="/Images/logo.png"
@@ -121,7 +121,7 @@ export default function Layout() {
               className="sideBarContainer"
               style={{ width: expandmenu ? "5%" : "15%" }}
             >
-              <div style={{ overflow: "hidden" }}>
+              <div style={{ overflowX: "hidden", overflowY:"auto", height:"85vh" }}>
                 <Link to="/" style={{ textDecoration: "none" }}>
                   <div
                     className="sideBar"
@@ -509,6 +509,7 @@ export default function Layout() {
                     </span>
                   </div>
                 </Link>
+              </div>
                 <Link to="/settings" style={{ textDecoration: "none" }}>
                   <div
                     className="sideBar"
@@ -558,7 +559,6 @@ export default function Layout() {
                     </span>
                   </div>
                 </Link>
-              </div>
             </div>
             <div
               className="outlet"
