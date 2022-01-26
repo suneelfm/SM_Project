@@ -573,10 +573,10 @@ export default function Layout() {
               >
                 {showMenu && (
                   <div className="profileMenu">
-                    <div className="profileMenuItems">
+                    {/* <div className="profileMenuItems">
                       Profile
                       <i className="far fa-id-card profileMenuIcon" />
-                    </div>
+                    </div> */}
                     <div
                       className="profileMenuItems"
                       onClick={() => {

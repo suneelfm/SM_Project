@@ -5,9 +5,10 @@ const credentialList = {
       mailid: "sfm.20031998@gmail.com",
       password: "123",
       name: "Suneel F M",
-      img:"/Images/user.png"
+      img: "/Images/user.png",
     },
   ],
+  loggedInUser: {},
   personalDetails: {
     isLoding: false,
     details: {},
@@ -17,6 +18,11 @@ const credentialList = {
 
 export const signInReducer = (state = credentialList, action) => {
   switch (action.type) {
+    case "signIn":
+      return {
+        ...state,
+        loggedInUser: action.userDetails,
+      };
     case "signUp":
       return {
         ...state,

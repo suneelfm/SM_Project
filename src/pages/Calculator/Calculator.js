@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import "./calculatorStyle.css";
 
 export default function Calculator() {
   const [display, setdisplay] = useState("");
@@ -20,10 +21,10 @@ export default function Calculator() {
     let expression = display.replaceAll("\u00D7", "*");
     expression = expression.replaceAll("\u00F7", "/");
     expression = expression.replaceAll("\u0025", "/100");
-    expression = expression.replaceAll("(", "*(");
-    if (display.split("").shift() === "(") {
-      expression = expression.replace("*(", "(");
-    }
+    // expression = expression.replaceAll("(", "*(");
+    // if (display.split("").shift() === "(") {
+    //   expression = expression.replace("*(", "(");
+    // }
     if (display === "") {
       setresult("");
     }
@@ -222,7 +223,7 @@ export default function Calculator() {
                     9
                   </button>
                 </td>
-                <td className="operatorbutton" style={{ padding: "1vw" }}>
+                <td className="operatorbutton">
                   <button
                     className="fitToCell calcybuttonProp"
                     onClick={() => calcyScreen("+")}
@@ -256,7 +257,7 @@ export default function Calculator() {
                     6
                   </button>
                 </td>
-                <td className="operatorbutton" style={{ padding: "1vw" }}>
+                <td className="operatorbutton">
                   <button
                     className="fitToCell calcybuttonProp"
                     onClick={() => calcyScreen("-")}
@@ -290,7 +291,7 @@ export default function Calculator() {
                     3
                   </button>
                 </td>
-                <td className="operatorbutton" style={{ padding: "1vw" }}>
+                <td className="operatorbutton">
                   <button
                     className="fitToCell calcybuttonProp"
                     onClick={() => calcyScreen("\u00D7")}
@@ -324,7 +325,7 @@ export default function Calculator() {
                     =
                   </button>
                 </td>
-                <td className="operatorbutton" style={{ padding: "1vw" }}>
+                <td className="operatorbutton">
                   <button
                     className="fitToCell calcybuttonProp"
                     onClick={() => calcyScreen("\u00F7")}

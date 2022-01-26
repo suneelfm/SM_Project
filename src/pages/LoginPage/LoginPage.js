@@ -4,6 +4,7 @@ import SignUp from "../SignUp/SignUp";
 import ForgotPassword from "../ForgotPasswordPage/ForgotPassword";
 import { Checkbox, FormControlLabel, Typography } from "@mui/material";
 import { toastMessage } from "../../Components/toastMessage";
+import { useDispatch } from "react-redux";
 
 export default function LoginPage(close) {
   const [userName, setuserName] = useState("");
@@ -15,6 +16,7 @@ export default function LoginPage(close) {
   const [viewPsw, setviewPsw] = useState(false);
   const username = useRef();
 
+  const dispatch = useDispatch();
   const state = useSelector((state) => state);
 
   useEffect(() => {
@@ -44,6 +46,7 @@ export default function LoginPage(close) {
       (val) => userName === val.userName && password === val.password
     );
     if (filArr.length > 0) {
+      dispatch({ type: "signIn", userDetails: filArr[0] });
       isRemeberUser
         ? localStorage.setItem("SMPuser", filArr[0].name)
         : sessionStorage.setItem("SMPuser", filArr[0].name);

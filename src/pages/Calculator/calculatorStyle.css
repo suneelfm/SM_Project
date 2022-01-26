@@ -1,0 +1,81 @@
+.tableframe {
+  width: 50%;
+  font-size: 1.5vw;
+  border-radius: 1vw;
+  border: 0.1vw solid;
+  height: 100%;
+  margin: 1vw;
+  background-color: lightskyblue;
+}
+
+.calcyDisplay {
+  height: 10vw;
+  border: 0.1vw solid;
+  border-radius: 0.5vw;
+  margin: 1vw;
+  background-color: rgb(165, 241, 194);
+}
+
+.typeText {
+  justify-content: right;
+  align-items: center;
+  font-size: 2vw;
+  font-family: sans-serif;
+  color: black;
+  /* height: 50px;  */
+}
+
+.result {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  font-family: sans-serif;
+  /* height: 50px;  */
+  padding: 1vw 2vw;
+}
+
+.equalbutton {
+  background: grey;
+  border-radius: 0.4vw;
+  font-weight: 700;
+  cursor: pointer;
+  color: white;
+  border: gray;
+}
+
+.fitToCell {
+  width: 80%;
+  height: 100%;
+  font-size: 1.5vw;
+  border-radius: 1vw;
+  padding: 0.5vw;
+  /* border: 2px solid; */
+}
+
+.clearButton {
+  display: block;
+  height: 4.1vw;
+  width: 90%;
+  margin: 0.4vw;
+  background: rgb(108, 116, 108);
+  font-size: 1.5vw;
+  border-radius: 1vw;
+}
+
+.operatorbutton {
+  width: 10%;
+  padding: 1vw;
+}
+
+.calcybuttonProp {
+  height: 2.6vw;
+  min-height: 15px;
+  min-width: 16px;
+  border-radius: 0.4vw;
+  background-color: rgb(152, 152, 202);
+  font-weight: 700;
+  font-size: 1.2vw;
+  cursor: pointer;
+  color: white;
+  border: rgb(108, 116, 108);
+}
