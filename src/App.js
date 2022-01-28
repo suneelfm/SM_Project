@@ -2,8 +2,9 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import "./Dark-Light.css"
+import "./Dark-Light.css";
 import Calculator from "./pages/Calculator/Calculator";
+import ChangePassword from "./pages/ChangePassword/ChangePassword";
 import HealthRecords from "./pages/HealthRecords/HealthRecords";
 import Home from "./pages/Home/Home";
 import Layout from "./pages/Layout/Layout";
@@ -35,6 +36,7 @@ function App() {
           <Route path="otherrecords" element={<OtherRecords />} />
           <Route path="settings" element={<Settings />} />
           <Route path="settings/profile" element={<Profile />} />
+          <Route path="settings/changepassword" element={<ChangePassword />} />
         </Route>
       </Routes>
     </BrowserRouter>

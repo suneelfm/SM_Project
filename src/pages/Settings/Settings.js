@@ -100,7 +100,17 @@ export default function Settings() {
               </tr>
               <tr className="trow">
                 <td className="tcol">
-                  <div className="profilefield">Profole</div>
+                  <Link
+                    to={"/settings/changepassword"}
+                    className="link"
+                    style={{
+                      color: "black",
+                      marginBottom: "0px",
+                      textDecoration: "none",
+                    }}
+                  >
+                    <div className="profilefield">Change Password</div>
+                  </Link>
                 </td>
               </tr>
               <tr className="trow">

@@ -1,6 +1,7 @@
-import { Button, Link, Tooltip } from "@mui/material";
+import { Button, Tooltip } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import validator from "validator";
 import { toastMessage } from "../../Components/toastMessage";
 
@@ -172,6 +173,14 @@ export default function Profile() {
               style={{ color: "rgb(152, 152, 202)", marginBottom: "0px" }}
             >
               Home
+            </Link>{" "}
+            /{" "}
+            <Link
+              to="/settings"
+              className="link"
+              style={{ color: "rgb(152, 152, 202)", marginBottom: "0px" }}
+            >
+              Settings
             </Link>{" "}
             / Profile
           </div>
