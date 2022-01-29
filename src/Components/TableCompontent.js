@@ -550,7 +550,7 @@ export default function TableCompontent({
                 {isViewColumnRequired && (
                   <td
                     className={mode ? "tdDark" : "tdLight"}
-                    style={{ width: "85px", color: "blue", cursor: "pointer" }}
+                    style={{ width: "85px", color: "rgb(37, 37, 138)", cursor: "pointer" }}
                   >
                     <span onClick={() => onClickOfView(item)}>
                       <i

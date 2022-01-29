@@ -120,6 +120,7 @@ export default function AddModifyComponent({
                       },
                       padding: "0",
                       margin: "0 0.5vw 0 1vw",
+                      color: "inherit",
                     }}
                   />
                 }
@@ -144,6 +145,7 @@ export default function AddModifyComponent({
                       },
                       padding: "0",
                       margin: "0 0.5vw 0 1vw",
+                      color: "inherit",
                     }}
                   />
                 }
@@ -169,6 +171,7 @@ export default function AddModifyComponent({
                       },
                       padding: "0",
                       margin: "0 0.5vw 0 1vw",
+                      color: "inherit",
                     }}
                   />
                 }

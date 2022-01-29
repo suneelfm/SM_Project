@@ -312,12 +312,26 @@
   box-shadow: 0vw 0vw 3vw black;
 }
 
-.viewpopup {
+.viewpopupLight {
   width: 30%;
   padding: 10px;
   min-height: 150px;
-  border: 0.15vw solid;
+  color: black;
+  border: 0.15vw solid gray;
   background-color: rgb(255, 255, 255);
+  position: absolute;
+  left: 35%;
+  border-radius: 0.6vw;
+  box-shadow: 0vw 0vw 3vw black;
+}
+
+.viewpopupDark {
+  width: 30%;
+  padding: 10px;
+  min-height: 150px;
+  border: 0.15vw solid rgb(92, 91, 91);
+  color: white;
+  background-color: #1d1b1b;
   position: absolute;
   left: 35%;
   border-radius: 0.6vw;

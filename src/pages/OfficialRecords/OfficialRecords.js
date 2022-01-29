@@ -544,7 +544,7 @@ export default function OfficialRecords() {
       {showViewPopup && (
         <div className=" popupBack">
           <div className="row">
-            <form className="viewpopup" onSubmit={handleFrom}>
+            <form className={mode ? "viewpopupDark" : "viewpopupLight"} onSubmit={handleFrom}>
               <i
                 className="fas fa-times closeIcon"
                 onClick={() => setshowViewPopup(false)}

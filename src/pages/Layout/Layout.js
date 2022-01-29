@@ -15,7 +15,6 @@ export default function Layout() {
   const [focuskey, setfocuskey] = useState({ key: "" });
 
   const mode = useSelector((state) => state.signInReducer.isDarkMode);
-  debugger;
   useEffect(() => {
     setuser(
       sessionStorage.getItem("SMPuser") === null

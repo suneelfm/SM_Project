@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import "./settingStyle.css";
 
 export default function Settings() {
-  const [isDarkMode, setisDarkMode] = useState(null);
+  const [isDarkMode, setisDarkMode] = useState();
 
   const mode = useSelector(
     (state) => state.signInReducer.loginUserArray.isDarkMode
@@ -14,7 +14,7 @@ export default function Settings() {
   const dispatch = useDispatch();
   useEffect(() => {
     setisDarkMode(mode);
-  }, []);
+  }, [mode]);
 
   useEffect(() => {
     dispatch({ type: "darkMode", mode: isDarkMode });
