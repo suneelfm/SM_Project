@@ -1,13 +1,15 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 export default function Home() {
+  const mode = useSelector((state) => state.signInReducer.isDarkMode);
+
   return (
     <>
       <div
         style={{
           width: "100%",
           paddingRight: "10px",
-          backgroundColor: "rgb(211, 224, 224)",
           height: "100%",
           overflow: "auto",
         }}
@@ -28,7 +30,13 @@ export default function Home() {
         <div className="row" style={{ height: "100%" }}>
           <div className="col-8">
             <div className="row rowProp">
-              <div className="card col-lg-5 cardProp">
+              <div
+                className={
+                  mode
+                    ? "card col-lg-5 cardPropDark"
+                    : "card col-lg-5 cardPropLight"
+                }
+              >
                 <div>
                   <div style={{ paddingBottom: "0.3vw" }}>
                     <h5
@@ -60,7 +68,10 @@ export default function Home() {
                         >
                           <i
                             className="fas fa-truck"
-                            style={{ fontSize: "2vw", color: "rgb(37, 37, 138)" }}
+                            style={{
+                              fontSize: "2vw",
+                              color: "rgb(37, 37, 138)",
+                            }}
                           />
                         </div>
                       </div>
@@ -103,7 +114,13 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="card col-lg-5 cardProp">
+              <div
+                className={
+                  mode
+                    ? "card col-lg-5 cardPropDark"
+                    : "card col-lg-5 cardPropLight"
+                }
+              >
                 <div>
                   <div style={{ paddingBottom: "0.3vw" }}>
                     <h5
@@ -184,7 +201,13 @@ export default function Home() {
             </div>
 
             <div className="row rowProp">
-              <div className="card col-11 cardProp">
+              <div
+                className={
+                  mode
+                    ? "card col-11 cardPropDark"
+                    : "card col-11 cardPropLight"
+                }
+              >
                 <div>
                   <div style={{ paddingBottom: "0.3vw" }}>
                     <h5
@@ -262,7 +285,11 @@ export default function Home() {
 
             <div className="row rowProp">
               <div
-                className="card col-11 cardProp"
+                className={
+                  mode
+                    ? "card col-11 cardPropDark"
+                    : "card col-11 cardPropLight"
+                }
                 style={{ height: "50vw !important" }}
               >
                 <div>
@@ -311,7 +338,11 @@ export default function Home() {
           <div className="col-4">
             <div className="row rowProp">
               <div
-                className="card col-12"
+                className={
+                  mode
+                    ? "card col-12 cardPropDark"
+                    : "card col-12 cardPropLight"
+                }
                 style={{
                   height: "auto",
                   display: "flex",
@@ -348,8 +379,10 @@ export default function Home() {
                     }}
                   >
                     <div className="row">
-                      <div className="col-sm-2 textProp">20 min</div>
-                      <div className=" col-sm-1 ">
+                      <div className="textProp" style={{ width: "20%" }}>
+                        20 min
+                      </div>
+                      <div style={{ width: "5%" }}>
                         <div
                           className="dot "
                           style={{ backgroundColor: "black" }}
@@ -362,15 +395,17 @@ export default function Home() {
                           }}
                         ></div>
                       </div>
-                      <div className="col-sm-9 textProp">
+                      <div className="textProp" style={{ width: "75%" }}>
                         dqpgfgf hjgki ukiohyu <b>gkiukioh </b>ioyuo ylhyfghgf
                         jgf jfjfjfgj
                       </div>
                     </div>
 
                     <div className="row ">
-                      <div className="col-sm-2 textProp">20 min</div>
-                      <div className="col-sm-1 ">
+                      <div className="textProp" style={{ width: "20%" }}>
+                        20 min
+                      </div>
+                      <div style={{ width: "5%" }}>
                         <div
                           className="dot "
                           style={{ backgroundColor: "green" }}
@@ -383,14 +418,16 @@ export default function Home() {
                           }}
                         ></div>
                       </div>
-                      <div className="col-sm-9 textProp">
+                      <div className="textProp" style={{ width: "75%" }}>
                         dgfgf hj <b>gkiukioh </b>yuioyuoyl
                       </div>
                     </div>
 
                     <div className="row ">
-                      <div className="col-sm-2 textProp">20 min</div>
-                      <div className="col-sm-1 ">
+                      <div className="textProp" style={{ width: "20%" }}>
+                        20 min
+                      </div>
+                      <div style={{ width: "5%" }}>
                         <div
                           className="dot "
                           style={{ backgroundColor: "red" }}
@@ -403,14 +440,16 @@ export default function Home() {
                           }}
                         ></div>
                       </div>
-                      <div className="col-sm-9 textProp">
+                      <div className="textProp" style={{ width: "75%" }}>
                         dg fgfhjgki <b>gkiu kioh </b>ukiohyu ioyuoyl
                       </div>
                     </div>
 
                     <div className="row ">
-                      <div className="col-sm-2 textProp">20 min</div>
-                      <div className="col-sm-1 ">
+                      <div className="textProp" style={{ width: "20%" }}>
+                        20 min
+                      </div>
+                      <div style={{ width: "5%" }}>
                         <div
                           className="dot "
                           style={{ backgroundColor: "blue" }}
@@ -423,14 +462,16 @@ export default function Home() {
                           }}
                         ></div>
                       </div>
-                      <div className="col-sm-9 textProp">
+                      <div className="textProp" style={{ width: "75%" }}>
                         dgfgf hjgki <b>gkiu kioh </b>ukiohyui oyuoyl
                       </div>
                     </div>
 
                     <div className="row ">
-                      <div className="col-sm-2 textProp">20 min</div>
-                      <div className="col-sm-1 ">
+                      <div className="textProp" style={{ width: "20%" }}>
+                        20 min
+                      </div>
+                      <div style={{ width: "5%" }}>
                         <div
                           className="dot "
                           style={{ backgroundColor: "gray" }}
@@ -443,14 +484,16 @@ export default function Home() {
                           }}
                         ></div>
                       </div>
-                      <div className="col-sm-9 textProp">
+                      <div className="textProp" style={{ width: "75%" }}>
                         dgfgf hj <b>gkiukioh </b>gkiukioh yuioyuoyl
                       </div>
                     </div>
 
                     <div className="row ">
-                      <div className="col-sm-2 textProp">20 min</div>
-                      <div className="col-sm-1 ">
+                      <div className="textProp" style={{ width: "20%" }}>
+                        20 min
+                      </div>
+                      <div style={{ width: "5%" }}>
                         <div
                           className="dot "
                           style={{ backgroundColor: "yellow" }}
@@ -463,14 +506,16 @@ export default function Home() {
                           }}
                         ></div>
                       </div>
-                      <div className="col-sm-9 textProp">
+                      <div className="textProp" style={{ width: "75%" }}>
                         dgfg fhjgki <b>gkiukioh </b>ukiohy uioyuoyl
                       </div>
                     </div>
 
                     <div className="row ">
-                      <div className="col-sm-2 textProp">20 min</div>
-                      <div className="col-sm-1 ">
+                      <div className="textProp" style={{ width: "20%" }}>
+                        20 min
+                      </div>
+                      <div style={{ width: "5%" }}>
                         <div
                           className="dot "
                           style={{ backgroundColor: "yellow" }}
@@ -483,14 +528,16 @@ export default function Home() {
                           }}
                         ></div>
                       </div>
-                      <div className="col-sm-9 textProp">
+                      <div className="textProp" style={{ width: "75%" }}>
                         dgfg fhjgki <b>gkiukioh </b>ukiohy uioyuoyl
                       </div>
                     </div>
 
                     <div className="row ">
-                      <div className="col-sm-2 textProp">20 min</div>
-                      <div className="col-sm-1 ">
+                      <div className="textProp" style={{ width: "20%" }}>
+                        20 min
+                      </div>
+                      <div style={{ width: "5%" }}>
                         <div
                           className="dot "
                           style={{ backgroundColor: "rgb(0, 174, 255)" }}
@@ -503,7 +550,7 @@ export default function Home() {
                           }}
                         ></div>
                       </div>
-                      <div className="col-sm-9 textProp">
+                      <div className="textProp" style={{ width: "75%" }}>
                         dgfg fhjgki <b>gkiukioh </b>ukiohy uioyuoyl
                       </div>
                     </div>
@@ -514,7 +561,11 @@ export default function Home() {
 
             <div className="row rowProp ">
               <div
-                className="card col-12 "
+                className={
+                  mode
+                    ? "card col-12 cardPropDark"
+                    : "card col-12 cardPropLight"
+                }
                 style={{
                   height: "auto",
                   display: "flex",
