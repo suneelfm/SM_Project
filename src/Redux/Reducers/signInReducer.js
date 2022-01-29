@@ -55,7 +55,6 @@ export const signInReducer = (state = credentialList, action) => {
     }
 
     case "darkMode": {
-      debugger
       return {
         ...state,
         isDarkMode: action.mode,

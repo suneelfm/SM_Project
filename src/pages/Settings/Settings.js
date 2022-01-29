@@ -1,24 +1,13 @@
-import { Switch, Typography } from "@mui/material";
-import React, { useState, useEffect } from "react";
+import { Switch } from "@mui/material";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./settingStyle.css";
 
 export default function Settings() {
-  const [isDarkMode, setisDarkMode] = useState();
-
-  const mode = useSelector(
-    (state) => state.signInReducer.loginUserArray.isDarkMode
-  );
+  const mode = useSelector((state) => state.signInReducer.isDarkMode);
 
   const dispatch = useDispatch();
-  useEffect(() => {
-    setisDarkMode(mode);
-  }, [mode]);
-
-  useEffect(() => {
-    dispatch({ type: "darkMode", mode: isDarkMode });
-  }, [isDarkMode]);
 
   return (
     <>
@@ -55,10 +44,10 @@ export default function Settings() {
         <div className="col-12">
           <table
             className={
-              isDarkMode ? "table table-dark table-hover" : "table table-hover"
+              mode ? "table table-dark table-hover" : "table table-hover"
             }
             style={{
-              backgroundColor: isDarkMode ? "#1d1b1b" : "white",
+              backgroundColor: mode ? "#1d1b1b" : "white",
               padding: "0",
               marginTop: "1vw",
               borderRadius: "0.5vw",
@@ -71,7 +60,7 @@ export default function Settings() {
                     to={"/settings/profile"}
                     className="link"
                     style={{
-                      color: isDarkMode ? "white" : "black",
+                      color: mode ? "white" : "black",
                       marginBottom: "0px",
                       textDecoration: "none",
                     }}
@@ -84,7 +73,9 @@ export default function Settings() {
                 <td
                   className="tcol"
                   onClick={() =>
-                    isDarkMode ? setisDarkMode(false) : setisDarkMode(true)
+                    mode
+                      ? dispatch({ type: "darkMode", mode: false })
+                      : dispatch({ type: "darkMode", mode: true })
                   }
                 >
                   <label
@@ -109,7 +100,7 @@ export default function Settings() {
                         },
                       float: "right",
                     }}
-                    checked={isDarkMode || mode}
+                    checked={mode || mode}
                     // onChange={handleChange}
                     inputProps={{ "aria-label": "controlled" }}
                   />
