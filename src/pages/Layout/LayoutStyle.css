@@ -1,0 +1,63 @@
+.headerBarLight {
+  z-index: 3;
+  background-color: white;
+  color: black;
+  position: relative;
+  box-shadow: 0px 0.5vw 0.5vw rgb(221, 224, 224);
+  padding: 0.5vw;
+  width: 100%;
+  margin-left: 0px;
+}
+
+.headerBarDark {
+  z-index: 3;
+  background-color: #1d1b1b;
+  color: white;
+  position: relative;
+  box-shadow: 0px 0.5vw 0.5vw rgb(81, 83, 83);
+  padding: 0.5vw;
+  width: 100%;
+  margin-left: 0px;
+}
+
+.sideBarContainerLight {
+  box-shadow: 0.5vw 0px 0.5vw rgb(221, 224, 224);
+  padding-top: 0.5vw;
+  padding-left: 0vw;
+  padding-right: 0px;
+  z-index: 2;
+  height: 100vh;
+  color: black;
+  background-color: white;
+  transition: all 0.5s linear;
+  overflow: "hidden";
+}
+
+.sideBarContainerDark {
+  box-shadow: 0.5vw 0px 0.5vw rgb(81, 83, 83);
+  padding-top: 0.5vw;
+  padding-left: 0vw;
+  padding-right: 0px;
+  z-index: 2;
+  height: 100vh;
+  color: white;
+  background-color: #1d1b1b;
+  transition: all 0.5s linear;
+  overflow: "hidden";
+}
+
+.outletLight {
+  background-color: rgb(211, 224, 224);
+  height: 100%;
+  padding: 0;
+  display: grid;
+  transition: all 0.5s linear;
+}
+
+.outletDark {
+  background-color: rgb(60, 63, 63);
+  height: 100%;
+  padding: 0;
+  display: grid;
+  transition: all 0.5s linear;
+}

@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import LoginPage from "../LoginPage/LoginPage";
 import ReactTooltip from "react-tooltip";
+import { useSelector } from "react-redux";
+import "./LayoutStyle.css"
 
 export default function Layout() {
   const [detailsubmenu, setdetailsubmenu] = useState(false);
@@ -12,6 +14,8 @@ export default function Layout() {
   const [expandmenu, setexpandmenu] = useState(true);
   const [focuskey, setfocuskey] = useState({ key: "" });
 
+  const mode = useSelector((state) => state.signInReducer.isDarkMode);
+  debugger;
   useEffect(() => {
     setuser(
       sessionStorage.getItem("SMPuser") === null
@@ -31,7 +35,7 @@ export default function Layout() {
 
   return (
     <div className="maincontainer">
-      <div className="row headerBar light">
+      <div className={mode ? "row headerBarDark" : "row headerBarLight"}>
         <div className="col-2 logo">
           <img
             src="/Images/logo.png"
@@ -118,13 +122,19 @@ export default function Layout() {
             }}
           >
             <div
-              className="sideBarContainer"
+              className={mode ? "sideBarContainerDark" : "sideBarContainerLight"}
               style={{ width: expandmenu ? "5%" : "15%" }}
             >
-              <div style={{ overflowX: "hidden", overflowY:"auto", height:"85vh" }}>
+              <div
+                style={{
+                  overflowX: "hidden",
+                  overflowY: "auto",
+                  height: "85vh",
+                }}
+              >
                 <Link to="/" style={{ textDecoration: "none" }}>
                   <div
-                    className="sideBar"
+                    className={mode ? "sideBar dark" : "sideBar"}
                     data-tip
                     data-for="homeTip"
                     onClick={() => setfocuskey({ key: "home" })}
@@ -165,7 +175,7 @@ export default function Layout() {
                 </Link>
                 <Link to="/todolist" style={{ textDecoration: "none" }}>
                   <div
-                    className="sideBar"
+                    className={mode ? "sideBar dark" : "sideBar"}
                     onClick={() => setfocuskey({ key: "todo" })}
                     data-tip
                     data-for="todoListTip"
@@ -211,7 +221,7 @@ export default function Layout() {
                 </Link>
                 <Link to="/calculator" style={{ textDecoration: "none" }}>
                   <div
-                    className="sideBar"
+                    className={mode ? "sideBar dark" : "sideBar"}
                     onClick={() => setfocuskey({ key: "cals" })}
                     data-tip
                     data-for="CalculatorTip"
@@ -256,7 +266,7 @@ export default function Layout() {
                   </div>
                 </Link>
                 <div
-                  className="sideBar"
+                  className={mode ? "sideBar dark" : "sideBar"}
                   data-tip
                   data-for="DetailsTip"
                   style={{
@@ -312,7 +322,7 @@ export default function Layout() {
                       style={{ textDecoration: "none" }}
                     >
                       <div
-                        className="subMenu"
+                        className={mode ? "subMenu dark" : "subMenu"}
                         onClick={() =>
                           setfocuskey({ key: "details", subkey: "personal" })
                         }
@@ -363,7 +373,7 @@ export default function Layout() {
                       style={{ textDecoration: "none" }}
                     >
                       <div
-                        className="subMenu"
+                        className={mode ? "subMenu dark" : "subMenu"}
                         onClick={() =>
                           setfocuskey({ key: "details", subkey: "official" })
                         }
@@ -414,7 +424,7 @@ export default function Layout() {
                       style={{ textDecoration: "none" }}
                     >
                       <div
-                        className="subMenu"
+                        className={mode ? "subMenu dark" : "subMenu"}
                         data-tip
                         data-for="HealthRecordsTip"
                         onClick={() =>
@@ -464,7 +474,7 @@ export default function Layout() {
                 )}
                 <Link to="/otherrecords" style={{ textDecoration: "none" }}>
                   <div
-                    className="sideBar"
+                    className={mode ? "sideBar dark" : "sideBar"}
                     data-tip
                     data-for="OtherRecordsTip"
                     onClick={() => setfocuskey({ key: "other" })}
@@ -510,58 +520,56 @@ export default function Layout() {
                   </div>
                 </Link>
               </div>
-                <Link to="/settings" style={{ textDecoration: "none" }}>
-                  <div
-                    className="sideBar"
-                    data-tip
-                    data-for="Settings"
-                    onClick={() => setfocuskey({ key: "settings" })}
+              <Link to="/settings" style={{ textDecoration: "none" }}>
+                <div
+                  className={mode ? "sideBar dark" : "sideBar"}
+                  data-tip
+                  data-for="Settings"
+                  onClick={() => setfocuskey({ key: "settings" })}
+                  style={{
+                    overflow: "hidden",
+                    position: "fixed",
+                    bottom: "0",
+                    width: expandmenu ? "5%" : "15%",
+                    whiteSpace: "nowrap",
+                    transition: "all 0.5s linear",
+                    color:
+                      (focuskey.key === "settings" ||
+                        document.documentURI.split("/").includes("settings")) &&
+                      "blue",
+                  }}
+                >
+                  {expandmenu && (
+                    <ReactTooltip id="Settings" place="right" effect="solid">
+                      Settings
+                    </ReactTooltip>
+                  )}
+                  <i
                     style={{
-                      overflow: "hidden",
-                      position: "fixed",
-                      bottom: "0",
-                      width: expandmenu ? "5%" : "15%",
-                      whiteSpace: "nowrap",
+                      fontSize: expandmenu
+                        ? "calc(5px + 1.5vw)"
+                        : "calc(2.5px + 1.1vw)",
+                      display: "inline",
+                      padding: expandmenu && "0 5vw 0 0.8vw",
                       transition: "all 0.5s linear",
-                      color:
-                        (focuskey.key === "settings" ||
-                          document.documentURI
-                            .split("/")
-                            .includes("settings")) &&
-                        "blue",
+                    }}
+                    className={"fas fa-cog sideBarIcons"}
+                  ></i>
+                  <span
+                    style={{
+                      fontSize: "calc(2.5px + 1.1vw)",
+                      overflow: "hidden",
+                      padding: "0",
+                      whiteSpace: "nowrap",
                     }}
                   >
-                    {expandmenu && (
-                      <ReactTooltip id="Settings" place="right" effect="solid">
-                        Settings
-                      </ReactTooltip>
-                    )}
-                    <i
-                      style={{
-                        fontSize: expandmenu
-                          ? "calc(5px + 1.5vw)"
-                          : "calc(2.5px + 1.1vw)",
-                        display: "inline",
-                        padding: expandmenu && "0 5vw 0 0.8vw",
-                        transition: "all 0.5s linear",
-                      }}
-                      className={"fas fa-cog sideBarIcons"}
-                    ></i>
-                    <span
-                      style={{
-                        fontSize: "calc(2.5px + 1.1vw)",
-                        overflow: "hidden",
-                        padding: "0",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      Settings
-                    </span>
-                  </div>
-                </Link>
+                    Settings
+                  </span>
+                </div>
+              </Link>
             </div>
             <div
-              className="outlet"
+              className={mode ? "outletDark" : "outletLight"}
               style={{ width: expandmenu ? "95%" : "85%" }}
             >
               <div

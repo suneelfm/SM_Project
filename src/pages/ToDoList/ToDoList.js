@@ -7,6 +7,8 @@ import { Tooltip } from "@mui/material";
 import InputComponent from "../../Components/InputComponent";
 import { basicURL } from "../../basicURL/basicURL";
 import { toastMessage } from "../../Components/toastMessage";
+import "./TodoStyle.css";
+import { useSelector } from "react-redux";
 
 export default function ToDoList() {
   const [todolist, settodolist] = useState({ data: [] });
@@ -16,6 +18,8 @@ export default function ToDoList() {
   const [showModifyPopup, setshowModifyPopup] = useState(false);
   const [modifytodo, setmodifytodo] = useState("");
   const [modificationid, setmodificationid] = useState(null);
+
+  const mode = useSelector((state) => state.signInReducer.isDarkMode);
 
   useEffect(() => {
     getToDoList();
@@ -177,7 +181,10 @@ export default function ToDoList() {
         </div>
       </div>
       <div className="row" style={{ overflow: "auto" }}>
-        <form className="formcontainer" onSubmit={handleFrom}>
+        <form
+          className={mode ? "formcontainerDark" : "formcontainerLight"}
+          onSubmit={handleFrom}
+        >
           <div className="row">
             <div className="col-6">
               <InputComponent
@@ -204,7 +211,7 @@ export default function ToDoList() {
       </div>
       <div className="row">
         {todolist.data.length > 0 && (
-          <form className="formcontainer">
+          <form className={mode ? "formcontainerDark" : "formcontainerLight"}>
             <span className="listHead">Your Todo List</span>
             <ul className="listArea">
               {todolist.data.map((val, index) => (

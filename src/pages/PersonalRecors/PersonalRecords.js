@@ -4,7 +4,7 @@ import Table from "./table";
 import "react-datepicker/dist/react-datepicker.css";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import AddModifyComponent from "./AddModifyComponent";
 import { getPersonalRecords } from "../../Redux/Actions/getPersonalRecords";
 import { toastMessage } from "../../Components/toastMessage";
@@ -46,6 +46,8 @@ export default function PersonalRecords() {
   const dobmsg = "Please enter your date of birth.";
   const charmsg = "Please enter only alphabets with max. length 20.";
   const dispatch = useDispatch();
+
+  const mode = useSelector((state) => state.signInReducer.isDarkMode);
 
   const handleFrom = (event) => {
     event.preventDefault();
@@ -171,10 +173,7 @@ export default function PersonalRecords() {
       const formData = new FormData();
       formData.append("file", employeePhoto[0]);
       await axios
-        .post(
-          `${basicURL}/personal/upload/${imgid}`,
-          formData
-        )
+        .post(`${basicURL}/personal/upload/${imgid}`, formData)
         .then(() => {
           setemployeePhoto([{ type: "", name: "" }]);
           toastMessage({
@@ -367,7 +366,10 @@ export default function PersonalRecords() {
         </div>
       </div>
       <div className="row">
-        <form className="formcontainer" onSubmit={handleFrom}>
+        <form
+          className={mode ? "formcontainerDark" : "formcontainerLight"}
+          onSubmit={handleFrom}
+        >
           <AddModifyComponent
             firstName={firstName}
             setfirstName={setfirstName}
@@ -396,7 +398,7 @@ export default function PersonalRecords() {
 
       {details.data.length > 0 && (
         <div className="row">
-          <form className="formcontainer">
+          <form className={mode ? "formcontainerDark" : "formcontainerLight"}>
             <PersonalDetails.Provider
               value={{
                 value: details,

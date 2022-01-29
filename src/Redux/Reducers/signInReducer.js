@@ -14,6 +14,7 @@ const credentialList = {
     details: {},
     errMsg: null,
   },
+  isDarkMode: false,
 };
 
 export const signInReducer = (state = credentialList, action) => {
@@ -29,7 +30,7 @@ export const signInReducer = (state = credentialList, action) => {
       const users = [...state.loginUserArray];
       users.splice(state.loginUserArray.indexOf(state.loggedInUser), 1);
       users.push(action.userdetails);
-      
+
       return {
         ...state,
         loginUserArray: users,
@@ -52,6 +53,15 @@ export const signInReducer = (state = credentialList, action) => {
         loginUserArray: [...state.loginUserArray, matched[0]],
       };
     }
+
+    case "darkMode": {
+      debugger
+      return {
+        ...state,
+        isDarkMode: action.mode,
+      };
+    }
+
     case "PersonalRecords":
       return {
         ...state,

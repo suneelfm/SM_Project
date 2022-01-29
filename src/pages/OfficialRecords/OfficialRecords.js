@@ -35,6 +35,7 @@ export default function OfficialRecords() {
   const details = useSelector(
     (state) => state.signInReducer.personalDetails.details.data
   );
+  const mode = useSelector((state) => state.signInReducer.isDarkMode);
 
   const DipartmentList = ["Account", "HR", "Curriculum", "Sports"];
 
@@ -377,7 +378,10 @@ export default function OfficialRecords() {
         </div>
       </div>
       <div className="row">
-        <form className="formcontainer" onSubmit={handleFrom}>
+        <form
+          className={mode ? "formcontainerDark" : "formcontainerLight"}
+          onSubmit={handleFrom}
+        >
           <div className="row">
             <div
               className="col-10"
@@ -519,7 +523,7 @@ export default function OfficialRecords() {
       </div>
       {tabledata.length > 0 && (
         <div className="row">
-          <form className="formcontainer">
+          <form className={mode ? "formcontainerDark" : "formcontainerLight"}>
             <TableCompontent
               columnHeaderList={headers}
               isViewColumnRequired={true}

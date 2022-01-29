@@ -1,10 +1,25 @@
 import { Switch, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./settingStyle.css";
 
 export default function Settings() {
-  const [isDarkMode, setisDarkMode] = useState(false);
+  const [isDarkMode, setisDarkMode] = useState(null);
+
+  const mode = useSelector(
+    (state) => state.signInReducer.loginUserArray.isDarkMode
+  );
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    setisDarkMode(mode);
+  }, []);
+
+  useEffect(() => {
+    dispatch({ type: "darkMode", mode: isDarkMode });
+  }, [isDarkMode]);
+
   return (
     <>
       <div className="row" style={{ padding: "0px", marginTop: "1vw" }}>
@@ -39,9 +54,11 @@ export default function Settings() {
       <div className="row">
         <div className="col-12">
           <table
-            className="table table-hover"
+            className={
+              isDarkMode ? "table table-dark table-hover" : "table table-hover"
+            }
             style={{
-              backgroundColor: "white",
+              backgroundColor: isDarkMode ? "#1d1b1b" : "white",
               padding: "0",
               marginTop: "1vw",
               borderRadius: "0.5vw",
@@ -54,7 +71,7 @@ export default function Settings() {
                     to={"/settings/profile"}
                     className="link"
                     style={{
-                      color: "black",
+                      color: isDarkMode ? "white" : "black",
                       marginBottom: "0px",
                       textDecoration: "none",
                     }}
@@ -92,7 +109,7 @@ export default function Settings() {
                         },
                       float: "right",
                     }}
-                    checked={isDarkMode}
+                    checked={isDarkMode || mode}
                     // onChange={handleChange}
                     inputProps={{ "aria-label": "controlled" }}
                   />

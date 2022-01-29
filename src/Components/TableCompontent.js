@@ -1,6 +1,7 @@
 import { Checkbox, ListItemText, MenuItem, Tooltip } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import ConfirmationPopup from "./ConfirmationPopup";
 import { toastMessage } from "./toastMessage";
 
@@ -38,6 +39,8 @@ export default function TableCompontent({
     isClicked: false,
     delid: null,
   });
+
+  const mode = useSelector((state) => state.signInReducer.isDarkMode);
 
   useEffect(() => {
     let Header = [];
@@ -440,7 +443,10 @@ export default function TableCompontent({
           <thead>
             <tr>
               {isSelectColumnRequired && (
-                <th className="th" style={{ width: "85px" }}>
+                <th
+                  className={mode ? "thDark" : "thLight"}
+                  style={{ width: "85px" }}
+                >
                   <Checkbox
                     checked={selectAllRecords.isSelected}
                     indeterminate={
@@ -469,7 +475,7 @@ export default function TableCompontent({
                 </th>
               )}
               {headers.map((item) => (
-                <th className="th">
+                <th className={mode ? "thDark" : "thLight"}>
                   {item.name}
                   {isAscending.isadg && isAscending.key === item.key ? (
                     <i
@@ -487,12 +493,18 @@ export default function TableCompontent({
                 </th>
               ))}
               {isViewColumnRequired && (
-                <th className="th" style={{ width: "85px" }}>
+                <th
+                  className={mode ? "thDark" : "thLight"}
+                  style={{ width: "85px" }}
+                >
                   View
                 </th>
               )}
               {isActionColumnRequired && (
-                <th className="th" style={{ width: "85px" }}>
+                <th
+                  className={mode ? "thDark" : "thLight"}
+                  style={{ width: "85px" }}
+                >
                   Action
                 </th>
               )}
@@ -503,8 +515,8 @@ export default function TableCompontent({
               <tr>
                 {isSelectColumnRequired && (
                   <td
-                    className="th"
-                    style={{ width: "85px", backgroundColor: "white" }}
+                    className={mode ? "tdDark" : "tdLight"}
+                    style={{ width: "85px", textAlign: "center" }}
                   >
                     <Checkbox
                       checked={selectedRecords.includes(item)}
@@ -524,7 +536,7 @@ export default function TableCompontent({
                 )}
                 {Object.keys(item).map((key, index) => (
                   <td
-                    className="td"
+                    className={mode ? "tdDark" : "tdLight"}
                     style={{
                       textAlign:
                         headers[index].name.toLowerCase() === "sl. no." &&
@@ -537,7 +549,7 @@ export default function TableCompontent({
 
                 {isViewColumnRequired && (
                   <td
-                    className="td"
+                    className={mode ? "tdDark" : "tdLight"}
                     style={{ width: "85px", color: "blue", cursor: "pointer" }}
                   >
                     <span onClick={() => onClickOfView(item)}>
@@ -551,7 +563,10 @@ export default function TableCompontent({
                 )}
 
                 {isActionColumnRequired && (
-                  <td className="td" style={{ textAlign: "center" }}>
+                  <td
+                    className={mode ? "tdDark" : "tdLight"}
+                    style={{ textAlign: "center" }}
+                  >
                     <Tooltip title="Modify record">
                       <i
                         className="fas fa-pen iconProp"
