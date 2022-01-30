@@ -1,12 +1,20 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
-export default function InputComponent({ State, setState, placeHolder, error }) {
+export default function InputComponent({
+  State,
+  setState,
+  placeHolder,
+  error,
+}) {
+  const mode = useSelector((state) => state.signInReducer.isDarkMode);
+
   return (
     <>
       <input
         onChange={(event) => setState(event.target.value)}
         value={State}
-        className="fieldProp"
+        className={mode ? "fieldPropDark":"fieldPropLight"}
         type="text"
         placeholder={placeHolder}
       />

@@ -4,7 +4,7 @@ import { Link, Outlet } from "react-router-dom";
 import LoginPage from "../LoginPage/LoginPage";
 import ReactTooltip from "react-tooltip";
 import { useSelector } from "react-redux";
-import "./LayoutStyle.css"
+import "./LayoutStyle.css";
 
 export default function Layout() {
   const [detailsubmenu, setdetailsubmenu] = useState(false);
@@ -67,11 +67,11 @@ export default function Layout() {
               }
             />
           </Tooltip>
-          <div className="searchField">
+          <div className={mode ? "searchFieldDark" : "searchFieldLight"}>
             <div>
               <input
                 type={"search"}
-                className="searchInput"
+                className={mode ? "searchInputDark" : "searchInputLight"}
                 placeholder="Search"
               />
               <div className="searchIcon">
@@ -121,7 +121,9 @@ export default function Layout() {
             }}
           >
             <div
-              className={mode ? "sideBarContainerDark" : "sideBarContainerLight"}
+              className={
+                mode ? "sideBarContainerDark" : "sideBarContainerLight"
+              }
               style={{ width: expandmenu ? "5%" : "15%" }}
             >
               <div

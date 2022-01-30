@@ -251,13 +251,21 @@ export default function TableCompontent({
           className="row"
           style={{ margin: "0 0.1vw", display: "flex", alignItems: "center" }}
         >
-          <div className="tableSearch col-5">
+          <div
+            className={
+              mode ? "tableSearchDark col-5" : "tableSearchLight col-5"
+            }
+          >
             <div style={{ display: "inline", fontFamily: "inherit" }}>
               <div style={{ display: "inline", fontFamily: "inherit" }}>
                 <Tooltip title={searchByinput}>
                   <input
                     type={"search"}
-                    className="tablesearchbyinput"
+                    className={
+                      mode
+                        ? "tablesearchbyinputDark"
+                        : "tablesearchbyinputLight"
+                    }
                     placeholder="Search By"
                     value={
                       searchByinput.length > 8
@@ -289,7 +297,7 @@ export default function TableCompontent({
                     maxHeight: "15vw",
                     overflow: "auto",
                     position: "absolute",
-                    backgroundColor: "white",
+                    backgroundColor: mode ? "#1b1b1b" : "white",
                     boxShadow: "0vw 0 1vw rgb(177, 177, 177)",
                     borderRadius: "0.3vw",
                   }}
@@ -365,7 +373,9 @@ export default function TableCompontent({
             <div style={{ display: "inline", borderLeft: "0.15vw solid gray" }}>
               <input
                 type={"search"}
-                className="tablesearchinput"
+                className={
+                  mode ? "tablesearchinputDark" : "tablesearchinputLight"
+                }
                 placeholder="Search"
                 onFocus={() => setshowSearchByMenu(false)}
                 value={searchinput}
@@ -550,7 +560,11 @@ export default function TableCompontent({
                 {isViewColumnRequired && (
                   <td
                     className={mode ? "tdDark" : "tdLight"}
-                    style={{ width: "85px", color: "rgb(37, 37, 138)", cursor: "pointer" }}
+                    style={{
+                      width: "85px",
+                      color: "rgb(37, 37, 138)",
+                      cursor: "pointer",
+                    }}
                   >
                     <span onClick={() => onClickOfView(item)}>
                       <i

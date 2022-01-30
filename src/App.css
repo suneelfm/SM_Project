@@ -51,7 +51,6 @@
   right: 0;
 }
 
-
 .menuIcon {
   cursor: pointer;
   font-size: 2.3vw;
@@ -59,11 +58,13 @@
   margin-top: 0.3vw;
 }
 
-.searchField {
+.searchFieldLight {
   border: 0.15vw solid gray;
   border-radius: 0.4vw;
   width: 20vw;
   height: 2.6vw;
+  color: black;
+  background-color: white;
   display: inline-block;
   margin-left: 2vw;
   font-size: 1.3vw;
@@ -71,9 +72,35 @@
   min-height: 12px;
 }
 
-.searchInput {
+.searchFieldDark {
+  border: 0.15vw solid gray;
+  border-radius: 0.4vw;
+  width: 20vw;
+  height: 2.6vw;
+  color: white;
+  background-color: rgb(59, 59, 59);
+  display: inline-block;
+  margin-left: 2vw;
+  font-size: 1.3vw;
+  padding: 0.2vw;
+  min-height: 12px;
+}
+
+.searchInputLight {
   height: 2vw;
   border: none;
+  color: black;
+  background-color: white;
+  padding: 0.5vw;
+  width: 16vw;
+  outline: none;
+}
+
+.searchInputDark {
+  height: 2vw;
+  border: none;
+  color: white;
+  background-color: rgb(59, 59, 59);
   padding: 0.5vw;
   width: 16vw;
   outline: none;
@@ -225,7 +252,6 @@
   font-size: 1vw;
 }
 
-
 .logo {
   padding-right: 0px !important;
   padding-left: 1vw !important;
@@ -246,7 +272,6 @@
   color: rgb(37, 37, 138);
   justify-content: center;
 }
-
 
 .buttonProp {
   height: 2.6vw;
@@ -300,12 +325,39 @@
   margin-bottom: 0.3vw;
 }
 
-.popup {
+.popupLight {
   width: 75%;
   padding: 10px;
   min-height: 150px;
   border: 0.15vw solid;
   background-color: rgb(255, 255, 255);
+  color: black;
+  position: absolute;
+  left: 12.5%;
+  border-radius: 0.6vw;
+  box-shadow: 0vw 0vw 3vw black;
+}
+
+.viewpopupLight {
+  width: 30%;
+  padding: 10px;
+  min-height: 150px;
+  color: black;
+  border: 0.15vw solid gray;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  left: 35%;
+  border-radius: 0.6vw;
+  box-shadow: 0vw 0vw 3vw black;
+}
+
+.popupDark {
+  width: 75%;
+  padding: 10px;
+  min-height: 150px;
+  border: 0.15vw solid;
+  background-color: #1d1b1b;
+  color: white;
   position: absolute;
   left: 12.5%;
   border-radius: 0.6vw;
@@ -391,8 +443,7 @@
   padding: 0 !important;
 }
 
-
-.fieldProp {
+.fieldPropDark {
   height: 2.6vw;
   width: 98%;
   border-radius: 0.4vw;
@@ -403,6 +454,26 @@
   margin-left: 0.5vw;
   margin-right: 0.5vw;
   margin-bottom: 0.5vw;
+  color: white;
+  background-color: rgb(59, 59, 59);
+  margin-top: 1vw;
+  font: inherit;
+  font-size: 1.2vw;
+}
+
+.fieldPropLight {
+  height: 2.6vw;
+  width: 98%;
+  border-radius: 0.4vw;
+  border: 0.1vw solid;
+  padding: 0.5vw !important;
+  min-height: 20px;
+  min-width: 200px;
+  margin-left: 0.5vw;
+  margin-right: 0.5vw;
+  margin-bottom: 0.5vw;
+  color: black;
+  background-color: rgb(255, 255, 255);
   margin-top: 1vw;
   font: inherit;
   font-size: 1.2vw;
@@ -425,7 +496,7 @@
   border-collapse: collapse;
 }
 
-.tableSearch {
+.tableSearchLight {
   border: 0.15vw solid gray;
   border-radius: 2vw;
   width: 20vw;
@@ -433,12 +504,41 @@
   display: inline-block;
   font-size: 1.1vw;
   padding: 0.2vw;
+  color: black;
+  background-color: white;
   min-height: 12px;
   margin-top: 0.5vw;
 }
 
-.tablesearchinput {
+.tableSearchDark {
+  border: 0.15vw solid gray;
+  border-radius: 2vw;
+  width: 20vw;
+  height: 2.5vw;
+  display: inline-block;
+  color: white;
+  background-color: rgb(59, 59, 59);
+  font-size: 1.1vw;
+  padding: 0.2vw;
+  min-height: 12px;
+  margin-top: 0.5vw;
+}
+
+.tablesearchinputLight {
   height: 1.8vw;
+  border: none;
+  color: black;
+  background-color: white;
+  padding: 0.5vw;
+  border-radius: 1vw;
+  width: 65%;
+  outline: none;
+}
+
+.tablesearchinputDark {
+  height: 1.8vw;
+  color: white;
+  background-color: rgb(59, 59, 59);
   border: none;
   padding: 0.5vw;
   border-radius: 1vw;
@@ -446,10 +546,23 @@
   outline: none;
 }
 
-.tablesearchbyinput {
+.tablesearchbyinputLight {
   height: 1.8vw;
   border: none;
   padding: 0.5vw;
+  color: black;
+  background-color: white;
+  border-radius: 1vw;
+  width: 20%;
+  outline: none;
+}
+
+.tablesearchbyinputDark {
+  height: 1.8vw;
+  border: none;
+  padding: 0.5vw;
+  color: white;
+  background-color: rgb(59, 59, 59);
   border-radius: 1vw;
   width: 20%;
   outline: none;

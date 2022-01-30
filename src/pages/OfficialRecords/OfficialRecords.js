@@ -392,7 +392,11 @@ export default function OfficialRecords() {
                   <select
                     onChange={handleNameField}
                     value={employeeName.value}
-                    className="fieldProp browser-default custom-select"
+                    className={
+                      mode
+                        ? "fieldPropDark browser-default custom-select"
+                        : "fieldPropLight browser-default custom-select"
+                    }
                     name="Name"
                     id="edn"
                     disabled={showModifyData}
@@ -420,7 +424,7 @@ export default function OfficialRecords() {
                 </div>
                 <div className="col-sm-6" style={{ padding: "0" }}>
                   <DatePicker
-                    className="fieldProp"
+                    className={mode ? "fieldPropDark" : "fieldPropLight"}
                     placeholderText="Date of Joining*"
                     dateFormat="dd-MM-yyyy"
                     selected={dateofJoin}
@@ -434,7 +438,7 @@ export default function OfficialRecords() {
               <div className="row">
                 <div className="col-sm-6" style={{ padding: "0" }}>
                   <DatePicker
-                    className="fieldProp"
+                    className={mode ? "fieldPropDark" : "fieldPropLight"}
                     placeholderText="Date of Leaving"
                     dateFormat="dd-MM-yyyy"
                     selected={dateofLeaving}
@@ -544,7 +548,10 @@ export default function OfficialRecords() {
       {showViewPopup && (
         <div className=" popupBack">
           <div className="row">
-            <form className={mode ? "viewpopupDark" : "viewpopupLight"} onSubmit={handleFrom}>
+            <form
+              className={mode ? "viewpopupDark" : "viewpopupLight"}
+              onSubmit={handleFrom}
+            >
               <i
                 className="fas fa-times closeIcon"
                 onClick={() => setshowViewPopup(false)}

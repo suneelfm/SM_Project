@@ -419,7 +419,10 @@ export default function PersonalRecords() {
       {showModifyPopup && (
         <div className=" popupBack">
           <div className="row">
-            <form className="popup" onSubmit={handleFrom}>
+            <form
+              className={mode ? "popupDark" : "popupLight"}
+              onSubmit={handleFrom}
+            >
               <i className="fas fa-times closeIcon" onClick={closePopup}></i>
               <h5 className="listHead">Modify Personal Records</h5>
               <AddModifyComponent
