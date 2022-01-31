@@ -1,6 +1,7 @@
 import { FormControlLabel, Radio, RadioGroup, Typography } from "@mui/material";
 import React from "react";
 import DatePicker from "react-datepicker";
+import { useSelector } from "react-redux";
 import InputComponent from "../../Components/InputComponent";
 
 export default function AddModifyComponent({
@@ -26,6 +27,7 @@ export default function AddModifyComponent({
   onsave,
   buttonName,
 }) {
+  const mode = useSelector((state) => state.signInReducer.isDarkMode);
   const qualificationList = ["BE", "B.Sc", "B.Com", "BA"];
   return (
     <>
@@ -51,7 +53,11 @@ export default function AddModifyComponent({
           <select
             onChange={(event) => seteducation(event.target.value)}
             value={education}
-            className="fieldProp browser-default custom-select"
+            className={
+              mode
+                ? "fieldPropDark browser-default custom-select"
+                : "fieldPropLight browser-default custom-select"
+            }
             name={"Qualification*"}
             // defaultValue={"Qualification*"}
           >
@@ -72,7 +78,7 @@ export default function AddModifyComponent({
         </div>
         <div className="col-sm-6">
           <DatePicker
-            className="fieldProp"
+            className={mode ? "fieldPropDark" : "fieldPropLight"}
             placeholderText="Date of Birth*"
             dateFormat="dd-MM-yyyy"
             selected={dateofBirth}
@@ -120,6 +126,7 @@ export default function AddModifyComponent({
                       },
                       padding: "0",
                       margin: "0 0.5vw 0 1vw",
+                      color: "inherit",
                     }}
                   />
                 }
@@ -144,6 +151,7 @@ export default function AddModifyComponent({
                       },
                       padding: "0",
                       margin: "0 0.5vw 0 1vw",
+                      color: "inherit",
                     }}
                   />
                 }
@@ -169,6 +177,7 @@ export default function AddModifyComponent({
                       },
                       padding: "0",
                       margin: "0 0.5vw 0 1vw",
+                      color: "inherit",
                     }}
                   />
                 }

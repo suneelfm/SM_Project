@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 export default function DropDownComponent({
   Value,
@@ -6,12 +7,17 @@ export default function DropDownComponent({
   placeHolder,
   options,
 }) {
+  const mode = useSelector((state) => state.signInReducer.isDarkMode);
   return (
     <>
       <select
         onChange={onchange}
         value={Value}
-        className="fieldProp browser-default custom-select"
+        className={
+          mode
+            ? "fieldPropDark browser-default custom-select"
+            : "fieldPropLight browser-default custom-select"
+        }
         name={placeHolder}
         defaultValue={placeHolder}
       >
@@ -19,9 +25,7 @@ export default function DropDownComponent({
           {placeHolder}
         </option>
         {options.map((item) => (
-          <option value={item}>
-            {item}
-          </option>
+          <option value={item}>{item}</option>
         ))}
       </select>
     </>

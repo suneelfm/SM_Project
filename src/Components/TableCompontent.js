@@ -1,6 +1,7 @@
 import { Checkbox, ListItemText, MenuItem, Tooltip } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import ConfirmationPopup from "./ConfirmationPopup";
 import { toastMessage } from "./toastMessage";
 
@@ -38,6 +39,8 @@ export default function TableCompontent({
     isClicked: false,
     delid: null,
   });
+
+  const mode = useSelector((state) => state.signInReducer.isDarkMode);
 
   useEffect(() => {
     let Header = [];
@@ -248,13 +251,21 @@ export default function TableCompontent({
           className="row"
           style={{ margin: "0 0.1vw", display: "flex", alignItems: "center" }}
         >
-          <div className="tableSearch col-5">
+          <div
+            className={
+              mode ? "tableSearchDark col-5" : "tableSearchLight col-5"
+            }
+          >
             <div style={{ display: "inline", fontFamily: "inherit" }}>
               <div style={{ display: "inline", fontFamily: "inherit" }}>
                 <Tooltip title={searchByinput}>
                   <input
                     type={"search"}
-                    className="tablesearchbyinput"
+                    className={
+                      mode
+                        ? "tablesearchbyinputDark"
+                        : "tablesearchbyinputLight"
+                    }
                     placeholder="Search By"
                     value={
                       searchByinput.length > 8
@@ -286,7 +297,7 @@ export default function TableCompontent({
                     maxHeight: "15vw",
                     overflow: "auto",
                     position: "absolute",
-                    backgroundColor: "white",
+                    backgroundColor: mode ? "#1b1b1b" : "white",
                     boxShadow: "0vw 0 1vw rgb(177, 177, 177)",
                     borderRadius: "0.3vw",
                   }}
@@ -362,7 +373,9 @@ export default function TableCompontent({
             <div style={{ display: "inline", borderLeft: "0.15vw solid gray" }}>
               <input
                 type={"search"}
-                className="tablesearchinput"
+                className={
+                  mode ? "tablesearchinputDark" : "tablesearchinputLight"
+                }
                 placeholder="Search"
                 onFocus={() => setshowSearchByMenu(false)}
                 value={searchinput}
@@ -440,7 +453,10 @@ export default function TableCompontent({
           <thead>
             <tr>
               {isSelectColumnRequired && (
-                <th className="th" style={{ width: "85px" }}>
+                <th
+                  className={mode ? "thDark" : "thLight"}
+                  style={{ width: "85px" }}
+                >
                   <Checkbox
                     checked={selectAllRecords.isSelected}
                     indeterminate={
@@ -469,7 +485,7 @@ export default function TableCompontent({
                 </th>
               )}
               {headers.map((item) => (
-                <th className="th">
+                <th className={mode ? "thDark" : "thLight"}>
                   {item.name}
                   {isAscending.isadg && isAscending.key === item.key ? (
                     <i
@@ -487,12 +503,18 @@ export default function TableCompontent({
                 </th>
               ))}
               {isViewColumnRequired && (
-                <th className="th" style={{ width: "85px" }}>
+                <th
+                  className={mode ? "thDark" : "thLight"}
+                  style={{ width: "85px" }}
+                >
                   View
                 </th>
               )}
               {isActionColumnRequired && (
-                <th className="th" style={{ width: "85px" }}>
+                <th
+                  className={mode ? "thDark" : "thLight"}
+                  style={{ width: "85px" }}
+                >
                   Action
                 </th>
               )}
@@ -503,8 +525,8 @@ export default function TableCompontent({
               <tr>
                 {isSelectColumnRequired && (
                   <td
-                    className="th"
-                    style={{ width: "85px", backgroundColor: "white" }}
+                    className={mode ? "tdDark" : "tdLight"}
+                    style={{ width: "85px", textAlign: "center" }}
                   >
                     <Checkbox
                       checked={selectedRecords.includes(item)}
@@ -524,7 +546,7 @@ export default function TableCompontent({
                 )}
                 {Object.keys(item).map((key, index) => (
                   <td
-                    className="td"
+                    className={mode ? "tdDark" : "tdLight"}
                     style={{
                       textAlign:
                         headers[index].name.toLowerCase() === "sl. no." &&
@@ -537,8 +559,12 @@ export default function TableCompontent({
 
                 {isViewColumnRequired && (
                   <td
-                    className="td"
-                    style={{ width: "85px", color: "blue", cursor: "pointer" }}
+                    className={mode ? "tdDark" : "tdLight"}
+                    style={{
+                      width: "85px",
+                      color: "rgb(37, 37, 138)",
+                      cursor: "pointer",
+                    }}
                   >
                     <span onClick={() => onClickOfView(item)}>
                       <i
@@ -551,7 +577,10 @@ export default function TableCompontent({
                 )}
 
                 {isActionColumnRequired && (
-                  <td className="td" style={{ textAlign: "center" }}>
+                  <td
+                    className={mode ? "tdDark" : "tdLight"}
+                    style={{ textAlign: "center" }}
+                  >
                     <Tooltip title="Modify record">
                       <i
                         className="fas fa-pen iconProp"

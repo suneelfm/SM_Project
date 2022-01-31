@@ -1,10 +1,14 @@
-import { Switch, Typography } from "@mui/material";
-import React, { useState } from "react";
+import { Switch } from "@mui/material";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./settingStyle.css";
 
 export default function Settings() {
-  const [isDarkMode, setisDarkMode] = useState(false);
+  const mode = useSelector((state) => state.signInReducer.isDarkMode);
+
+  const dispatch = useDispatch();
+
   return (
     <>
       <div className="row" style={{ padding: "0px", marginTop: "1vw" }}>
@@ -39,9 +43,11 @@ export default function Settings() {
       <div className="row">
         <div className="col-12">
           <table
-            className="table table-hover"
+            className={
+              mode ? "table table-dark table-hover" : "table table-hover"
+            }
             style={{
-              backgroundColor: "white",
+              backgroundColor: mode ? "#1d1b1b" : "white",
               padding: "0",
               marginTop: "1vw",
               borderRadius: "0.5vw",
@@ -54,7 +60,7 @@ export default function Settings() {
                     to={"/settings/profile"}
                     className="link"
                     style={{
-                      color: "black",
+                      color: mode ? "white" : "black",
                       marginBottom: "0px",
                       textDecoration: "none",
                     }}
@@ -67,7 +73,9 @@ export default function Settings() {
                 <td
                   className="tcol"
                   onClick={() =>
-                    isDarkMode ? setisDarkMode(false) : setisDarkMode(true)
+                    mode
+                      ? dispatch({ type: "darkMode", mode: false })
+                      : dispatch({ type: "darkMode", mode: true })
                   }
                 >
                   <label
@@ -92,7 +100,7 @@ export default function Settings() {
                         },
                       float: "right",
                     }}
-                    checked={isDarkMode}
+                    checked={mode || mode}
                     // onChange={handleChange}
                     inputProps={{ "aria-label": "controlled" }}
                   />

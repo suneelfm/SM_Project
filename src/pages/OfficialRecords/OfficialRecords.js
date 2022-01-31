@@ -35,6 +35,7 @@ export default function OfficialRecords() {
   const details = useSelector(
     (state) => state.signInReducer.personalDetails.details.data
   );
+  const mode = useSelector((state) => state.signInReducer.isDarkMode);
 
   const DipartmentList = ["Account", "HR", "Curriculum", "Sports"];
 
@@ -377,7 +378,10 @@ export default function OfficialRecords() {
         </div>
       </div>
       <div className="row">
-        <form className="formcontainer" onSubmit={handleFrom}>
+        <form
+          className={mode ? "formcontainerDark" : "formcontainerLight"}
+          onSubmit={handleFrom}
+        >
           <div className="row">
             <div
               className="col-10"
@@ -388,7 +392,11 @@ export default function OfficialRecords() {
                   <select
                     onChange={handleNameField}
                     value={employeeName.value}
-                    className="fieldProp browser-default custom-select"
+                    className={
+                      mode
+                        ? "fieldPropDark browser-default custom-select"
+                        : "fieldPropLight browser-default custom-select"
+                    }
                     name="Name"
                     id="edn"
                     disabled={showModifyData}
@@ -416,7 +424,7 @@ export default function OfficialRecords() {
                 </div>
                 <div className="col-sm-6" style={{ padding: "0" }}>
                   <DatePicker
-                    className="fieldProp"
+                    className={mode ? "fieldPropDark" : "fieldPropLight"}
                     placeholderText="Date of Joining*"
                     dateFormat="dd-MM-yyyy"
                     selected={dateofJoin}
@@ -430,7 +438,7 @@ export default function OfficialRecords() {
               <div className="row">
                 <div className="col-sm-6" style={{ padding: "0" }}>
                   <DatePicker
-                    className="fieldProp"
+                    className={mode ? "fieldPropDark" : "fieldPropLight"}
                     placeholderText="Date of Leaving"
                     dateFormat="dd-MM-yyyy"
                     selected={dateofLeaving}
@@ -519,7 +527,7 @@ export default function OfficialRecords() {
       </div>
       {tabledata.length > 0 && (
         <div className="row">
-          <form className="formcontainer">
+          <form className={mode ? "formcontainerDark" : "formcontainerLight"}>
             <TableCompontent
               columnHeaderList={headers}
               isViewColumnRequired={true}
@@ -540,7 +548,10 @@ export default function OfficialRecords() {
       {showViewPopup && (
         <div className=" popupBack">
           <div className="row">
-            <form className="viewpopup" onSubmit={handleFrom}>
+            <form
+              className={mode ? "viewpopupDark" : "viewpopupLight"}
+              onSubmit={handleFrom}
+            >
               <i
                 className="fas fa-times closeIcon"
                 onClick={() => setshowViewPopup(false)}

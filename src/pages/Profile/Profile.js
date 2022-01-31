@@ -16,6 +16,10 @@ export default function Profile() {
     image: "",
   });
 
+  const mode = useSelector(
+    (state) => state.signInReducer.isDarkMode
+  );
+
   const namefield = useRef();
   const userName = useRef();
   const mailid = useRef();
@@ -190,8 +194,9 @@ export default function Profile() {
         <div
           className="row col-12"
           style={{
-            backgroundColor: "white",
+            backgroundColor: mode ? "#1b1b1b" : "white",
             padding: "0",
+            color: mode ? "white" : "black",
             marginTop: "1vw",
             borderRadius: "0.5vw",
           }}
@@ -269,7 +274,7 @@ export default function Profile() {
                   style={{
                     outline: "none",
                     color: "inherit",
-                    backgroundColor: "white",
+                    backgroundColor: "inherit",
                   }}
                 />
               ) : (
@@ -322,7 +327,7 @@ export default function Profile() {
                   style={{
                     outline: "none",
                     color: "inherit",
-                    backgroundColor: "white",
+                    backgroundColor: "inherit",
                   }}
                 />
               ) : (
@@ -360,7 +365,7 @@ export default function Profile() {
                   style={{
                     outline: "none",
                     color: "inherit",
-                    backgroundColor: "white",
+                    backgroundColor: "inherit",
                   }}
                 />
               ) : (

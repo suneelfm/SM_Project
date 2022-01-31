@@ -1,0 +1,44 @@
+.formcontainerLight {
+  width: 100%;
+  border: 0.15vw solid gray;
+  border-radius: 1vw;
+  padding: 0.2vw 0.5vw 1vw 0.5vw;
+  margin: 1vw;
+  color: black;
+  background-color: white;
+}
+
+.formcontainerDark {
+  width: 100%;
+  border: 0.15vw solid rgb(92, 91, 91);
+  border-radius: 1vw;
+  padding: 0.2vw 0.5vw 1vw 0.5vw;
+  margin: 1vw;
+  color: white;
+  background-color: #1d1b1b;
+}
+
+.listHead {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2vw;
+  margin-top: 0.5vw;
+  font-size: 1.7vw;
+}
+
+.listArea {
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 350vh;
+  font-size: 1vw;
+}
+
+.list {
+  font-size: 1.2vw;
+  font-weight: 600;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: inherit;
+  margin-bottom: 1vw;
+  color: inherit;
+}

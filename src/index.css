@@ -12,10 +12,19 @@ code {
     monospace;
 }
 
-.cardProp {
+.cardPropLight {
   height: auto;
   display: flex;
   padding: 2vw !important;
+  background-color: white;
+  color: black;
+}
+.cardPropDark {
+  height: auto;
+  display: flex;
+  padding: 2vw !important;
+  background-color: #1b1b1b;
+  color: white;
 }
 
 .rowProp {

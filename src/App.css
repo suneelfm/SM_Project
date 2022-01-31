@@ -51,15 +51,6 @@
   right: 0;
 }
 
-.headerBar {
-  z-index: 3;
-  position: relative;
-  box-shadow: 0px 0.5vw 0.5vw rgb(221, 224, 224);
-  padding: 0.5vw;
-  width: 100%;
-  margin-left: 0px;
-}
-
 .menuIcon {
   cursor: pointer;
   font-size: 2.3vw;
@@ -67,11 +58,13 @@
   margin-top: 0.3vw;
 }
 
-.searchField {
+.searchFieldLight {
   border: 0.15vw solid gray;
   border-radius: 0.4vw;
   width: 20vw;
   height: 2.6vw;
+  color: black;
+  background-color: white;
   display: inline-block;
   margin-left: 2vw;
   font-size: 1.3vw;
@@ -79,9 +72,35 @@
   min-height: 12px;
 }
 
-.searchInput {
+.searchFieldDark {
+  border: 0.15vw solid gray;
+  border-radius: 0.4vw;
+  width: 20vw;
+  height: 2.6vw;
+  color: white;
+  background-color: rgb(59, 59, 59);
+  display: inline-block;
+  margin-left: 2vw;
+  font-size: 1.3vw;
+  padding: 0.2vw;
+  min-height: 12px;
+}
+
+.searchInputLight {
   height: 2vw;
   border: none;
+  color: black;
+  background-color: white;
+  padding: 0.5vw;
+  width: 16vw;
+  outline: none;
+}
+
+.searchInputDark {
+  height: 2vw;
+  border: none;
+  color: white;
+  background-color: rgb(59, 59, 59);
   padding: 0.5vw;
   width: 16vw;
   outline: none;
@@ -233,14 +252,6 @@
   font-size: 1vw;
 }
 
-.outlet {
-  background-color: rgb(211, 224, 224);
-  height: 100%;
-  padding: 0;
-  display: grid;
-  transition: all 0.5s linear;
-}
-
 .logo {
   padding-right: 0px !important;
   padding-left: 1vw !important;
@@ -260,15 +271,6 @@
   align-items: center;
   color: rgb(37, 37, 138);
   justify-content: center;
-}
-
-.formcontainer {
-  width: 100%;
-  border: 0.15vw solid gray;
-  border-radius: 1vw;
-  padding: 0.2vw 0.5vw 1vw 0.5vw;
-  margin: 1vw;
-  background-color: white;
 }
 
 .buttonProp {
@@ -298,21 +300,6 @@
   margin: 0;
 }
 
-.listHead {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 2vw;
-  margin-top: 0.5vw;
-  font-size: 1.7vw;
-}
-
-.listArea {
-  overflow-y: auto;
-  overflow-x: hidden;
-  max-height: 350vh;
-  font-size: 1vw;
-}
-
 .iconProp {
   margin-left: 1vw;
   padding: 0.5vw;
@@ -337,33 +324,66 @@
   min-height: 0.5vw;
   margin-bottom: 0.3vw;
 }
-.list {
-  font-size: 1.2vw;
-  font-weight: 600;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  font-family: inherit;
-  margin-bottom: 1vw;
-}
 
-.popup {
+.popupLight {
   width: 75%;
   padding: 10px;
   min-height: 150px;
   border: 0.15vw solid;
   background-color: rgb(255, 255, 255);
+  color: black;
   position: absolute;
   left: 12.5%;
   border-radius: 0.6vw;
   box-shadow: 0vw 0vw 3vw black;
 }
 
-.viewpopup {
+.viewpopupLight {
   width: 30%;
   padding: 10px;
   min-height: 150px;
-  border: 0.15vw solid;
+  color: black;
+  border: 0.15vw solid gray;
   background-color: rgb(255, 255, 255);
+  position: absolute;
+  left: 35%;
+  border-radius: 0.6vw;
+  box-shadow: 0vw 0vw 3vw black;
+}
+
+.popupDark {
+  width: 75%;
+  padding: 10px;
+  min-height: 150px;
+  border: 0.15vw solid;
+  background-color: #1d1b1b;
+  color: white;
+  position: absolute;
+  left: 12.5%;
+  border-radius: 0.6vw;
+  box-shadow: 0vw 0vw 3vw black;
+}
+
+.viewpopupLight {
+  width: 30%;
+  padding: 10px;
+  min-height: 150px;
+  color: black;
+  border: 0.15vw solid gray;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  left: 35%;
+  border-radius: 0.6vw;
+  box-shadow: 0vw 0vw 3vw black;
+}
+
+.viewpopupDark {
+  width: 30%;
+  padding: 10px;
+  min-height: 150px;
+  border: 0.15vw solid rgb(92, 91, 91);
+  color: white;
+  background-color: #1d1b1b;
   position: absolute;
   left: 35%;
   border-radius: 0.6vw;
@@ -422,18 +442,8 @@
 .container {
   padding: 0 !important;
 }
-.sideBarContainer {
-  box-shadow: 0.5vw 0px 0.5vw rgb(221, 224, 224);
-  padding-top: 0.5vw;
-  padding-left: 0vw;
-  padding-right: 0px;
-  z-index: 2;
-  height: 100vh;
-  background-color: white;
-  transition: all 0.5s linear;
-  overflow: "hidden";
-}
-.fieldProp {
+
+.fieldPropDark {
   height: 2.6vw;
   width: 98%;
   border-radius: 0.4vw;
@@ -444,6 +454,26 @@
   margin-left: 0.5vw;
   margin-right: 0.5vw;
   margin-bottom: 0.5vw;
+  color: white;
+  background-color: rgb(59, 59, 59);
+  margin-top: 1vw;
+  font: inherit;
+  font-size: 1.2vw;
+}
+
+.fieldPropLight {
+  height: 2.6vw;
+  width: 98%;
+  border-radius: 0.4vw;
+  border: 0.1vw solid;
+  padding: 0.5vw !important;
+  min-height: 20px;
+  min-width: 200px;
+  margin-left: 0.5vw;
+  margin-right: 0.5vw;
+  margin-bottom: 0.5vw;
+  color: black;
+  background-color: rgb(255, 255, 255);
   margin-top: 1vw;
   font: inherit;
   font-size: 1.2vw;
@@ -466,7 +496,7 @@
   border-collapse: collapse;
 }
 
-.tableSearch {
+.tableSearchLight {
   border: 0.15vw solid gray;
   border-radius: 2vw;
   width: 20vw;
@@ -474,12 +504,41 @@
   display: inline-block;
   font-size: 1.1vw;
   padding: 0.2vw;
+  color: black;
+  background-color: white;
   min-height: 12px;
   margin-top: 0.5vw;
 }
 
-.tablesearchinput {
+.tableSearchDark {
+  border: 0.15vw solid gray;
+  border-radius: 2vw;
+  width: 20vw;
+  height: 2.5vw;
+  display: inline-block;
+  color: white;
+  background-color: rgb(59, 59, 59);
+  font-size: 1.1vw;
+  padding: 0.2vw;
+  min-height: 12px;
+  margin-top: 0.5vw;
+}
+
+.tablesearchinputLight {
   height: 1.8vw;
+  border: none;
+  color: black;
+  background-color: white;
+  padding: 0.5vw;
+  border-radius: 1vw;
+  width: 65%;
+  outline: none;
+}
+
+.tablesearchinputDark {
+  height: 1.8vw;
+  color: white;
+  background-color: rgb(59, 59, 59);
   border: none;
   padding: 0.5vw;
   border-radius: 1vw;
@@ -487,10 +546,23 @@
   outline: none;
 }
 
-.tablesearchbyinput {
+.tablesearchbyinputLight {
   height: 1.8vw;
   border: none;
   padding: 0.5vw;
+  color: black;
+  background-color: white;
+  border-radius: 1vw;
+  width: 20%;
+  outline: none;
+}
+
+.tablesearchbyinputDark {
+  height: 1.8vw;
+  border: none;
+  padding: 0.5vw;
+  color: white;
+  background-color: rgb(59, 59, 59);
   border-radius: 1vw;
   width: 20%;
   outline: none;
@@ -500,21 +572,45 @@
   margin: 0.2vw;
 }
 
-.td {
+.tdLight {
   border: black 1px solid;
   padding: 0.5vw 1vw;
+  color: black;
   background-color: white;
   border-collapse: collapse;
   font-size: 1.2vw;
   word-wrap: break-word;
   white-space: pre;
 }
-.th {
+
+.tdDark {
+  border: black 1px solid;
+  padding: 0.5vw 1vw;
+  background-color: #3a3939;
+  border-collapse: collapse;
+  color: white;
+  font-size: 1.2vw;
+  word-wrap: break-word;
+  white-space: pre;
+}
+
+.thLight {
   border: black 1px solid;
   text-align: center;
   font-size: 1.2vw;
   padding: 0.5vw 1vw;
+  color: black;
   background-color: rgb(230, 230, 230);
+  border-collapse: collapse;
+}
+
+.thDark {
+  border: black 1px solid;
+  text-align: center;
+  font-size: 1.2vw;
+  padding: 0.5vw 1vw;
+  color: white;
+  background-color: #2b2929;
   border-collapse: collapse;
 }
 
