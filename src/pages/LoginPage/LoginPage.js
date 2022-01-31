@@ -50,18 +50,12 @@ export default function LoginPage(close) {
     if (filArr.length > 0) {
       dispatch({ type: "signIn", userDetails: filArr[0] });
       isRemeberUser
-        ? localStorage.setItem("SMPuser", filArr[0].name)
-        : sessionStorage.setItem("SMPuser", filArr[0].name);
+        ? localStorage.setItem("SMPuser", filArr[0].userName)
+        : sessionStorage.setItem("SMPuser", filArr[0].userName);
       isRemeberUser
         ? localStorage.setItem("SMPuserimage", filArr[0].img.name)
         : sessionStorage.setItem("SMPuserimage", filArr[0].img.name);
-      close.prop.setuser(
-        sessionStorage.getItem("SMPuser") === null
-          ? localStorage.getItem("SMPuser") === null
-            ? "Sign In"
-            : localStorage.getItem("SMPuser")
-          : sessionStorage.getItem("SMPuser")
-      );
+      close.prop.setuser(filArr[0].name);
       close.prop.setuserImage(
         sessionStorage.getItem("SMPuserimage") === null
           ? localStorage.getItem("SMPuserimage") === null

@@ -15,14 +15,22 @@ export default function Layout() {
   const [focuskey, setfocuskey] = useState({ key: "" });
 
   const mode = useSelector((state) => state.signInReducer.isDarkMode);
+
+  const state = useSelector((state) => state.signInReducer);
+
   useEffect(() => {
-    setuser(
+    const curruser =
       sessionStorage.getItem("SMPuser") === null
         ? localStorage.getItem("SMPuser") === null
           ? "Sign In"
           : localStorage.getItem("SMPuser")
-        : sessionStorage.getItem("SMPuser")
+        : sessionStorage.getItem("SMPuser");
+    const matched = state.loginUserArray.filter(
+      (item) => item.userName === curruser
     );
+    if (matched.length > 0) {
+      setuser(matched[0]?.name);
+    }
     setuserImage(
       sessionStorage.getItem("SMPuserimage") === null
         ? localStorage.getItem("SMPuserimage") === null
@@ -115,7 +123,7 @@ export default function Layout() {
         </div>
       </div>
       <div style={{ height: "100%" }}>
-        {user !== "Sign In" && (
+        {user !== null && (
           <div
             className="row"
             style={{
