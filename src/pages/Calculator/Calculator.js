@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./calculatorStyle.css";
 
@@ -9,6 +10,8 @@ export default function Calculator() {
   const [result, setresult] = useState("");
   const [disppadding, setdisppadding] = useState(false);
   const [lastresult, setlastresult] = useState("");
+
+  const mode = useSelector((state) => state.signInReducer.isDarkMode);
 
   const displayLogic = (value) => {
     setlastresult("");
@@ -98,7 +101,7 @@ export default function Calculator() {
         <div className="col-12" style={{ padding: "0px 1vw" }}>
           <div
             style={{
-              color: "rgb(37, 37, 138)",
+              color: mode ? "cornflowerblue":"rgb(37, 37, 138)",
               marginBottom: "0px",
               fontSize: "1.6vw",
             }}

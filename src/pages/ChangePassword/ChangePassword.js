@@ -12,7 +12,7 @@ export default function ChangePassword() {
         <div className="col-12" style={{ padding: "0px 1vw" }}>
           <div
             style={{
-              color: "rgb(37, 37, 138)",
+              color: mode? "cornflowerblue":"rgb(37, 37, 138)",
               marginBottom: "0px",
               fontSize: "1.6vw",
             }}
@@ -150,10 +150,9 @@ export default function ChangePassword() {
                 style={{ marginTop: "1vw", fontSize: "1vw" }}
                 type="button"
                 className="buttonProp"
-                //   onClick={() => {
-                //     close.prop(false);
-                //     setotp("");
-                //   }}
+                onClick={() => {
+                  window.history.back();
+                }}
               >
                 Cancel
               </button>

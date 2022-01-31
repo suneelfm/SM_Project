@@ -54,7 +54,6 @@
 .menuIcon {
   cursor: pointer;
   font-size: 2.3vw;
-  color: rgb(37, 37, 138);
   margin-top: 0.3vw;
 }
 
@@ -177,7 +176,6 @@
 }
 
 .profile {
-  color: rgb(37, 37, 138);
   font-weight: 700;
   cursor: pointer;
   padding: 0px !important;
@@ -274,7 +272,6 @@
   width: 100%;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
-  color: rgb(37, 37, 138);
   font-size: 2vw;
 }
 

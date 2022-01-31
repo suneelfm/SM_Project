@@ -15,7 +15,7 @@ export default function Settings() {
         <div className="col-12" style={{ padding: "0px 1vw" }}>
           <div
             style={{
-              color: "rgb(37, 37, 138)",
+              color: mode? "cornflowerblue":"rgb(37, 37, 138)",
               marginBottom: "0px",
               fontSize: "1.6vw",
             }}
@@ -47,7 +47,7 @@ export default function Settings() {
               mode ? "table table-dark table-hover" : "table table-hover"
             }
             style={{
-              backgroundColor: mode ? "#1d1b1b" : "white",
+              backgroundColor: mode ? "#202124" : "white",
               padding: "0",
               marginTop: "1vw",
               borderRadius: "0.5vw",

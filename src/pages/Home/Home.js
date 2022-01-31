@@ -18,7 +18,7 @@ export default function Home() {
           <div className="col-12" style={{ padding: "0px 1vw" }}>
             <div
               style={{
-                color: "rgb(37, 37, 138)",
+                color: mode ? "cornflowerblue" : "rgb(37, 37, 138)",
                 marginBottom: "0px",
                 fontSize: "1.6vw",
               }}

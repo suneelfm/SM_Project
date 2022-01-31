@@ -35,7 +35,10 @@ export default function Layout() {
   return (
     <div className="maincontainer">
       <div className={mode ? "row headerBarDark" : "row headerBarLight"}>
-        <div className="col-2 logo">
+        <div
+          className="col-2 logo"
+          style={{ color: mode ? "cornflowerblue" : "rgb(37, 37, 138)" }}
+        >
           <img
             src="/Images/logo.png"
             alt=""
@@ -62,6 +65,7 @@ export default function Layout() {
           <Tooltip title={expandmenu ? "Expand Menu" : "Sink menu"}>
             <i
               className="fas fa-bars menuIcon"
+              style={{ color: mode ? "cornflowerblue" : "rgb(37, 37, 138)" }}
               onClick={() =>
                 expandmenu ? setexpandmenu(false) : setexpandmenu(true)
               }
@@ -88,6 +92,7 @@ export default function Layout() {
             </div>
             <div
               className="col-4 profile"
+              style={{ color: mode ? "cornflowerblue" : "rgb(37, 37, 138)" }}
               onClick={() =>
                 user !== "Sign In" && showMenu
                   ? setshowMenu(false)

@@ -1,14 +1,16 @@
 import { Link } from "@mui/material";
 import React from "react";
+import { useSelector } from "react-redux";
 
 export default function OtherRecords() {
+  const mode = useSelector((state) => state.signInReducer.isDarkMode);
   return (
     <>
       <div className="row" style={{ padding: "0px", marginTop: "1vw" }}>
         <div className="col-12" style={{ padding: "0px 1vw" }}>
           <div
             style={{
-              color: "rgb(37, 37, 138)",
+              color: mode ? "cornflowerblue" : "rgb(37, 37, 138)",
               marginBottom: "0px",
               fontSize: "1.6vw",
             }}
