@@ -5,7 +5,7 @@ const credentialList = {
       mailid: "sfm.20031998@gmail.com",
       password: "123",
       name: "Suneel F M",
-      img: { name: "/Images/user.jpg" },
+      img: { name: "/Images/user.JPG" },
     },
   ],
   loggedInUser: {},
