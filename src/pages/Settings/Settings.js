@@ -112,7 +112,7 @@ export default function Settings() {
                     to={"/settings/changepassword"}
                     className="link"
                     style={{
-                      color: "black",
+                      color: mode ? "white" : "black",
                       marginBottom: "0px",
                       textDecoration: "none",
                     }}

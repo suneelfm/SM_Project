@@ -194,7 +194,7 @@ export default function Profile() {
         <div
           className="row col-12"
           style={{
-            backgroundColor: mode ? "#1b1b1b" : "white",
+            backgroundColor: mode ? "#202124" : "white",
             padding: "0",
             color: mode ? "white" : "black",
             marginTop: "1vw",

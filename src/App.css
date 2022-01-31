@@ -198,10 +198,26 @@
   background-size: cover;
 }
 
-.loginfield {
+.loginfieldDark {
   height: 3vw;
   min-height: 15px;
   width: 98%;
+  color: white;
+  background-color: rgb(59, 59, 59);
+  border-radius: 4px;
+  border: 1px solid;
+  padding: 0.5vw 1vw;
+  font: inherit;
+  margin: 0.5vw;
+  font-size: 1.2vw;
+}
+
+.loginfieldLight {
+  height: 3vw;
+  min-height: 15px;
+  width: 98%;
+  color: black;
+  background-color: white;
   border-radius: 4px;
   border: 1px solid;
   padding: 0.5vw 1vw;
@@ -356,7 +372,7 @@
   padding: 10px;
   min-height: 150px;
   border: 0.15vw solid;
-  background-color: #1d1b1b;
+  background-color: #202124;
   color: white;
   position: absolute;
   left: 12.5%;
@@ -383,7 +399,7 @@
   min-height: 150px;
   border: 0.15vw solid rgb(92, 91, 91);
   color: white;
-  background-color: #1d1b1b;
+  background-color: #202124;
   position: absolute;
   left: 35%;
   border-radius: 0.6vw;

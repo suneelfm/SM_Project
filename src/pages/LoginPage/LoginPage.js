@@ -19,6 +19,8 @@ export default function LoginPage(close) {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
 
+  const mode = useSelector((state) => state.signInReducer.isDarkMode);
+
   useEffect(() => {
     username.current.focus();
   }, []);
@@ -115,7 +117,7 @@ export default function LoginPage(close) {
               <label className="loginFieldLabel">User Name:</label>
               <input
                 type="text"
-                className="loginfield"
+                className={mode ? "loginfieldDark" : "loginfieldLight"}
                 value={userName}
                 ref={username}
                 onChange={(event) => setuserName(event.target.value)}

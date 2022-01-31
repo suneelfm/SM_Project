@@ -19,6 +19,7 @@ export default function ForgotPassword(close) {
   const [enteredotp, setenteredotp] = useState({});
   const mailinput = useRef();
   const pswinput = useRef();
+  const mode = useSelector((state) => state.signInReducer.isDarkMode);
 
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
@@ -195,7 +196,7 @@ export default function ForgotPassword(close) {
                   <input
                     type="text"
                     ref={mailinput}
-                    className="loginfield"
+                    className={mode ? "loginfieldDark" : "loginfieldLight"}
                     value={mailId}
                     onChange={(event) => setmailId(event.target.value)}
                   />

@@ -17,6 +17,7 @@ export default function SignUp(close) {
 
   const nameinput = useRef();
 
+  const mode = useSelector((state) => state.signInReducer.isDarkMode);
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
 
@@ -156,7 +157,7 @@ export default function SignUp(close) {
               <label className="loginFieldLabel">Name*:</label>
               <input
                 type="text"
-                className="loginfield"
+                className={mode ? "loginfieldDark" : "loginfieldLight"}
                 value={fullName}
                 ref={nameinput}
                 onChange={(event) => setfullName(event.target.value)}
@@ -165,7 +166,7 @@ export default function SignUp(close) {
               <label className="loginFieldLabel">Mail Id*:</label>
               <input
                 type="text"
-                className="loginfield"
+                className={mode ? "loginfieldDark" : "loginfieldLight"}
                 value={mailId}
                 onChange={(event) => setmailId(event.target.value)}
               />
@@ -173,7 +174,7 @@ export default function SignUp(close) {
               <label className="loginFieldLabel">User Name*:</label>
               <input
                 type="text"
-                className="loginfield"
+                className={mode ? "loginfieldDark" : "loginfieldLight"}
                 value={userName}
                 onChange={(event) => setuserName(event.target.value)}
               />
@@ -183,7 +184,7 @@ export default function SignUp(close) {
               </label>
               <input
                 type="password"
-                className="loginfield"
+                className={mode ? "loginfieldDark" : "loginfieldLight"}
                 name="password"
                 id="psw"
                 min="4"

@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 export default function ChangePassword() {
+  const [viewPsw, setviewPsw] = useState(false);
+  const mode = useSelector((state) => state.signInReducer.isDarkMode);
+
   return (
     <>
       <div className="row" style={{ padding: "0px", marginTop: "1vw" }}>
@@ -41,14 +45,15 @@ export default function ChangePassword() {
           </div>
         </div>
       </div>
-      <div className="row col-12" style={{height:"85%"}}>
+      <div className="row col-12" style={{ height: "85%" }}>
         <div
           className="col-12"
           style={{
-            backgroundColor: "white",
+            backgroundColor: mode ? "#202124" : "white",
+            color: mode ? "white" : "black",
             borderRadius: "0.5vw",
             marginTop: "2vw",
-            height:"80%"
+            height: "80%",
           }}
         >
           {/* {okPsw && ( */}
@@ -60,7 +65,7 @@ export default function ChangePassword() {
               type="password"
               // ref={pswinput}
               style={{ minHeight: "15px", fontSize: "1.2vw" }}
-              className="loginfield"
+              className={mode ? "loginfieldDark" : "loginfieldLight"}
               name="password"
               id="psw"
               min="4"
@@ -76,7 +81,7 @@ export default function ChangePassword() {
               type="password"
               // ref={pswinput}
               style={{ minHeight: "15px", fontSize: "1.2vw" }}
-              className="loginfield"
+              className={mode ? "loginfieldDark" : "loginfieldLight"}
               name="password"
               id="psw"
               min="4"
@@ -94,16 +99,20 @@ export default function ChangePassword() {
                 width: "98%",
                 borderRadius: "4px",
                 height: "3vw",
+                backgroundColor: mode ? "rgb(59, 59, 59)" : "white",
+                color: mode ? "white" : "black",
               }}
             >
               <input
-                //   type={viewPsw ? "text" : "password"}
+                type={viewPsw ? "text" : "password"}
                 //   value={confirmpsw}
                 style={{
                   height: "3vw",
                   minHeight: "15px",
                   border: "1px solid black",
                   fontSize: "1.2vw",
+                  backgroundColor: "inherit",
+                  color: "inherit",
                 }}
                 //   onChange={(event) => setconfirmpsw(event.target.value.trim())}
                 className="form-control"
@@ -119,19 +128,19 @@ export default function ChangePassword() {
                 }}
               >
                 <span className="input-group-text">
-                  {/* {viewPsw ? ( */}
-                  <i
-                    style={{ fontSize: "1.5vw" }}
-                    className="fas fa-eye-slash"
-                    // onClick={() => setviewPsw(false)}
-                  ></i>
+                  {viewPsw ? (
+                    <i
+                      style={{ fontSize: "1.5vw" }}
+                      className="fas fa-eye-slash"
+                      onClick={() => setviewPsw(false)}
+                    ></i>
                   ) : (
-                  <i
-                    style={{ fontSize: "1.5vw" }}
-                    className="fas fa-eye"
-                    // onClick={() => setviewPsw(true)}
-                  ></i>
-                  {/* )} */}
+                    <i
+                      style={{ fontSize: "1.5vw" }}
+                      className="fas fa-eye"
+                      onClick={() => setviewPsw(true)}
+                    ></i>
+                  )}
                 </span>
               </div>
             </div>
