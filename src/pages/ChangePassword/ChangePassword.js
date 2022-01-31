@@ -1,10 +1,63 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { toastMessage } from "../../Components/toastMessage";
+import validator from "validator";
 
 export default function ChangePassword() {
   const [viewPsw, setviewPsw] = useState(false);
   const mode = useSelector((state) => state.signInReducer.isDarkMode);
+  const [currentPassword, setcurrentPassword] = useState("");
+  const [newpassword, setnewpassword] = useState("");
+  const [confirmpsw, setconfirmpsw] = useState("");
+
+  const pswinput = useRef();
+
+  const state = useSelector((state) => state.signInReducer);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    pswinput.current.focus();
+  }, []);
+
+  const changePassword = () => {
+    if (state.loggedInUser.password === currentPassword) {
+      if (
+        validator.isStrongPassword(newpassword, {
+          minLength: 8,
+          minLowercase: 1,
+          minUppercase: 1,
+          minNumbers: 1,
+          minSymbols: 1,
+        })
+      ) {
+        if (newpassword === confirmpsw) {
+          dispatch({ type: "ChagePassword", password: confirmpsw });
+          toastMessage({
+            appearance: "success",
+            message: "Password has been changed successfully",
+          });
+          window.history.back();
+        } else {
+          toastMessage({
+            appearance: "error",
+            message: "New Password and Confirm Passwords are not matching.",
+          });
+        }
+      } else {
+        toastMessage({
+          appearance: "error",
+          message:
+            "Please enter strong new password. At least 1 upper case, 1 lower case, 1 number, 1 special character and min. 8 characters required",
+        });
+      }
+    } else {
+      toastMessage({
+        appearance: "error",
+        message: "Invalid current password.",
+      });
+    }
+  };
 
   return (
     <>
@@ -12,7 +65,7 @@ export default function ChangePassword() {
         <div className="col-12" style={{ padding: "0px 1vw" }}>
           <div
             style={{
-              color: mode? "cornflowerblue":"rgb(37, 37, 138)",
+              color: mode ? "cornflowerblue" : "rgb(37, 37, 138)",
               marginBottom: "0px",
               fontSize: "1.6vw",
             }}
@@ -56,40 +109,38 @@ export default function ChangePassword() {
             height: "80%",
           }}
         >
-          {/* {okPsw && ( */}
           <div className="col-3">
             <label for="pass" className="loginFieldLabel">
               Current Password*:
             </label>
             <input
               type="password"
-              // ref={pswinput}
+              ref={pswinput}
               style={{ minHeight: "15px", fontSize: "1.2vw" }}
               className={mode ? "loginfieldDark" : "loginfieldLight"}
               name="password"
               id="psw"
               min="4"
               max="8"
-              // value={password}
-              // onChange={(event) => setpassword(event.target.value.trim())}
+              value={currentPassword}
+              onChange={(event) =>
+                setcurrentPassword(event.target.value.trim())
+              }
             />
-            {/* <div className="errorDiv">{pswerror}</div> */}
             <label for="pass" className="loginFieldLabel">
               New Password*:
             </label>
             <input
               type="password"
-              // ref={pswinput}
               style={{ minHeight: "15px", fontSize: "1.2vw" }}
               className={mode ? "loginfieldDark" : "loginfieldLight"}
               name="password"
               id="psw"
               min="4"
               max="8"
-              // value={password}
-              // onChange={(event) => setpassword(event.target.value.trim())}
+              value={newpassword}
+              onChange={(event) => setnewpassword(event.target.value.trim())}
             />
-            {/* <div className="errorDiv">{pswerror}</div> */}
             <label for="pass" className="loginFieldLabel">
               Confirm Password*:
             </label>
@@ -105,7 +156,7 @@ export default function ChangePassword() {
             >
               <input
                 type={viewPsw ? "text" : "password"}
-                //   value={confirmpsw}
+                value={confirmpsw}
                 style={{
                   height: "3vw",
                   minHeight: "15px",
@@ -114,7 +165,7 @@ export default function ChangePassword() {
                   backgroundColor: "inherit",
                   color: "inherit",
                 }}
-                //   onChange={(event) => setconfirmpsw(event.target.value.trim())}
+                onChange={(event) => setconfirmpsw(event.target.value.trim())}
                 className="form-control"
                 aria-label="Amount (to the nearest dollar)"
               />
@@ -147,7 +198,7 @@ export default function ChangePassword() {
 
             <div style={{ display: "flex", justifyContent: "center" }}>
               <button
-                style={{ marginTop: "1vw", fontSize: "1vw" }}
+                style={{ marginTop: "1vw", fontSize: "1vw", width: "5vw" }}
                 type="button"
                 className="buttonProp"
                 onClick={() => {
@@ -156,29 +207,32 @@ export default function ChangePassword() {
               >
                 Cancel
               </button>
-              {/* {okOTP ? ( */}
-              okPsw ? (
-              <button
-                style={{ marginTop: "1vw", fontSize: "1vw" }}
-                type="submit"
-                className="buttonProp"
-                // onClick={getPassword}
-              >
-                Change Password
-              </button>
+              {newpassword !== "" ? (
+                <button
+                  style={{ marginTop: "1vw", fontSize: "1vw" }}
+                  type="submit"
+                  className="buttonProp"
+                  onClick={changePassword}
+                >
+                  Change Password
+                </button>
               ) : (
-              <button
-                style={{ marginTop: "1vw", fontSize: "1vw" }}
-                type="submit"
-                className="buttonProp"
-                // onClick={getMailId}
-              >
-                Check Password
-              </button>
-              {/* )} */}
+                <button
+                  style={{
+                    marginTop: "1vw",
+                    fontSize: "1vw",
+                    cursor: "no-drop",
+                  }}
+                  type="submit"
+                  disabled
+                  className="buttonProp"
+                  onClick={changePassword}
+                >
+                  Change Password
+                </button>
+              )}
             </div>
           </div>
-          {/* )} */}
         </div>
       </div>
     </>

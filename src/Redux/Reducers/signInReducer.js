@@ -26,7 +26,6 @@ export const signInReducer = (state = credentialList, action) => {
       };
 
     case "UpdateProfile":
-      debugger;
       const users = [...state.loginUserArray];
       users.splice(state.loginUserArray.indexOf(state.loggedInUser), 1);
       users.push(action.userdetails);
@@ -42,6 +41,7 @@ export const signInReducer = (state = credentialList, action) => {
         ...state,
         loginUserArray: [...state.loginUserArray, action.credentials],
       };
+
     case "forgotPsw": {
       let matched = state.loginUserArray.filter(
         (item) => action.credentials.mailid === item.mailid
@@ -58,6 +58,18 @@ export const signInReducer = (state = credentialList, action) => {
       return {
         ...state,
         isDarkMode: action.mode,
+      };
+    }
+
+    case "ChagePassword": {
+      const currpsw = { ...state.loggedInUser };
+
+      state.loginUserArray.splice(state.loginUserArray.indexOf(currpsw), 1);
+      currpsw.password = action.password;
+      return {
+        ...state,
+        loggedInUser: currpsw,
+        loginUserArray: [...state.loginUserArray, currpsw],
       };
     }
 
