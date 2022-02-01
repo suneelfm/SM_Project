@@ -297,7 +297,7 @@ export default function TableCompontent({
                     maxHeight: "15vw",
                     overflow: "auto",
                     position: "absolute",
-                    backgroundColor: mode ? "#1b1b1b" : "white",
+                    backgroundColor: mode ? "#202124" : "white",
                     boxShadow: "0vw 0 1vw rgb(177, 177, 177)",
                     borderRadius: "0.3vw",
                   }}
@@ -319,7 +319,7 @@ export default function TableCompontent({
                       }
                       sx={{
                         "&.Mui-checked": {
-                          color: "rgb(37, 37, 138)",
+                          color: mode ? "cornflowerblue" : "rgb(37, 37, 138)",
                         },
                         "& .MuiSvgIcon-root": {
                           fontSize: "1.5vw",
@@ -347,7 +347,7 @@ export default function TableCompontent({
                         checked={searchBy.includes(item)}
                         sx={{
                           "&.Mui-checked": {
-                            color: "rgb(37, 37, 138)",
+                            color: mode ? "cornflowerblue" : "rgb(37, 37, 138)",
                           },
                           "& .MuiSvgIcon-root": {
                             fontSize: "1.5vw",
@@ -562,7 +562,7 @@ export default function TableCompontent({
                     className={mode ? "tdDark" : "tdLight"}
                     style={{
                       width: "85px",
-                      color: "rgb(37, 37, 138)",
+                      color: mode ? "cornflowerblue" : "rgb(37, 37, 138)",
                       cursor: "pointer",
                     }}
                   >

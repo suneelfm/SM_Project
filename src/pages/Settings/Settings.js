@@ -15,7 +15,7 @@ export default function Settings() {
         <div className="col-12" style={{ padding: "0px 1vw" }}>
           <div
             style={{
-              color: mode? "cornflowerblue":"rgb(37, 37, 138)",
+              color: mode ? "cornflowerblue" : "rgb(37, 37, 138)",
               marginBottom: "0px",
               fontSize: "1.6vw",
             }}
@@ -92,11 +92,11 @@ export default function Settings() {
                         fontSize: "1.5vw",
                       },
                       "& .MuiSwitch-switchBase.Mui-checked": {
-                        color: "rgb(37, 37, 138)",
+                        color: "cornflowerblue",
                       },
                       "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track":
                         {
-                          backgroundColor: "rgb(37, 37, 138)",
+                          backgroundColor: "cornflowerblue",
                         },
                       float: "right",
                     }}

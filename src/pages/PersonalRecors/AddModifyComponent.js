@@ -122,7 +122,7 @@ export default function AddModifyComponent({
                         fontSize: "1.5vw",
                       },
                       "&.Mui-checked": {
-                        color: "rgb(37, 37, 138)",
+                        color: mode ? "cornflowerblue" : "rgb(37, 37, 138)",
                       },
                       padding: "0",
                       margin: "0 0.5vw 0 1vw",
@@ -147,7 +147,7 @@ export default function AddModifyComponent({
                         fontSize: "1.5vw",
                       },
                       "&.Mui-checked": {
-                        color: "rgb(37, 37, 138)",
+                        color: mode ? "cornflowerblue" : "rgb(37, 37, 138)",
                       },
                       padding: "0",
                       margin: "0 0.5vw 0 1vw",
@@ -173,7 +173,7 @@ export default function AddModifyComponent({
                         fontSize: "1.5vw",
                       },
                       "&.Mui-checked": {
-                        color: "rgb(37, 37, 138)",
+                        color: mode ? "cornflowerblue" : "rgb(37, 37, 138)",
                       },
                       padding: "0",
                       margin: "0 0.5vw 0 1vw",
