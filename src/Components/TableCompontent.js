@@ -470,7 +470,7 @@ export default function TableCompontent({
                     }
                     sx={{
                       "&.Mui-checked": {
-                        color: "rgb(37, 37, 138)",
+                        color: mode ? "cornflowerblue" : "rgb(37, 37, 138)",
                       },
                       "&.MuiCheckbox-indeterminate": {
                         color: "rgb(37, 37, 138)",
@@ -533,7 +533,7 @@ export default function TableCompontent({
                       onChange={() => selectRecords(item)}
                       sx={{
                         "&.Mui-checked": {
-                          color: "rgb(37, 37, 138)",
+                          color: mode ? "cornflowerblue" : "rgb(37, 37, 138)",
                         },
                         "& .MuiSvgIcon-root": {
                           fontSize: "1.5vw",
