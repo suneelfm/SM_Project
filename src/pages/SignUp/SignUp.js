@@ -79,35 +79,47 @@ export default function SignUp(close) {
       pswerror === "" &&
       EmailError === ""
     ) {
-      let mailArr = state.signInReducer.loginUserArray.filter(
+      const mailArr = state.signInReducer.loginUserArray.filter(
         (item) => item.mailid === mailId
       );
+
+      const usernameArr = state.signInReducer.loginUserArray.filter(
+        (item) => item.userName === userName
+      );
+
       if (mailArr.length > 0) {
         toastMessage({
           appearance: "warn",
           message: "Account is already exists for this Mail Id",
         });
       } else {
-        if (password === confirmpsw) {
-          dispatch({
-            type: "signUp",
-            credentials: {
-              userName: userName,
-              mailid: mailId,
-              password: confirmpsw,
-              name: fullName,
-            },
-          });
-          close.prop(false);
+        if (usernameArr.length > 0) {
           toastMessage({
-            appearance: "success",
-            message: "User has been registered successfully.",
+            appearance: "warn",
+            message: "Already this username is in use",
           });
         } else {
-          toastMessage({
-            appearance: "error",
-            message: "Password and Confirm Passwords are not matching.",
-          });
+          if (password === confirmpsw) {
+            dispatch({
+              type: "signUp",
+              credentials: {
+                userName: userName,
+                mailid: mailId,
+                password: confirmpsw,
+                name: fullName,
+              },
+            });
+            close.prop(false);
+            toastMessage({
+              appearance: "success",
+              message: "User has been registered successfully.",
+            });
+          } else {
+            toastMessage({
+              appearance: "error",
+              message: "Password and Confirm Passwords are not matching.",
+            });
+          }
         }
       }
     }
