@@ -629,7 +629,7 @@
 
 .Toastify__toast-body {
   width: 30vw;
-  height: 2.6vw;
+  height: auto;
   font-size: 1.2vw;
 }
 
