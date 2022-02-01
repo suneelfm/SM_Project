@@ -473,7 +473,7 @@ export default function TableCompontent({
                         color: mode ? "cornflowerblue" : "rgb(37, 37, 138)",
                       },
                       "&.MuiCheckbox-indeterminate": {
-                        color: "rgb(37, 37, 138)",
+                        color: mode ? "cornflowerblue" : "rgb(37, 37, 138)",
                       },
                       "& .MuiSvgIcon-root": {
                         fontSize: "1.5vw",
