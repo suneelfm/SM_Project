@@ -78,12 +78,15 @@ export default function ForgotPassword(close) {
           (mm < 10 ? "0" + mm : mm);
         debugger;
         setotp(oTP);
-        const from = "SM Project";
         try {
           await emailjs.send(
             "service_k1oxn2k",
             "template_7zax92w",
-            { from, mailId, oTP },
+            {
+              subject: "SM Project(Verification Code)",
+              mailIds: mailId,
+              message: oTP,
+            },
             "user_1q1BTdJ8p43prsypF7dRH"
           );
         } catch (error) {
