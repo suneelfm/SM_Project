@@ -324,7 +324,7 @@
   margin-left: 1vw;
   padding: 0.5vw;
   font-size: 1.2vw;
-  cursor: pointer;
+  cursor: no-drop;
   color: gray;
 }
 
@@ -629,7 +629,7 @@
 
 .Toastify__toast-body {
   width: 30vw;
-  height: 2.6vw;
+  height: auto;
   font-size: 1.2vw;
 }
 

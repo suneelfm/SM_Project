@@ -32,11 +32,7 @@ export default function ToDoList() {
         settodolist(response);
       })
       .catch((err) =>
-        toast.error(`Error: ${err}`, {
-          position: toast.POSITION.BOTTOM_CENTER,
-          autoClose: 5000,
-          className: "Toastify__toast-body",
-        })
+        toastMessage({ appearance: "error", message: `Error: ${err.message}` })
       );
   };
 

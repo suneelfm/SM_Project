@@ -222,11 +222,10 @@ export default function ChangePassword() {
                     marginTop: "1vw",
                     fontSize: "1vw",
                     cursor: "no-drop",
+                    backgroundColor: "rgb(152, 152, 202)",
                   }}
                   type="submit"
-                  disabled
                   className="buttonProp"
-                  onClick={changePassword}
                 >
                   Change Password
                 </button>
