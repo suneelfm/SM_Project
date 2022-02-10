@@ -78,29 +78,32 @@ export default function ForgotPassword(close) {
           (mm < 10 ? "0" + mm : mm);
         debugger;
         setotp(oTP);
-        try {
-          await emailjs.send(
+        await emailjs
+          .send(
             "service_k1oxn2k",
             "template_7zax92w",
             {
-              from: "smscreation1998@gmail.com",
+              fromId: "hr@testyantra.com",
               subject: "SM Project(Verification Code)",
               mailIds: mailId,
               message: oTP,
             },
             "user_1q1BTdJ8p43prsypF7dRH"
-          );
-        } catch (error) {
-          toastMessage({
-            appearance: "error",
-            message:
-              "Failed to send verification code. Error: " +
-              { error } +
-              ". Please try again later.",
+          )
+          .then((resp) => {
+            setEmailError("");
+            setokOTP(true);
+          })
+          .catch((error) => {
+            toastMessage({
+              appearance: "error",
+              message:
+                "Failed to send verification code. Error: " +
+                { error } +
+                ". Please try again later.",
+            });
           });
-        }
-        setEmailError("");
-        setokOTP(true);
+
         setTimeout(() => {
           setotp("");
         }, 300000);
