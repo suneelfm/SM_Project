@@ -83,6 +83,7 @@ export default function ForgotPassword(close) {
             "service_k1oxn2k",
             "template_7zax92w",
             {
+              from: "smscreation1998@gmail.com",
               subject: "SM Project(Verification Code)",
               mailIds: mailId,
               message: oTP,
