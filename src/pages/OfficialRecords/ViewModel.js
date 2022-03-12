@@ -25,29 +25,49 @@ export default function ViewModel({
           }}
         />
       </div>
-      <div className="row" style={{margin:"1vw 0"}}>
+      <div className="row" style={{ margin: "1vw 0" }}>
         <div className="col-5">
           <b>Employee Name: </b>
         </div>
-        <div className="col-7">{empName}</div>
+        <div className="col-1" style={{ padding: "0" }}>
+          <b>:</b>
+        </div>
+        <div className="col-6" style={{ padding: "0" }}>
+          {empName}
+        </div>
       </div>
-      <div className="row" style={{margin:"1vw 0"}}>
+      <div className="row" style={{ margin: "1vw 0" }}>
         <div className="col-5">
           <b>Date of Joining: </b>
         </div>
-        <div className="col-7">{dateOfJoining}</div>
+        <div className="col-1" style={{ padding: "0" }}>
+          <b>:</b>
+        </div>
+        <div className="col-6" style={{ padding: "0" }}>
+          {dateOfJoining}
+        </div>
       </div>
-      <div className="row" style={{margin:"1vw 0"}}>
+      <div className="row" style={{ margin: "1vw 0" }}>
         <div className="col-5">
           <b>Date of Leaving: </b>
         </div>
-        <div className="col-7">{dateOfLeaving}</div>
+        <div className="col-1" style={{ padding: "0" }}>
+          <b>:</b>
+        </div>
+        <div className="col-6" style={{ padding: "0" }}>
+          {dateOfLeaving}
+        </div>
       </div>
-      <div className="row" style={{margin:"1vw 0"}}>
+      <div className="row" style={{ margin: "1vw 0" }}>
         <div className="col-5">
           <b>Department: </b>
         </div>
-        <div className="col-7">{Department}</div>
+        <div className="col-1" style={{ padding: "0" }}>
+          <b>:</b>
+        </div>
+        <div className="col-6" style={{ padding: "0" }}>
+          {Department}
+        </div>
       </div>
     </div>
   );
