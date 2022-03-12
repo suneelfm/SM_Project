@@ -588,7 +588,7 @@ export default function Layout() {
             >
               <div
                 style={{
-                  height: "86%",
+                  height: "85%",
                   overflowY: "auto",
                   overflowX: "hidden",
                 }}
