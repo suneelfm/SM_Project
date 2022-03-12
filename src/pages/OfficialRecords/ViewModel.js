@@ -27,7 +27,7 @@ export default function ViewModel({
       </div>
       <div className="row" style={{ margin: "1vw 0" }}>
         <div className="col-5">
-          <b>Employee Name: </b>
+          <b>Employee Name</b>
         </div>
         <div className="col-1" style={{ padding: "0" }}>
           <b>:</b>
@@ -38,7 +38,7 @@ export default function ViewModel({
       </div>
       <div className="row" style={{ margin: "1vw 0" }}>
         <div className="col-5">
-          <b>Date of Joining: </b>
+          <b>Date of Joining</b>
         </div>
         <div className="col-1" style={{ padding: "0" }}>
           <b>:</b>
@@ -49,7 +49,7 @@ export default function ViewModel({
       </div>
       <div className="row" style={{ margin: "1vw 0" }}>
         <div className="col-5">
-          <b>Date of Leaving: </b>
+          <b>Date of Leaving</b>
         </div>
         <div className="col-1" style={{ padding: "0" }}>
           <b>:</b>
@@ -60,7 +60,7 @@ export default function ViewModel({
       </div>
       <div className="row" style={{ margin: "1vw 0" }}>
         <div className="col-5">
-          <b>Department: </b>
+          <b>Department</b>
         </div>
         <div className="col-1" style={{ padding: "0" }}>
           <b>:</b>
