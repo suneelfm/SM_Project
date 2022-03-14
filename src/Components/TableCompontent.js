@@ -256,9 +256,21 @@ export default function TableCompontent({
               mode ? "tableSearchDark col-5" : "tableSearchLight col-5"
             }
           >
-            <div style={{ display: "inline", fontFamily: "inherit" }}>
-              <div style={{ display: "inline", fontFamily: "inherit" }}>
-                <Tooltip title={searchByinput}>
+            <div
+              style={{
+                display: "inline",
+                fontFamily: "inherit",
+              }}
+            >
+              <Tooltip title={searchByinput}>
+                <div
+                  style={{
+                    display: "inline",
+                    fontFamily: "inherit",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => setshowSearchByMenu(!showSearchByMenu)}
+                >
                   <input
                     type={"search"}
                     className={
@@ -267,29 +279,16 @@ export default function TableCompontent({
                         : "tablesearchbyinputLight"
                     }
                     placeholder="Search By"
-                    value={
-                      searchByinput.length > 8
-                        ? searchByinput.slice(0, 7) + "..."
-                        : searchByinput
-                    }
-                    onClick={() =>
-                      showSearchByMenu
-                        ? setshowSearchByMenu(false)
-                        : setshowSearchByMenu(true)
-                    }
+                    value={searchByinput}
                     readOnly
                   />
-                </Tooltip>
-                <i
-                  className="fas fa-caret-down"
-                  style={{ margin: "0.4vw" }}
-                  onClick={() =>
-                    showSearchByMenu
-                      ? setshowSearchByMenu(false)
-                      : setshowSearchByMenu(true)
-                  }
-                ></i>
-              </div>
+                  <i
+                    className="fas fa-caret-down"
+                    style={{ margin: "0.4vw" }}
+                    onClick={() => setshowSearchByMenu(!showSearchByMenu)}
+                  ></i>
+                </div>
+              </Tooltip>
               {showSearchByMenu && (
                 <div
                   style={{

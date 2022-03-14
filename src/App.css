@@ -568,6 +568,9 @@
   border-radius: 1vw;
   width: 20%;
   outline: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;
 }
 
 .tablesearchbyinputDark {
@@ -579,6 +582,9 @@
   border-radius: 1vw;
   width: 20%;
   outline: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;
 }
 
 .sortIcon {
