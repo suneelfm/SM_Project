@@ -67,16 +67,7 @@ export default function ForgotPassword(close) {
         (item) => item.mailid === mailId
       );
       if (mailArr.length > 0) {
-        const date = new Date();
-        const hh = date.getHours();
-        const ss = date.getSeconds();
-        const mm = date.getMinutes();
-        const oTP =
-          (hh < 10 ? "0" + hh : hh) +
-          "" +
-          (ss < 10 ? "0" + ss : ss) +
-          (mm < 10 ? "0" + mm : mm);
-        debugger;
+        const oTP = Math.floor(Math.random() * 9999) + 1000;
         setotp(oTP);
         await emailjs
           .send(
