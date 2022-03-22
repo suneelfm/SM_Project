@@ -111,7 +111,7 @@ export default function ForgotPassword(close) {
 
   const verifyOTP = () => {
     debugger;
-    if (Object.values(enteredotp).join("") === otp) {
+    if (Number(Object.values(enteredotp).join("")) === otp) {
       setotpError("");
       setokPsw(true);
       setokOTP(false);
