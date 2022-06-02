@@ -19,6 +19,7 @@ export default function Layout() {
   const state = useSelector((state) => state.signInReducer);
 
   useEffect(() => {
+    debugger;
     const curruser =
       sessionStorage.getItem("SMPuser") === null
         ? localStorage.getItem("SMPuser") === null
@@ -31,13 +32,15 @@ export default function Layout() {
     if (matched.length > 0) {
       setuser(matched[0]?.name);
     }
-    setuserImage(
+    const userImage =
+      sessionStorage.getItem("SMPuserimage") === "" ||
       sessionStorage.getItem("SMPuserimage") === null
-        ? localStorage.getItem("SMPuserimage") === null
+        ? localStorage.getItem("SMPuserimage") === "" ||
+          localStorage.getItem("SMPuserimage") === null
           ? "/Images/profile.png"
           : localStorage.getItem("SMPuserimage")
-        : sessionStorage.getItem("SMPuserimage")
-    );
+        : sessionStorage.getItem("SMPuserimage");
+    setuserImage(userImage);
   }, []);
 
   return (

@@ -45,17 +45,17 @@ export default function LoginPage(close) {
 
   const checkCredentials = () => {
     const filArr = state.signInReducer.loginUserArray.filter(
-      (val) => userName === val.userName && password === val.password
+      (val) => userName === val?.userName && password === val?.password
     );
     if (filArr.length > 0) {
       dispatch({ type: "signIn", userDetails: filArr[0] });
       isRemeberUser
-        ? localStorage.setItem("SMPuser", filArr[0].userName)
-        : sessionStorage.setItem("SMPuser", filArr[0].userName);
+        ? localStorage.setItem("SMPuser", filArr[0]?.userName)
+        : sessionStorage.setItem("SMPuser", filArr[0]?.userName);
       isRemeberUser
-        ? localStorage.setItem("SMPuserimage", filArr[0].img.name)
-        : sessionStorage.setItem("SMPuserimage", filArr[0].img.name);
-      close.prop.setuser(filArr[0].name);
+        ? localStorage.setItem("SMPuserimage", filArr[0]?.img?.src)
+        : sessionStorage.setItem("SMPuserimage", filArr[0]?.img?.src);
+      close.prop.setuser(filArr[0]?.name);
       close.prop.setuserImage(
         sessionStorage.getItem("SMPuserimage") === null
           ? localStorage.getItem("SMPuserimage") === null

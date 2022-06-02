@@ -107,6 +107,7 @@ export default function SignUp(close) {
                 mailid: mailId,
                 password: confirmpsw,
                 name: fullName,
+                img: { src: "" },
               },
             });
             close.prop(false);
