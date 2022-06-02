@@ -57,8 +57,10 @@ export default function LoginPage(close) {
         : sessionStorage.setItem("SMPuserimage", filArr[0]?.img?.src);
       close.prop.setuser(filArr[0]?.name);
       close.prop.setuserImage(
-        sessionStorage.getItem("SMPuserimage") === null
-          ? localStorage.getItem("SMPuserimage") === null
+        sessionStorage.getItem("SMPuserimage") === "" ||
+          sessionStorage.getItem("SMPuserimage") === null
+          ? localStorage.getItem("SMPuserimage") === "" ||
+            localStorage.getItem("SMPuserimage") === null
             ? "/Images/profile.png"
             : localStorage.getItem("SMPuserimage")
           : sessionStorage.getItem("SMPuserimage")

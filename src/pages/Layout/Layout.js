@@ -32,6 +32,7 @@ export default function Layout() {
     if (matched.length > 0) {
       setuser(matched[0]?.name);
     }
+    debugger;
     const userImage =
       sessionStorage.getItem("SMPuserimage") === "" ||
       sessionStorage.getItem("SMPuserimage") === null
