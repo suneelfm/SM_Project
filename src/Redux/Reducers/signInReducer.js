@@ -1,9 +1,9 @@
 const credentialList = {
   loginUserArray: [
     {
-      userName: "s",
+      userName: "sm-project",
       mailid: "sfm.20031998@gmail.com",
-      password: "123",
+      password: "User0@smp",
       name: "Suneel F M",
       img: { src: "/Images/user.JPG" },
     },
