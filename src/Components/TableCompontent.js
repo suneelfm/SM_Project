@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import ConfirmationPopup from "./ConfirmationPopup";
 import { toastMessage } from "./toastMessage";
 
-export default function TableCompontent({
+function TableCompontent({
   columnHeaderList,
   isViewColumnRequired = false,
   isSelectColumnRequired = false,
@@ -669,3 +669,5 @@ export default function TableCompontent({
     </>
   );
 }
+
+export default React.memo(TableCompontent);
