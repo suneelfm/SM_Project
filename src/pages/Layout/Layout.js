@@ -7,32 +7,30 @@ import { useSelector } from "react-redux";
 import "./LayoutStyle.css";
 
 export default function Layout() {
-  const [detailsubmenu, setdetailsubmenu] = useState(false);
-  const [user, setuser] = useState("Sign In");
-  const [userImage, setuserImage] = useState("/Images/profile.png");
-  const [showMenu, setshowMenu] = useState(false);
-  const [expandmenu, setexpandmenu] = useState(true);
-  const [focuskey, setfocuskey] = useState({ key: "" });
+  const [detailSubMenu, setDetailSubMenu] = useState(false);
+  const [user, setUser] = useState("Sign In");
+  const [userImage, setUserImage] = useState("/Images/profile.png");
+  const [showMenu, setShowMenu] = useState(false);
+  const [expandMenu, setExpandMenu] = useState(true);
+  const [focusKey, setFocusKey] = useState({ key: "" });
 
   const mode = useSelector((state) => state.signInReducer.isDarkMode);
 
   const state = useSelector((state) => state.signInReducer);
 
   useEffect(() => {
-    debugger;
-    const curruser =
+    const currUser =
       sessionStorage.getItem("SMPuser") === null
         ? localStorage.getItem("SMPuser") === null
           ? "Sign In"
           : localStorage.getItem("SMPuser")
         : sessionStorage.getItem("SMPuser");
     const matched = state.loginUserArray.filter(
-      (item) => item.userName === curruser
+      (item) => item.userName === currUser
     );
     if (matched.length > 0) {
-      setuser(matched[0]?.name);
+      setUser(matched[0]?.name);
     }
-    debugger;
     const userImage =
       sessionStorage.getItem("SMPuserimage") === "" ||
       sessionStorage.getItem("SMPuserimage") === null
@@ -41,7 +39,7 @@ export default function Layout() {
           ? "/Images/profile.png"
           : localStorage.getItem("SMPuserimage")
         : sessionStorage.getItem("SMPuserimage");
-    setuserImage(userImage);
+    setUserImage(userImage);
   }, []);
 
   return (
@@ -74,12 +72,12 @@ export default function Layout() {
           className="col-5"
           style={{ paddingLeft: "0px", paddingRight: "0px", display: "flex" }}
         >
-          <Tooltip title={expandmenu ? "Expand Menu" : "Sink menu"}>
+          <Tooltip title={expandMenu ? "Expand Menu" : "Sink menu"}>
             <i
               className="fas fa-bars menuIcon"
               style={{ color: mode ? "cornflowerblue" : "rgb(37, 37, 138)" }}
               onClick={() =>
-                expandmenu ? setexpandmenu(false) : setexpandmenu(true)
+                expandMenu ? setExpandMenu(false) : setExpandMenu(true)
               }
             />
           </Tooltip>
@@ -107,8 +105,8 @@ export default function Layout() {
               style={{ color: mode ? "cornflowerblue" : "rgb(37, 37, 138)" }}
               onClick={() =>
                 user !== "Sign In" && showMenu
-                  ? setshowMenu(false)
-                  : setshowMenu(true)
+                  ? setShowMenu(false)
+                  : setShowMenu(true)
               }
             >
               <img
@@ -141,7 +139,7 @@ export default function Layout() {
               className={
                 mode ? "sideBarContainerDark" : "sideBarContainerLight"
               }
-              style={{ width: expandmenu ? "5%" : "15%" }}
+              style={{ width: expandMenu ? "5%" : "15%" }}
             >
               <div
                 style={{
@@ -155,26 +153,26 @@ export default function Layout() {
                     className={mode ? "sideBar dark" : "sideBar"}
                     data-tip
                     data-for="homeTip"
-                    onClick={() => setfocuskey({ key: "home" })}
+                    onClick={() => setFocusKey({ key: "home" })}
                     style={{
                       color:
-                        (focuskey.key === "home" ||
+                        (focusKey.key === "home" ||
                           document.documentURI.split("/").pop() === "") &&
                         "blue",
                     }}
                   >
-                    {expandmenu && (
+                    {expandMenu && (
                       <ReactTooltip id="homeTip" place="right" effect="solid">
                         Home
                       </ReactTooltip>
                     )}
                     <i
                       style={{
-                        fontSize: expandmenu
+                        fontSize: expandMenu
                           ? "calc(5px + 1.5vw)"
                           : "calc(2.5px + 1.1vw)",
                         display: "inline",
-                        padding: expandmenu && "0 5vw 0 0.8vw",
+                        padding: expandMenu && "0 5vw 0 0.8vw",
                         transition: "all 0.5s linear",
                       }}
                       className={"fas fa-home sideBarIcons"}
@@ -194,18 +192,18 @@ export default function Layout() {
                 <Link to="/todolist" style={{ textDecoration: "none" }}>
                   <div
                     className={mode ? "sideBar dark" : "sideBar"}
-                    onClick={() => setfocuskey({ key: "todo" })}
+                    onClick={() => setFocusKey({ key: "todo" })}
                     data-tip
                     data-for="todoListTip"
                     style={{
                       color:
-                        (focuskey.key === "todo" ||
+                        (focusKey.key === "todo" ||
                           document.documentURI.split("/").pop() ===
                             "todolist") &&
                         "blue",
                     }}
                   >
-                    {expandmenu && (
+                    {expandMenu && (
                       <ReactTooltip
                         id="todoListTip"
                         place="right"
@@ -216,11 +214,11 @@ export default function Layout() {
                     )}
                     <i
                       style={{
-                        fontSize: expandmenu
+                        fontSize: expandMenu
                           ? "calc(5px + 1.5vw)"
                           : "calc(2.5px + 1.1vw)",
                         display: "inline",
-                        padding: expandmenu && "0 5vw 0 0.8vw",
+                        padding: expandMenu && "0 5vw 0 0.8vw",
                         transition: "all 0.5s linear",
                       }}
                       className={"fas fa-list-ul sideBarIcons"}
@@ -240,18 +238,18 @@ export default function Layout() {
                 <Link to="/calculator" style={{ textDecoration: "none" }}>
                   <div
                     className={mode ? "sideBar dark" : "sideBar"}
-                    onClick={() => setfocuskey({ key: "cals" })}
+                    onClick={() => setFocusKey({ key: "cals" })}
                     data-tip
                     data-for="CalculatorTip"
                     style={{
                       color:
-                        (focuskey.key === "cals" ||
+                        (focusKey.key === "cals" ||
                           document.documentURI.split("/").pop() ===
                             "calculator") &&
                         "blue",
                     }}
                   >
-                    {expandmenu && (
+                    {expandMenu && (
                       <ReactTooltip
                         id="CalculatorTip"
                         place="right"
@@ -262,11 +260,11 @@ export default function Layout() {
                     )}
                     <i
                       style={{
-                        fontSize: expandmenu
+                        fontSize: expandMenu
                           ? "calc(5px + 1.5vw)"
                           : "calc(2.5px + 1.1vw)",
                         display: "inline",
-                        padding: expandmenu && "0 5vw 0 0.8vw",
+                        padding: expandMenu && "0 5vw 0 0.8vw",
                         transition: "all 0.5s linear",
                       }}
                       className={"fas fa-calculator sideBarIcons"}
@@ -289,28 +287,28 @@ export default function Layout() {
                   data-for="DetailsTip"
                   style={{
                     color:
-                      (focuskey.key === "details" ||
+                      (focusKey.key === "details" ||
                         document.documentURI.split("/").includes("details")) &&
                       "blue",
                   }}
                   onClick={() => {
-                    detailsubmenu
-                      ? setdetailsubmenu(false)
-                      : setdetailsubmenu(true);
+                    detailSubMenu
+                      ? setDetailSubMenu(false)
+                      : setDetailSubMenu(true);
                   }}
                 >
-                  {expandmenu && (
+                  {expandMenu && (
                     <ReactTooltip id="DetailsTip" place="right" effect="solid">
                       Details
                     </ReactTooltip>
                   )}
                   <i
                     style={{
-                      fontSize: expandmenu
+                      fontSize: expandMenu
                         ? "calc(5px + 1.5vw)"
                         : "calc(2.5px + 1.1vw)",
                       display: "inline",
-                      padding: expandmenu ? "0 5vw 0 1.1vw" : "0.3vw",
+                      padding: expandMenu ? "0 5vw 0 1.1vw" : "0.3vw",
                       transition: "all 0.5s linear",
                     }}
                     className={"fas fa-info sideBarIcons"}
@@ -326,12 +324,12 @@ export default function Layout() {
                     Details
                   </span>
                 </div>
-                {(detailsubmenu ||
+                {(detailSubMenu ||
                   document.documentURI.split("/").includes("details")) && (
                   <div
                     style={{
-                      width: expandmenu ? "4vw" : "15vw",
-                      display: expandmenu && "inline-grid",
+                      width: expandMenu ? "4vw" : "15vw",
+                      display: expandMenu && "inline-grid",
                       transition: "all 0.5s linear",
                     }}
                   >
@@ -342,21 +340,21 @@ export default function Layout() {
                       <div
                         className={mode ? "subMenu dark" : "subMenu"}
                         onClick={() =>
-                          setfocuskey({ key: "details", subkey: "personal" })
+                          setFocusKey({ key: "details", subkey: "personal" })
                         }
                         data-tip
                         data-for="PersonalRecordsTip"
                         style={{
-                          width: expandmenu ? "5vw" : "15vw",
+                          width: expandMenu ? "5vw" : "15vw",
                           color:
-                            (focuskey.subkey === "personal" ||
+                            (focusKey.subkey === "personal" ||
                               document.documentURI
                                 .split("/")
                                 .includes("personalrecords")) &&
                             "blue",
                         }}
                       >
-                        {expandmenu && (
+                        {expandMenu && (
                           <ReactTooltip
                             id="PersonalRecordsTip"
                             place="right"
@@ -369,7 +367,7 @@ export default function Layout() {
                           style={{
                             fontSize: "calc(1px + 1vw)",
                             display: "inline",
-                            padding: expandmenu && "0 5vw 0 0.8vw",
+                            padding: expandMenu && "0 5vw 0 0.8vw",
                             transition: "all 0.5s linear",
                           }}
                           className={"fas fa-user-secret sideBarIcons"}
@@ -393,21 +391,21 @@ export default function Layout() {
                       <div
                         className={mode ? "subMenu dark" : "subMenu"}
                         onClick={() =>
-                          setfocuskey({ key: "details", subkey: "official" })
+                          setFocusKey({ key: "details", subkey: "official" })
                         }
                         data-tip
                         data-for="OfficialRecordsTip"
                         style={{
-                          width: expandmenu ? "5vw" : "15vw",
+                          width: expandMenu ? "5vw" : "15vw",
                           color:
-                            (focuskey.subkey === "official" ||
+                            (focusKey.subkey === "official" ||
                               document.documentURI
                                 .split("/")
                                 .includes("officialrecords")) &&
                             "blue",
                         }}
                       >
-                        {expandmenu && (
+                        {expandMenu && (
                           <ReactTooltip
                             id="OfficialRecordsTip"
                             place="top"
@@ -420,7 +418,7 @@ export default function Layout() {
                           style={{
                             fontSize: "calc(1px + 1vw)",
                             display: "inline",
-                            padding: expandmenu && "0 5vw 0 0.8vw",
+                            padding: expandMenu && "0 5vw 0 0.8vw",
                             transition: "all 0.5s linear",
                           }}
                           className={"fas fa-clipboard sideBarIcons"}
@@ -446,19 +444,19 @@ export default function Layout() {
                         data-tip
                         data-for="HealthRecordsTip"
                         onClick={() =>
-                          setfocuskey({ key: "details", subkey: "health" })
+                          setFocusKey({ key: "details", subkey: "health" })
                         }
                         style={{
-                          width: expandmenu ? "5vw" : "15vw",
+                          width: expandMenu ? "5vw" : "15vw",
                           color:
-                            (focuskey.subkey === "health" ||
+                            (focusKey.subkey === "health" ||
                               document.documentURI
                                 .split("/")
                                 .includes("healthrecords")) &&
                             "blue",
                         }}
                       >
-                        {expandmenu && (
+                        {expandMenu && (
                           <ReactTooltip
                             id="HealthRecordsTip"
                             place="right"
@@ -471,7 +469,7 @@ export default function Layout() {
                           style={{
                             fontSize: "calc(1px + 1vw)",
                             display: "inline",
-                            padding: expandmenu && "0 5vw 0 0.8vw",
+                            padding: expandMenu && "0 5vw 0 0.8vw",
                             transition: "all 0.5s linear",
                           }}
                           className={"fas fa-notes-medical sideBarIcons"}
@@ -495,17 +493,17 @@ export default function Layout() {
                     className={mode ? "sideBar dark" : "sideBar"}
                     data-tip
                     data-for="OtherRecordsTip"
-                    onClick={() => setfocuskey({ key: "other" })}
+                    onClick={() => setFocusKey({ key: "other" })}
                     style={{
                       color:
-                        (focuskey.key === "other" ||
+                        (focusKey.key === "other" ||
                           document.documentURI
                             .split("/")
                             .includes("otherrecords")) &&
                         "blue",
                     }}
                   >
-                    {expandmenu && (
+                    {expandMenu && (
                       <ReactTooltip
                         id="OtherRecordsTip"
                         place="right"
@@ -516,11 +514,11 @@ export default function Layout() {
                     )}
                     <i
                       style={{
-                        fontSize: expandmenu
+                        fontSize: expandMenu
                           ? "calc(5px + 1.5vw)"
                           : "calc(2.5px + 1.1vw)",
                         display: "inline",
-                        padding: expandmenu && "0 5vw 0 0.8vw",
+                        padding: expandMenu && "0 5vw 0 0.8vw",
                         transition: "all 0.5s linear",
                       }}
                       className={"fas fa-receipt sideBarIcons"}
@@ -543,32 +541,32 @@ export default function Layout() {
                   className={mode ? "sideBar dark" : "sideBar"}
                   data-tip
                   data-for="Settings"
-                  onClick={() => setfocuskey({ key: "settings" })}
+                  onClick={() => setFocusKey({ key: "settings" })}
                   style={{
                     overflow: "hidden",
                     position: "fixed",
                     bottom: "0",
-                    width: expandmenu ? "5%" : "15%",
+                    width: expandMenu ? "5%" : "15%",
                     whiteSpace: "nowrap",
                     transition: "all 0.5s linear",
                     color:
-                      (focuskey.key === "settings" ||
+                      (focusKey.key === "settings" ||
                         document.documentURI.split("/").includes("settings")) &&
                       "blue",
                   }}
                 >
-                  {expandmenu && (
+                  {expandMenu && (
                     <ReactTooltip id="Settings" place="right" effect="solid">
                       Settings
                     </ReactTooltip>
                   )}
                   <i
                     style={{
-                      fontSize: expandmenu
+                      fontSize: expandMenu
                         ? "calc(5px + 1.5vw)"
                         : "calc(2.5px + 1.1vw)",
                       display: "inline",
-                      padding: expandmenu && "0 5vw 0 0.8vw",
+                      padding: expandMenu && "0 5vw 0 0.8vw",
                       transition: "all 0.5s linear",
                     }}
                     className={"fas fa-cog sideBarIcons"}
@@ -588,7 +586,7 @@ export default function Layout() {
             </div>
             <div
               className={mode ? "outletDark" : "outletLight"}
-              style={{ width: expandmenu ? "95%" : "85%" }}
+              style={{ width: expandMenu ? "95%" : "85%" }}
             >
               <div
                 style={{
@@ -606,12 +604,12 @@ export default function Layout() {
                     <div
                       className="profileMenuItems"
                       onClick={() => {
-                        setshowMenu(false);
+                        setShowMenu(false);
                         localStorage.removeItem("SMPuser");
                         localStorage.removeItem("SMPuserimage");
                         sessionStorage.removeItem("SMPuser");
                         sessionStorage.removeItem("SMPuserimage");
-                        setuser("Sign In");
+                        setUser("Sign In");
                       }}
                     >
                       Sign Out
@@ -671,7 +669,7 @@ export default function Layout() {
           </div>
         </div>
       </footer>
-      {user === "Sign In" && <LoginPage prop={{ setuser, setuserImage }} />}
+      {user === "Sign In" && <LoginPage prop={{ setUser, setUserImage }} />}
     </div>
   );
 }

@@ -6,19 +6,19 @@ import OTPInput from "../../Components/OTPInput";
 import { toastMessage } from "../../Components/toastMessage";
 
 export default function ForgotPassword(close) {
-  const [mailId, setmailId] = useState("");
-  const [password, setpassword] = useState("");
-  const [confirmpsw, setconfirmpsw] = useState("");
-  const [pswerror, setpswerror] = useState("");
+  const [mailId, setMailId] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPsw, setConfirmPsw] = useState("");
+  const [pswError, setPswError] = useState("");
   const [EmailError, setEmailError] = useState("");
-  const [otpError, setotpError] = useState("");
-  const [okPsw, setokPsw] = useState(false);
-  const [viewPsw, setviewPsw] = useState(false);
-  const [okOTP, setokOTP] = useState(false);
-  const [otp, setotp] = useState("");
-  const [enteredotp, setenteredotp] = useState({});
-  const mailinput = useRef();
-  const pswinput = useRef();
+  const [otpError, setOtpError] = useState("");
+  const [okPsw, setOkPsw] = useState(false);
+  const [viewPsw, setViewPsw] = useState(false);
+  const [okOTP, setOkOTP] = useState(false);
+  const [otp, setOtp] = useState("");
+  const [enteredOtp, setEnteredOtp] = useState({});
+  const mailInput = useRef();
+  const pswInput = useRef();
   const mode = useSelector((state) => state.signInReducer.isDarkMode);
 
   const dispatch = useDispatch();
@@ -28,7 +28,7 @@ export default function ForgotPassword(close) {
     // okOTP
     //   ? otpinput.current.focus()
     //   :
-    okPsw ? pswinput.current.focus() : mailinput.current.focus();
+    okPsw ? pswInput.current.focus() : mailInput.current.focus();
   }, [okPsw]);
 
   const getMailId = () => {
@@ -42,7 +42,7 @@ export default function ForgotPassword(close) {
 
   const getPassword = () => {
     if (!password) {
-      setpswerror("Please enter new password.");
+      setPswError("Please enter new password.");
     } else if (
       validator.isStrongPassword(password, {
         minLength: 8,
@@ -52,10 +52,10 @@ export default function ForgotPassword(close) {
         minSymbols: 1,
       })
     ) {
-      setpswerror("");
+      setPswError("");
       getChange();
     } else {
-      setpswerror(
+      setPswError(
         "At least 1 upper case, 1 lower case, 1 number, 1 special character and min. 8 characters required"
       );
     }
@@ -68,7 +68,7 @@ export default function ForgotPassword(close) {
       );
       if (mailArr.length > 0) {
         const oTP = Math.floor(Math.random() * 999999) + 100000;
-        setotp(oTP);
+        setOtp(oTP);
         await emailjs
           .send(
             "service_k1oxn2k",
@@ -83,7 +83,7 @@ export default function ForgotPassword(close) {
           )
           .then((resp) => {
             setEmailError("");
-            setokOTP(true);
+            setOkOTP(true);
           })
           .catch((error) => {
             toastMessage({
@@ -96,7 +96,7 @@ export default function ForgotPassword(close) {
           });
 
         setTimeout(() => {
-          setotp("");
+          setOtp("");
         }, 300000);
       } else {
         toastMessage({
@@ -110,24 +110,23 @@ export default function ForgotPassword(close) {
   };
 
   const verifyOTP = () => {
-    debugger;
-    if (Number(Object.values(enteredotp).join("")) === otp) {
-      setotpError("");
-      setokPsw(true);
-      setokOTP(false);
+    if (Number(Object.values(enteredOtp).join("")) === otp) {
+      setOtpError("");
+      setOkPsw(true);
+      setOkOTP(false);
     } else {
-      setotpError("Invalid OTP");
+      setOtpError("Invalid OTP");
     }
   };
 
   const getChange = () => {
-    if (confirmpsw !== "") {
-      if (password === confirmpsw) {
+    if (confirmPsw !== "") {
+      if (password === confirmPsw) {
         dispatch({
           type: "forgotPsw",
           credentials: {
             mailid: mailId,
-            password: confirmpsw,
+            password: confirmPsw,
           },
         });
         close.prop(false);
@@ -193,10 +192,10 @@ export default function ForgotPassword(close) {
                   <label className="loginFieldLabel">Mail Id*:</label>
                   <input
                     type="text"
-                    ref={mailinput}
+                    ref={mailInput}
                     className={mode ? "loginfieldDark" : "loginfieldLight"}
                     value={mailId}
-                    onChange={(event) => setmailId(event.target.value)}
+                    onChange={(event) => setMailId(event.target.value)}
                   />
                   <div className="errorDiv">{EmailError}</div>
                 </div>
@@ -206,8 +205,8 @@ export default function ForgotPassword(close) {
                   <label className="loginFieldLabel">Enter OTP*:</label>
                   <OTPInput
                     numofinputs={6}
-                    onChangeofInut={setenteredotp}
-                    inputValue={enteredotp}
+                    onChangeofInut={setEnteredOtp}
+                    inputValue={enteredOtp}
                   ></OTPInput>
                   <div className="errorDiv">{otpError}</div>
                   <div
@@ -233,7 +232,7 @@ export default function ForgotPassword(close) {
                   </label>
                   <input
                     type="password"
-                    ref={pswinput}
+                    ref={pswInput}
                     style={{ minHeight: "15px", fontSize: "1.2vw" }}
                     className="loginfield"
                     name="password"
@@ -241,9 +240,9 @@ export default function ForgotPassword(close) {
                     min="4"
                     max="8"
                     value={password}
-                    onChange={(event) => setpassword(event.target.value.trim())}
+                    onChange={(event) => setPassword(event.target.value.trim())}
                   />
-                  <div className="errorDiv">{pswerror}</div>
+                  <div className="errorDiv">{pswError}</div>
                   <label for="pass" className="loginFieldLabel">
                     Confirm Password*:
                   </label>
@@ -257,7 +256,7 @@ export default function ForgotPassword(close) {
                   >
                     <input
                       type={viewPsw ? "text" : "password"}
-                      value={confirmpsw}
+                      value={confirmPsw}
                       style={{
                         height: "3vw",
                         minHeight: "15px",
@@ -265,7 +264,7 @@ export default function ForgotPassword(close) {
                         fontSize: "1.2vw",
                       }}
                       onChange={(event) =>
-                        setconfirmpsw(event.target.value.trim())
+                        setConfirmPsw(event.target.value.trim())
                       }
                       className="form-control"
                       aria-label="Amount (to the nearest dollar)"
@@ -284,13 +283,13 @@ export default function ForgotPassword(close) {
                           <i
                             style={{ fontSize: "1.5vw" }}
                             className="fas fa-eye-slash"
-                            onClick={() => setviewPsw(false)}
+                            onClick={() => setViewPsw(false)}
                           ></i>
                         ) : (
                           <i
                             style={{ fontSize: "1.5vw" }}
                             className="fas fa-eye"
-                            onClick={() => setviewPsw(true)}
+                            onClick={() => setViewPsw(true)}
                           ></i>
                         )}
                       </span>
@@ -305,7 +304,7 @@ export default function ForgotPassword(close) {
                   className="buttonProp"
                   onClick={() => {
                     close.prop(false);
-                    setotp("");
+                    setOtp("");
                   }}
                 >
                   Cancel

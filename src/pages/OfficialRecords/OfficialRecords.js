@@ -10,34 +10,34 @@ import { toastMessage } from "../../Components/toastMessage";
 import { basicURL } from "../../basicURL/basicURL";
 
 export default function OfficialRecords() {
-  const [employeeName, setemployeeName] = useState({
+  const [employeeName, setEmployeeName] = useState({
     value: "employeeSelect",
     id: "",
   });
-  const [dateofJoin, setdateofJoin] = useState(null);
-  const [department, setdepartment] = useState("Department*");
-  const [dateofLeaving, setdateofLeaving] = useState(null);
-  const [nameerror, setnameerror] = useState(null);
-  const [joindateerror, setjoindateerror] = useState(null);
-  const [depterror, setdepterror] = useState(null);
-  const [dob, setdob] = useState(null);
-  const [tabledata, settabledata] = useState([]);
-  const [officeRecords, setofficeRecords] = useState({ data: [] });
+  const [dateOfJoin, setDateOfJoin] = useState(null);
+  const [department, setDepartment] = useState("Department*");
+  const [dateOfLeaving, setDateOfLeaving] = useState(null);
+  const [nameError, setNameError] = useState(null);
+  const [joinDateError, setJoinDateError] = useState(null);
+  const [deptError, setDeptError] = useState(null);
+  const [dob, setDob] = useState(null);
+  const [tableData, setTableData] = useState([]);
+  const [officeRecords, setOfficeRecords] = useState({ data: [] });
   const [showModifyData, setShowModifyData] = useState(false);
-  const [modificationid, setmodificationid] = useState(null);
-  const [showViewPopup, setshowViewPopup] = useState(false);
-  const [Viewimage, setViewimage] = useState(null);
-  const [viewEmpname, setviewEmpname] = useState(null);
-  const [viewdoj, setviewdoj] = useState(null);
-  const [viewdol, setviewdol] = useState(null);
-  const [viewdpt, setviewdpt] = useState(null);
-  const [image, setimage] = useState(null);
+  const [modificationId, setModificationId] = useState(null);
+  const [showViewPopup, setShowViewPopup] = useState(false);
+  const [viewImage, setViewImage] = useState(null);
+  const [viewEmpName, setViewEmpName] = useState(null);
+  const [viewDoj, setViewDoj] = useState(null);
+  const [viewDol, setViewDol] = useState(null);
+  const [viewDpt, setViewDpt] = useState(null);
+  const [image, setImage] = useState(null);
   const details = useSelector(
     (state) => state.signInReducer.personalDetails.details.data
   );
   const mode = useSelector((state) => state.signInReducer.isDarkMode);
 
-  const DipartmentList = ["Account", "HR", "Curriculum", "Sports"];
+  const DepartmentList = ["Account", "HR", "Curriculum", "Sports"];
 
   const months = [
     "Jan",
@@ -66,7 +66,7 @@ export default function OfficialRecords() {
     await axios
       .get(`${basicURL}/official/get`)
       .then((response) => {
-        setofficeRecords(response);
+        setOfficeRecords(response);
         console.log(response);
       })
       .catch((err) => {
@@ -75,35 +75,34 @@ export default function OfficialRecords() {
   };
 
   const clearDetails = async () => {
-    setemployeeName({
+    setEmployeeName({
       value: "employeeSelect",
       id: "",
     });
-    setdateofJoin(null);
-    setdateofLeaving(null);
-    setdepartment(null);
-    setjoindateerror(null);
-    setnameerror(null);
-    setdepterror(null);
-    setimage(null);
+    setDateOfJoin(null);
+    setDateOfLeaving(null);
+    setDepartment(null);
+    setJoinDateError(null);
+    setNameError(null);
+    setDeptError(null);
+    setImage(null);
     setShowModifyData(false);
   };
 
   const openModifyPopup = (detail) => {
     setShowModifyData(true);
-    const machedname = details.filter(
+    const matchedName = details.filter(
       (item) => item.firstName === detail.empName.split(" ").shift()
     );
-    getimage(machedname[0]._id);
-    debugger;
+    getImage(matchedName[0]._id);
     console.log(
       details.filter(
         (item) => item.firstName === detail.empName.split(" ").shift()
       )
     );
-    setemployeeName({
+    setEmployeeName({
       value: detail.empName !== undefined ? detail.empName : "",
-      id: machedname[0]._id,
+      id: matchedName[0]._id,
     });
 
     let jdt = [];
@@ -111,7 +110,7 @@ export default function OfficialRecords() {
       jdt = detail.doj.split("-");
     }
     let jmonth = months[parseInt(jdt[1]) - 1];
-    setdateofJoin(
+    setDateOfJoin(
       detail.doj !== undefined
         ? new Date(jmonth + " " + jdt[0] + ", " + jdt[2])
         : null
@@ -121,13 +120,13 @@ export default function OfficialRecords() {
       ldt = detail.dol.split("-");
     }
     let lmonth = months[parseInt(ldt[1]) - 1];
-    setdateofLeaving(
+    setDateOfLeaving(
       detail.dol !== undefined
         ? new Date(lmonth + " " + ldt[0] + ", " + ldt[2])
         : null
     );
-    setmodificationid(officeRecords.data[detail._id - 1]._id);
-    setdepartment(detail.department);
+    setModificationId(officeRecords.data[detail._id - 1]._id);
+    setDepartment(detail.department);
   };
 
   const convertDate = (item) => {
@@ -152,44 +151,44 @@ export default function OfficialRecords() {
       empId: employeeName.id,
     };
     if (employeeName.value === "employeeSelect") {
-      setnameerror("Please select employee name.");
+      setNameError("Please select employee name.");
     } else {
-      setnameerror("");
+      setNameError("");
     }
-    if (dateofJoin === null) {
-      setjoindateerror("Please select date of join.");
+    if (dateOfJoin === null) {
+      setJoinDateError("Please select date of join.");
     } else {
-      setjoindateerror(null);
+      setJoinDateError(null);
     }
     if (department === "Department*") {
-      setdepterror("Please select department.");
+      setDeptError("Please select department.");
     } else {
-      setdepterror(null);
+      setDeptError(null);
     }
     if (showModifyData) {
       if (
         employeeName.value !== "employeeSelect" &&
-        dateofJoin !== "" &&
-        dateofLeaving !== "" &&
+        dateOfJoin !== "" &&
+        dateOfLeaving !== "" &&
         department !== "Department*"
       ) {
         dtl.empName = employeeName.value;
-        dtl.doj = dateofJoin;
-        dtl.dol = dateofLeaving;
+        dtl.doj = dateOfJoin;
+        dtl.dol = dateOfLeaving;
         dtl.department = department;
-        const mdtl = { ...dtl, _id: modificationid };
+        const mdtl = { ...dtl, _id: modificationId };
         await axios
           .post(`${basicURL}/official/update`, mdtl)
           .then(() => {
             getDetails();
-            setemployeeName({
+            setEmployeeName({
               value: "employeeSelect",
               id: "",
             });
-            setimage(null);
-            setdepartment("Department*");
-            setdateofJoin(null);
-            setdateofLeaving(null);
+            setImage(null);
+            setDepartment("Department*");
+            setDateOfJoin(null);
+            setDateOfLeaving(null);
             setShowModifyData(false);
             toastMessage({
               appearance: "success",
@@ -206,8 +205,8 @@ export default function OfficialRecords() {
     } else {
       if (
         employeeName.value !== "employeeSelect" &&
-        dateofJoin !== "" &&
-        // dateofLeaving !== "" &&
+        dateOfJoin !== "" &&
+        // dateOfLeaving !== "" &&
         department !== "Department*"
       ) {
         const exist = officeRecords.data.filter(
@@ -220,21 +219,21 @@ export default function OfficialRecords() {
           });
         } else {
           dtl.empName = employeeName.value;
-          dtl.doj = dateofJoin;
-          dtl.dol = dateofLeaving;
+          dtl.doj = dateOfJoin;
+          dtl.dol = dateOfLeaving;
           dtl.department = department;
           await axios
             .post(`${basicURL}/official/save`, dtl)
             .then(() => {
               getDetails();
-              setemployeeName({
+              setEmployeeName({
                 value: "employeeSelect",
                 id: "",
               });
-              setdepartment("Department*");
-              setdateofJoin(null);
-              setdateofLeaving(null);
-              setimage(null);
+              setDepartment("Department*");
+              setDateOfJoin(null);
+              setDateOfLeaving(null);
+              setImage(null);
               toastMessage({
                 appearance: "success",
                 message: "Record saved succefully.",
@@ -259,14 +258,14 @@ export default function OfficialRecords() {
           appearance: "success",
           message: "Record deleted succefully.",
         });
-        setemployeeName({
+        setEmployeeName({
           value: "employeeSelect",
           id: "",
         });
-        setdepartment("Department*");
-        setdateofJoin(null);
-        setdateofLeaving(null);
-        setimage(null);
+        setDepartment("Department*");
+        setDateOfJoin(null);
+        setDateOfLeaving(null);
+        setImage(null);
         setShowModifyData(false);
       })
       .catch((err) => {
@@ -274,50 +273,50 @@ export default function OfficialRecords() {
       });
   };
 
-  const viewOfficialDeatils = (detail) => {
-    setshowViewPopup(true);
-    const machedname =
+  const viewOfficialDetails = (detail) => {
+    setShowViewPopup(true);
+    const matchedName =
       details !== undefined &&
       details.filter(
         (item) => item.firstName === detail.empName.split(" ").shift()
       );
-    getimage(machedname !== null && machedname[0]._id, true);
-    setviewEmpname(detail.empName);
-    setviewdoj(detail.doj);
-    setviewdol(detail.dol);
-    setviewdpt(detail.department);
+    getImage(matchedName !== null && matchedName[0]._id, true);
+    setViewEmpName(detail.empName);
+    setViewDoj(detail.doj);
+    setViewDol(detail.dol);
+    setViewDpt(detail.department);
   };
 
   const handleNameField = async (event) => {
     const d_id = event.target[event.target.selectedIndex].id;
-    setemployeeName({
+    setEmployeeName({
       value: event.target.value,
       id: d_id,
     });
-    const matcheddetail = details.filter((item) => d_id === item._id);
-    getimage(d_id);
+    const matchedDetail = details.filter((item) => d_id === item._id);
+    getImage(d_id);
     let dt = [];
-    if (matcheddetail[0].dob !== undefined) {
-      let date = matcheddetail[0].dob;
+    if (matchedDetail[0].dob !== undefined) {
+      let date = matchedDetail[0].dob;
       dt = date.split("-");
     }
     let month = months[parseInt(dt[1]) - 1];
-    setdob(new Date(month + " " + (parseInt(dt[2]) + 1) + ", " + dt[0]));
+    setDob(new Date(month + " " + (parseInt(dt[2]) + 1) + ", " + dt[0]));
   };
 
-  const getimage = async (d_id, isview) => {
-    isview ? setViewimage(null) : setimage(null);
+  const getImage = async (d_id, isview) => {
+    isview ? setViewImage(null) : setImage(null);
     await axios
       .get(`${basicURL}/personal/imageget/${d_id}`)
       .then((resp) => {
         isview
-          ? setViewimage(resp.data.convertedImg.image)
-          : setimage(resp.data.convertedImg.image);
+          ? setViewImage(resp.data.convertedImg.image)
+          : setImage(resp.data.convertedImg.image);
       })
       .catch((err) => {
         toastMessage({
           appearance: "info",
-          message: `Profile phote is not available.`,
+          message: `Profile photo is not available.`,
         });
       });
   };
@@ -327,11 +326,11 @@ export default function OfficialRecords() {
     "Employee Name",
     "Date of Joining",
     "Date of Leaving",
-    "Dapartment",
+    "Department",
   ];
 
   useEffect(() => {
-    const dtllist = [];
+    const dtlList = [];
     officeRecords.data.forEach((item, index) => {
       const dtl = {};
 
@@ -341,9 +340,9 @@ export default function OfficialRecords() {
       dtl.dol = convertDate(item.dol);
       // dtl.dob = convertDate(item);
       dtl.department = item.department;
-      dtllist.push(dtl);
+      dtlList.push(dtl);
     });
-    settabledata(dtllist);
+    setTableData(dtlList);
   }, [officeRecords.data]);
 
   return (
@@ -420,19 +419,19 @@ export default function OfficialRecords() {
                         </option>
                       ))}
                   </select>
-                  <div className="errorDiv">{nameerror}</div>
+                  <div className="errorDiv">{nameError}</div>
                 </div>
                 <div className="col-sm-6" style={{ padding: "0" }}>
                   <DatePicker
                     className={mode ? "fieldPropDark" : "fieldPropLight"}
                     placeholderText="Date of Joining*"
                     dateFormat="dd-MM-yyyy"
-                    selected={dateofJoin}
-                    onChange={(date) => setdateofJoin(date)}
+                    selected={dateOfJoin}
+                    onChange={(date) => setDateOfJoin(date)}
                     minDate={dob}
                     showYearDropdown
                   />
-                  <div className="errorDiv">{joindateerror}</div>
+                  <div className="errorDiv">{joinDateError}</div>
                 </div>
               </div>
               <div className="row">
@@ -441,20 +440,20 @@ export default function OfficialRecords() {
                     className={mode ? "fieldPropDark" : "fieldPropLight"}
                     placeholderText="Date of Leaving"
                     dateFormat="dd-MM-yyyy"
-                    selected={dateofLeaving}
-                    onChange={(date) => setdateofLeaving(date)}
-                    minDate={dateofJoin}
+                    selected={dateOfLeaving}
+                    onChange={(date) => setDateOfLeaving(date)}
+                    minDate={dateOfJoin}
                     showYearDropdown
                   />
                 </div>
                 <div className="col-sm-6" style={{ padding: "0" }}>
                   <DropDownComponent
                     Value={department}
-                    onchange={(event) => setdepartment(event.target.value)}
+                    onchange={(event) => setDepartment(event.target.value)}
                     placeHolder={"Department*"}
-                    options={DipartmentList}
+                    options={DepartmentList}
                   />
-                  <div className="errorDiv">{depterror}</div>
+                  <div className="errorDiv">{deptError}</div>
                 </div>
               </div>
             </div>
@@ -525,17 +524,17 @@ export default function OfficialRecords() {
           </div>
         </form>
       </div>
-      {tabledata.length > 0 && (
+      {tableData.length > 0 && (
         <div className="row">
           <form className={mode ? "formcontainerDark" : "formcontainerLight"}>
             <TableCompontent
               columnHeaderList={headers}
               isViewColumnRequired={true}
-              onClickOfView={viewOfficialDeatils}
+              onClickOfView={viewOfficialDetails}
               isActionColumnRequired={true}
               onClickofModify={openModifyPopup}
               onClickofDelete={deleteName}
-              data={tabledata}
+              data={tableData}
               columnnoToDisplayinConfirmation={2}
               downloadApiURL={
                 "https://asmita-mern.herokuapp.com/official/exceldownload"
@@ -554,15 +553,15 @@ export default function OfficialRecords() {
             >
               <i
                 className="fas fa-times closeIcon"
-                onClick={() => setshowViewPopup(false)}
+                onClick={() => setShowViewPopup(false)}
               ></i>
               <h5 className="listHead">Official Details</h5>
               <ViewModel
-                empName={viewEmpname}
-                dateOfJoining={viewdoj}
-                dateOfLeaving={viewdol}
-                Department={viewdpt}
-                image={Viewimage}
+                empName={viewEmpName}
+                dateOfJoining={viewDoj}
+                dateOfLeaving={viewDol}
+                Department={viewDpt}
+                image={viewImage}
               />
             </form>
           </div>

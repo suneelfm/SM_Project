@@ -4,23 +4,22 @@ import { Link } from "react-router-dom";
 import "./calculatorStyle.css";
 
 export default function Calculator() {
-  const [display, setdisplay] = useState("");
-  const [count, setcount] = useState(0);
-  const [dotcount, setdotcount] = useState(0);
-  const [result, setresult] = useState("");
-  const [disppadding, setdisppadding] = useState(false);
-  const [lastresult, setlastresult] = useState("");
+  const [display, setDisplay] = useState("");
+  const [count, setCount] = useState(0);
+  const [dotCount, setDotCount] = useState(0);
+  const [result, setResult] = useState("");
+  const [disPadding, setDisPadding] = useState(false);
+  const [lastResult, setLastResult] = useState("");
 
   const mode = useSelector((state) => state.signInReducer.isDarkMode);
 
   const displayLogic = (value) => {
-    setlastresult("");
+    setLastResult("");
     let disp = display + value.toString();
-    setdisplay(disp.toString());
+    setDisplay(disp.toString());
   };
 
   const calculation = () => {
-    debugger;
     let expression = display.replaceAll("\u00D7", "*");
     expression = expression.replaceAll("\u00F7", "/");
     expression = expression.replaceAll("\u0025", "/100");
@@ -29,25 +28,24 @@ export default function Calculator() {
     //   expression = expression.replace("*(", "(");
     // }
     if (display === "") {
-      setresult("");
+      setResult("");
     }
     try {
       let res = eval(expression);
-      setresult("=" + res);
-      setdisplay("");
-      setdisppadding(true);
-      setlastresult(res);
-      setcount(0);
+      setResult("=" + res);
+      setDisplay("");
+      setDisPadding(true);
+      setLastResult(res);
+      setCount(0);
     } catch (error) {}
   };
 
   const calcyScreen = (value) => {
-    setresult("");
-    setdisppadding(false);
+    setResult("");
+    setDisPadding(false);
     if (isNaN(value) && value !== "." && value !== "(" && value !== ")") {
-      setdotcount(0);
-      debugger;
-      lastresult !== "" && displayLogic(lastresult + value);
+      setDotCount(0);
+      lastResult !== "" && displayLogic(lastResult + value);
       if (
         !(
           display === "" &&
@@ -55,18 +53,18 @@ export default function Calculator() {
         )
       ) {
         if (count === 0) {
-          lastresult === "" && displayLogic(value);
-          setcount(count + 1);
+          lastResult === "" && displayLogic(value);
+          setCount(count + 1);
         } else {
           alert("Consegative operators are not allowed.");
         }
       }
     } else {
-      setcount(0);
+      setCount(0);
       if (value === ".") {
-        if (dotcount === 0) {
+        if (dotCount === 0) {
           displayLogic(value);
-          setdotcount(count + 1);
+          setDotCount(count + 1);
         } else {
           alert("Tow dots are not allowed.");
         }
@@ -77,23 +75,23 @@ export default function Calculator() {
   };
 
   function backSpace() {
-    if (!disppadding) {
+    if (!disPadding) {
       let part = display.toString().split("");
       if (part[part.length - 1] === ".") {
-        setdotcount(0);
+        setDotCount(0);
       }
       let disp = display.slice(0, display.length - 1);
-      setdisplay(disp);
-      setcount(0);
+      setDisplay(disp);
+      setCount(0);
     }
   }
 
   function clearDisplay() {
-    setdisplay("");
-    setresult("");
-    setcount(0);
-    setdotcount(0);
-    setdisppadding(false);
+    setDisplay("");
+    setResult("");
+    setCount(0);
+    setDotCount(0);
+    setDisPadding(false);
   }
   return (
     <>
@@ -101,7 +99,7 @@ export default function Calculator() {
         <div className="col-12" style={{ padding: "0px 1vw" }}>
           <div
             style={{
-              color: mode ? "cornflowerblue":"rgb(37, 37, 138)",
+              color: mode ? "cornflowerblue" : "rgb(37, 37, 138)",
               marginBottom: "0px",
               fontSize: "1.6vw",
             }}
@@ -131,7 +129,7 @@ export default function Calculator() {
         style={{ marginTop: "1vw", display: "flex", justifyContent: "center" }}
       >
         <div className="tableframe">
-          <table style={{width:"100%"}}>
+          <table style={{ width: "100%" }}>
             <thead>
               <tr>
                 <td colSpan={4}>
@@ -139,8 +137,8 @@ export default function Calculator() {
                     <div
                       className="typeText"
                       style={{
-                        display: disppadding ? "none" : "flex",
-                        padding: disppadding ? "0px" : "1vw 2vw",
+                        display: disPadding ? "none" : "flex",
+                        padding: disPadding ? "0px" : "1vw 2vw",
                       }}
                     >
                       {display}
@@ -148,8 +146,8 @@ export default function Calculator() {
                     <div
                       className="result"
                       style={{
-                        color: disppadding ? "black" : "rgb(173, 173, 173)",
-                        fontSize: disppadding ? "5vw" : "2vw",
+                        color: disPadding ? "black" : "rgb(173, 173, 173)",
+                        fontSize: disPadding ? "5vw" : "2vw",
                       }}
                     >
                       {result}

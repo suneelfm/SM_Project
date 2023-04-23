@@ -6,19 +6,17 @@ import validator from "validator";
 import { toastMessage } from "../../Components/toastMessage";
 
 export default function Profile() {
-  const [userdetails, setuserdetails] = useState({});
-  const [editEnabledKey, seteditEnabledKey] = useState("");
-  const [isedited, setisedited] = useState(false);
-  const [error, seterror] = useState({
+  const [userDetails, setUserDetails] = useState({});
+  const [editEnabledKey, setEditEnabledKey] = useState("");
+  const [isEdited, setIsEdited] = useState(false);
+  const [error, setError] = useState({
     name: "",
     username: "",
     mailid: "",
     image: "",
   });
 
-  const mode = useSelector(
-    (state) => state.signInReducer.isDarkMode
-  );
+  const mode = useSelector((state) => state.signInReducer.isDarkMode);
 
   const namefield = useRef();
   const userName = useRef();
@@ -28,25 +26,25 @@ export default function Profile() {
 
   const details = useSelector((state) => state.signInReducer.loggedInUser);
   useEffect(() => {
-    setuserdetails({ ...details });
+    setUserDetails({ ...details });
   }, [details]);
 
   useEffect(() => {
     if (
-      details.userName !== userdetails.userName ||
-      details.mailid !== userdetails.mailid ||
-      details.name !== userdetails.name ||
-      details.img?.name !== userdetails.img?.name
+      details.userName !== userDetails.userName ||
+      details.mailid !== userDetails.mailid ||
+      details.name !== userDetails.name ||
+      details.img?.name !== userDetails.img?.name
     ) {
-      setisedited(true);
+      setIsEdited(true);
     } else {
-      setisedited(false);
+      setIsEdited(false);
     }
   }, [
-    userdetails.userName,
-    userdetails.name,
-    userdetails.mailid,
-    userdetails.img?.name,
+    userDetails.userName,
+    userDetails.name,
+    userDetails.mailid,
+    userDetails.img?.name,
   ]);
 
   useEffect(() => {
@@ -73,15 +71,15 @@ export default function Profile() {
 
   const handleSubmit = () => {
     const err = { ...error };
-    if (!userdetails.name) {
+    if (!userDetails.name) {
       err.name = "Please enter your full name.";
-    } else if (/^([a-zA-Z ]){1,15}$/.test(userdetails.name)) {
+    } else if (/^([a-zA-Z ]){1,15}$/.test(userDetails.name)) {
       err.name = "";
     } else {
       err.name = "Only alphabets up to 15 characters are allowed";
     }
 
-    if (validator.isEmail(userdetails.mailid)) {
+    if (validator.isEmail(userDetails.mailid)) {
       err.mailid = "";
     } else {
       err.mailid = "Please enter valid Email";
@@ -105,30 +103,29 @@ export default function Profile() {
     //   );
     // }
 
-    if (!userdetails.userName) {
+    if (!userDetails.userName) {
       err.username = "Please enter your user name.";
     } else if (/^([a-z0-9-_]){4,10}$/.test(userName)) {
       err.username = "";
     } else {
       err.username = `Only lower case alphnumarics with "-" and "_" at least 4 up to 10 characters are allowed without space`;
     }
-    debugger;
 
     const validImageExtensions = ["jpeg", "png", "jpg"];
     const ext =
-      userdetails.img.name !== "" && userdetails.img.name.split(".").pop();
+      userDetails.img.name !== "" && userDetails.img.name.split(".").pop();
 
     if (
       ext !== false &&
       !(validImageExtensions.indexOf(ext.toLocaleLowerCase()) !== -1) &&
-      userdetails.img.name !== ""
+      userDetails.img.name !== ""
     ) {
       err.image = "Please select file only of type jpeg, jpg or png";
     } else {
       err.image = "";
     }
 
-    seterror(err);
+    setError(err);
     getProfileChanges();
   };
 
@@ -141,9 +138,9 @@ export default function Profile() {
     ) {
       dispatch({
         type: "UpdateProfile",
-        userdetails,
+        userDetails,
       });
-      setisedited(false);
+      setIsEdited(false);
       toastMessage({
         appearance: "success",
         message: "User has been registered successfully.",
@@ -213,7 +210,7 @@ export default function Profile() {
               style={{ display: "grid", justifyContent: "center" }}
             >
               <img
-                src={userdetails.img?.name}
+                src={userDetails.img?.name}
                 alt=""
                 loading="lazy"
                 style={{
@@ -241,9 +238,8 @@ export default function Profile() {
                     <input
                       type="file"
                       onChange={(event) => {
-                        debugger;
-                        setuserdetails({
-                          ...userdetails,
+                        setUserDetails({
+                          ...userDetails,
                           img: event.target.files[0],
                         });
                       }}
@@ -266,10 +262,10 @@ export default function Profile() {
               {editEnabledKey === "name" ? (
                 <input
                   ref={namefield}
-                  value={userdetails.name}
-                  onBlur={() => seteditEnabledKey("")}
+                  value={userDetails.name}
+                  onBlur={() => setEditEnabledKey("")}
                   onChange={(event) =>
-                    setuserdetails({ ...userdetails, name: event.target.value })
+                    setUserDetails({ ...userDetails, name: event.target.value })
                   }
                   style={{
                     outline: "none",
@@ -279,10 +275,10 @@ export default function Profile() {
                 />
               ) : (
                 <div>
-                  {userdetails.name}
+                  {userDetails.name}
                   <Tooltip title="Edit Name">
                     <i
-                      onClick={() => seteditEnabledKey("name")}
+                      onClick={() => setEditEnabledKey("name")}
                       className="fas fa-pen iconProp"
                       style={{ marginLeft: "1vw" }}
                       // onClick={() => onClickofModify(item)}
@@ -316,11 +312,11 @@ export default function Profile() {
               {editEnabledKey === "userName" ? (
                 <input
                   ref={userName}
-                  onBlur={() => seteditEnabledKey("")}
-                  value={userdetails.userName}
+                  onBlur={() => setEditEnabledKey("")}
+                  value={userDetails.userName}
                   onChange={(event) =>
-                    setuserdetails({
-                      ...userdetails,
+                    setUserDetails({
+                      ...userDetails,
                       userName: event.target.value,
                     })
                   }
@@ -332,10 +328,10 @@ export default function Profile() {
                 />
               ) : (
                 <div>
-                  {userdetails.userName}
+                  {userDetails.userName}
                   <Tooltip title="Edit username">
                     <i
-                      onClick={() => seteditEnabledKey("userName")}
+                      onClick={() => setEditEnabledKey("userName")}
                       className="fas fa-pen iconProp"
                       style={{ marginLeft: "1vw" }}
                       // onClick={() => onClickofModify(item)}
@@ -354,11 +350,11 @@ export default function Profile() {
               {editEnabledKey === "mailid" ? (
                 <input
                   ref={mailid}
-                  onBlur={() => seteditEnabledKey("")}
-                  value={userdetails.mailid}
+                  onBlur={() => setEditEnabledKey("")}
+                  value={userDetails.mailid}
                   onChange={(event) =>
-                    setuserdetails({
-                      ...userdetails,
+                    setUserDetails({
+                      ...userDetails,
                       mailid: event.target.value,
                     })
                   }
@@ -370,10 +366,10 @@ export default function Profile() {
                 />
               ) : (
                 <div>
-                  {userdetails.mailid}
+                  {userDetails.mailid}
                   <Tooltip title="Change Email">
                     <i
-                      onClick={() => seteditEnabledKey("mailid")}
+                      onClick={() => setEditEnabledKey("mailid")}
                       className="fas fa-pen iconProp"
                       style={{ marginLeft: "1vw" }}
                       // onClick={() => onClickofModify(item)}
@@ -391,7 +387,7 @@ export default function Profile() {
               padding: "1vw",
             }}
           >
-            {isedited && (
+            {isEdited && (
               <button onClick={handleSubmit} className="buttonProp">
                 Save Changes
               </button>

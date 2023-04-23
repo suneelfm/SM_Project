@@ -600,7 +600,6 @@ export default function Home() {
                           borderRadius: "0.3vw",
                           marginBottom: "-0.2vw",
                         }}
-                        for="Allocate Budget"
                       ></label>
                       <span style={{ fontSize: "1vw", color: "grey" }}>
                         {" "}
@@ -616,7 +615,6 @@ export default function Home() {
                           borderRadius: "0.3vw",
                           marginBottom: "-0.2vw",
                         }}
-                        for="Allocate Budget"
                       ></label>
                       <span style={{ fontSize: "1vw", color: "grey" }}>
                         {" "}

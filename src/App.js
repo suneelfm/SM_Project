@@ -21,7 +21,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getPersonalRecords());
-  }, []);
+  });
 
   return (
     <BrowserRouter>
